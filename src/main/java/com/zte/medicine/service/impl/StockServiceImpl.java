@@ -19,6 +19,14 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class StockServiceImpl implements StockService {
 
+    public StockDao getStockDao() {
+        return stockDao;
+    }
+
+    public void setStockDao(StockDao stockDao) {
+        this.stockDao = stockDao;
+    }
+
     private StockDao stockDao;
 
     @Override

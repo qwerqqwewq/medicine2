@@ -18,6 +18,14 @@ import java.util.List;
 @Repository("StockCommentDao")
 public class StockCommentDaoImpl implements StockCommentDao {
 
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 

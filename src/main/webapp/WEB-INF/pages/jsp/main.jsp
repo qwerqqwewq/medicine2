@@ -10,8 +10,8 @@
 <head>
     <title></title>
   <meta charset="utf-8">
-  <script src="../jquery.min.js"></script>
-  <link rel="stylesheet" href="../main.css" type="text/css">
+  <script src="../../jquery.min.js"></script>
+  <link rel="stylesheet" href="../../main.css" type="text/css">
 </head>
 <body>
 <div class="box1">

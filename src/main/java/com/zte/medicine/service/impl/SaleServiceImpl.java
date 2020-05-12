@@ -18,6 +18,14 @@ import java.sql.Timestamp;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class SaleServiceImpl implements SaleService {
 
+    public SaleDao getSaleDao() {
+        return saleDao;
+    }
+
+    public void setSaleDao(SaleDao saleDao) {
+        this.saleDao = saleDao;
+    }
+
     private SaleDao saleDao;
 
     @Override

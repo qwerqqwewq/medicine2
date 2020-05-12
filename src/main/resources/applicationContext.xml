@@ -73,18 +73,18 @@
         </aop:config>
 
         <!-- Dao -->
-        <bean id="medDao" class="com.zte.medicine.dao.impl.CustomerDaoImpl">
+        <bean id="userDao" class="com.zte.medicine.dao.impl.UserDaoImpl">
             <property name="sessionFactory" ref="sessionFactory"></property>
         </bean>
 
         <!-- Service -->
-        <bean id="medService" class="com.zte.medicine.service.impl.CustomerServiceImpl">
-            <property name="CustomerDao" ref="medDao"></property>
+        <bean id="userService" class="com.zte.medicine.service.impl.UserServiceImpl">
+            <property name="UserDao" ref="userDao"></property>
         </bean>
 
         <!-- Action -->
-        <bean id="medAction" class="com.zte.medicine.action.CustomerAction">
-            <property name="CustomerService" ref="medService"></property>
+        <bean id="userAction" class="com.zte.medicine.action.UserAction">
+            <property name="UserService" ref="userService"></property>
         </bean>
 
 </beans>

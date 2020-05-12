@@ -9,7 +9,7 @@
 <html>
 <head>
     <title></title>
-  <script src="../jquery.min.js"></script>
+  <script src="../../jquery.min.js"></script>
   <style>
     body {
       background: rgb(238, 238, 238);

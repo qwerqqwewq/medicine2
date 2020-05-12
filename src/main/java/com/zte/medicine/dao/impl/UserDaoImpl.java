@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author:helloboy Date:2020-03-13 9:19
@@ -16,27 +17,35 @@ import javax.annotation.Resource;
 @Repository("UserDao")
 public class UserDaoImpl implements UserDao {
 
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
     @Override
-    public User selectByName(String name) {
-        return (User)sessionFactory.getCurrentSession().get(User.class,name);
+    public List<User> selectByName(String name) {
+        return (List<User>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where username=" + name + ";").list();
     }
 
     @Override
     public User selectById(Integer Id) {
-        return (User)sessionFactory.getCurrentSession().get(User.class,Id);
+        return (User)sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where id=" + Id + ";");
     }
 
     @Override
     public void insertUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        sessionFactory.getCurrentSession().createSQLQuery("insert into t_user(username,password,powerId) values ('"+user.getUsername()+"','"+user.getPassword()+"',"+1+");");
     }
 
     @Override
     public void deleteUser(Integer id) {
-        sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().get(User.class,id));
+        sessionFactory.getCurrentSession().delete(selectById(id));
     }
 
     @Override

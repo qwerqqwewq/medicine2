@@ -1,6 +1,7 @@
 package com.zte.medicine.action;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Firm;
 import com.zte.medicine.entity.Kind;
 import com.zte.medicine.entity.Medicine;
@@ -28,7 +29,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/medicine")
 @SessionAttributes("medicine")
-public class MedicineAction {
+public class MedicineAction extends ActionSupport {
+
+    public MedicineService getMedicineService() {
+        return medicineService;
+    }
+
+    public void setMedicineService(MedicineService medicineService) {
+        this.medicineService = medicineService;
+    }
 
     @Autowired
     private MedicineService medicineService;

@@ -17,6 +17,14 @@ import javax.annotation.Resource;
 @Repository("PowerDao")
 public class PowerDaoImpl implements PowerDao {
 
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 

@@ -79,7 +79,7 @@
 <div>
   <h1>欢迎使用医药管理系统</h1>
 </div>
-<form method="post" action="${pageContext.request.contextPath}/user/login.do" id="log">
+<form method="post" action="user_login.action" >
   <div class="all">
   <div>
   <span>账号</span>
@@ -95,7 +95,7 @@
   </div>
   <div>
   <input type="submit" value="登陆" class="submit">
-  <a href="../html/register.html" class="register">注册</a>
+  <a href="${pageContext.request.contextPath}/user_registpage.action" class="register">注册</a>
   </div>
 
 

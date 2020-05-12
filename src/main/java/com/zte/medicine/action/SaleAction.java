@@ -1,6 +1,7 @@
 package com.zte.medicine.action;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Sale;
 import com.zte.medicine.entity.SaleComment;
 import com.zte.medicine.service.SaleCommentService;
@@ -24,7 +25,23 @@ import java.util.Map;
 @Controller
 @RequestMapping("/sale")
 @SessionAttributes("sale")
-public class SaleAction {
+public class SaleAction extends ActionSupport {
+    public SaleService getSaleService() {
+        return saleService;
+    }
+
+    public void setSaleService(SaleService saleService) {
+        this.saleService = saleService;
+    }
+
+    public SaleCommentService getSaleCommentService() {
+        return saleCommentService;
+    }
+
+    public void setSaleCommentService(SaleCommentService saleCommentService) {
+        this.saleCommentService = saleCommentService;
+    }
+
     @Autowired
     private SaleService saleService;
     @Autowired

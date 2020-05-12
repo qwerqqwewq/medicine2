@@ -1,6 +1,7 @@
 package com.zte.medicine.action;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Firm;
 import com.zte.medicine.service.FirmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/firm")
 @SessionAttributes("firm")
-public class FirmAction {
+public class FirmAction extends ActionSupport {
+    public FirmService getFirmService() {
+        return firmService;
+    }
+
+    public void setFirmService(FirmService firmService) {
+        this.firmService = firmService;
+    }
+
     @Autowired
     private FirmService firmService;
 
@@ -90,7 +99,6 @@ public class FirmAction {
 
     /**
      * 根据姓名显示供应商信息
-     * @param form
      */
     @RequestMapping("/viewAll")
     public void viewByName(HttpServletRequest request){

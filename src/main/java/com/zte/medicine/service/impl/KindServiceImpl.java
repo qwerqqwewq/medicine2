@@ -16,6 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class KindServiceImpl implements KindService {
 
+    public KindDao getKindDao() {
+        return kindDao;
+    }
+
+    public void setKindDao(KindDao kindDao) {
+        this.kindDao = kindDao;
+    }
+
     private KindDao kindDao;
 
     @Override

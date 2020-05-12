@@ -1,10 +1,11 @@
 package com.zte.medicine.action;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Kind;
 import com.zte.medicine.service.KindService;
-import com.zte.medicine.service.impl.KindServiceImpl;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -22,7 +23,18 @@ import java.util.Map;
 @Controller
 @RequestMapping("kind")
 @SessionAttributes("/kind")
-public class KindAction {
+public class KindAction extends ActionSupport {
+
+    public KindService getKindService() {
+        return kindService;
+    }
+
+    public void setKindService(KindService kindService) {
+        this.kindService = kindService;
+    }
+
+    @Autowired
+    private KindService kindService;
 
     @RequestMapping("/add")
     public String add(ActionMapping mapping,
@@ -36,7 +48,6 @@ public class KindAction {
         try {
             k.setKindCode(request.getParameter("KindCode"));
             k.setKindRemark(request.getParameter("KindRemark"));
-            KindService kindService = new KindServiceImpl();
             kindService.addKind(k);
             map.put("msg","添加成功");
         }catch (Exception e){

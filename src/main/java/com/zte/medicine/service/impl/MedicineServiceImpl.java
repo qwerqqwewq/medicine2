@@ -19,6 +19,14 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class MedicineServiceImpl implements MedicineService {
 
+    public MedicineDao getMedicineDao() {
+        return medicineDao;
+    }
+
+    public void setMedicineDao(MedicineDao medicineDao) {
+        this.medicineDao = medicineDao;
+    }
+
     private MedicineDao medicineDao;
 
     @Override

@@ -18,6 +18,14 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class StockCommentServiceImpl implements StockCommentService {
 
+    public StockCommentDao getStockCommentDao() {
+        return stockCommentDao;
+    }
+
+    public void setStockCommentDao(StockCommentDao stockCommentDao) {
+        this.stockCommentDao = stockCommentDao;
+    }
+
     private StockCommentDao stockCommentDao;
 
     @Override

@@ -2,6 +2,8 @@ package com.zte.medicine.dao;
 
 import com.zte.medicine.entity.User;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-28 10:48
@@ -14,7 +16,7 @@ public interface UserDao {
      * @param  name
      * @return
     **/
-    public User selectByName(String name);
+    public List<User> selectByName(String name);
     /**
     * 根据用户编号查询
     * @param  Id

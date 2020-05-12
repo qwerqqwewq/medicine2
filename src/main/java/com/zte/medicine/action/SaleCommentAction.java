@@ -1,5 +1,6 @@
 package com.zte.medicine.action;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.service.SaleCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/saleComment")
 @SessionAttributes("saleComment")
-public class SaleCommentAction {
+public class SaleCommentAction extends ActionSupport {
+
+    public SaleCommentService getSaleCommentService() {
+        return saleCommentService;
+    }
+
+    public void setSaleCommentService(SaleCommentService saleCommentService) {
+        this.saleCommentService = saleCommentService;
+    }
 
     @Autowired
     SaleCommentService saleCommentService;

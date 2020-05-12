@@ -2,14 +2,14 @@
   Created by IntelliJ IDEA.
   User: wei
   Date: 2020/5/8
-  Time: 21:13
+  Time: 21:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title></title>
-  <script src="../jquery.min.js"></script>
+  <script src="../../jquery.min.js"></script>
   <style>
     body{
       background: rgb(238,238,238);
@@ -17,43 +17,38 @@
     .box {
       background: rgb(250,250,250);
       width: 1000px;
-      height: 430px;
+      height: 700px;
       margin: 100px auto;
       border: 1px #ccc solid;
       border-radius: 3px;
     }
 
-    h2 {
-      text-align: center;
-    }
-
-    input {
+    .search {
       height: 40px;
-      width: 288px;
-      margin-top: 25px;
-      margin-left: 30px;
+      width: 500px;
+      margin-top: 30px;
+      margin-left: 100px;
       border-radius: 5px;
       outline: none;
       border: 1px #ccc solid;
       padding-left: 10px;
     }
 
-    span {
-      font-size: 25px;
-      margin-left: 20px;
+    .submit,
+    .high {
+      color: white;
+      height: 40px;
+      width: 80px;
+      margin-left: 90px;
+      border: 1px #ccc solid;
+      border-radius: 5px;
+      background-color: rgb(45, 147, 214);
+      cursor: pointer;
     }
 
-    .submit {
-      color: white;
-      background-color: rgb(45, 147, 214);
-      height: 70px;
-      width: 90%;
-      margin: 40px auto;
-      border: 1px #ccc solid;
-      margin-top: 50px;
-      margin-right: 0;
-      padding-left: 0;
-      margin-left: 50px;
+    .high_submit {
+      float: right;
+      margin-right: 20px;
     }
 
     .back {
@@ -76,27 +71,18 @@
 <div class="back">
   <p>back</p>
 </div>
-<form method="post" action="StockAdd">
+<form method="post" action="StockSearch">
 <div class="box">
-  <div>
-    <h2>添加的药品名称</h2>
-  </div>
-  <div>
-    <input type="text" placeholder="药品名">
-  </div>
-  <div>
-    <h2>添加数量</h2>
-  </div>
-  <div>
-    <input type="text" placeholder="数量">
-  </div>
-  <div class="down">
-    <input type="submit" value="提交" class="submit">
-  </div>
+  <input type="text" class="search" placeholder="请输入需要查找的药品">
+  <input type="submit" value="查询" class="submit">
 </div>
 </form>
+
 <script>
   $(function() {
+    $(".high").click(function() {
+      $(".down").stop().slideToggle(200);
+    })
     $(".back").click(function() {
       window.location.href = "main.html";
     })

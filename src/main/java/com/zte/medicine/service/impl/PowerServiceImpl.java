@@ -16,6 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class PowerServiceImpl implements PowerService {
 
+    public PowerDao getPowerDao() {
+        return powerDao;
+    }
+
+    public void setPowerDao(PowerDao powerDao) {
+        this.powerDao = powerDao;
+    }
+
     private PowerDao powerDao;
 
     @Override

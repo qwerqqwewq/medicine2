@@ -77,19 +77,22 @@
   <div>
     <span>账号</span>
   </div>
-  <form method="post" action="register">
+  <form method="post" action="${pageContext.request.contextPath}/user_regist.action">
   <div>
-    <input type="text" class="input" placeholder="请输入账号...">
+    <input name="name" type="text" class="input" placeholder="请输入账号...">
   </div>
   <div>
     <span>密码</span>
   </div>
   <div>
-    <input type="password" class="input" placeholder="请输入密码...">
+    <input name="pwd" type="password" class="input" placeholder="请输入密码...">
   </div>
+    <div>
+      <input name="tpwd" type="password" class="input" placeholder="请再次输入密码...">
+    </div>
   <div>
     <input type="submit" value="注册" class="submit">
-    <a href="../html/login.html" class="login">返回</a>
+    <a href="${pageContext.request.contextPath}/user_loginpage.action" class="login">返回</a>
   </div>
   </form>
 </div>

@@ -2,14 +2,14 @@
   Created by IntelliJ IDEA.
   User: wei
   Date: 2020/5/8
-  Time: 20:30
+  Time: 21:13
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title></title>
-  <script src="../jquery.min.js"></script>
+  <script src="../../jquery.min.js"></script>
   <style>
     body{
       background: rgb(238,238,238);
@@ -17,7 +17,7 @@
     .box {
       background: rgb(250,250,250);
       width: 1000px;
-      height: 700px;
+      height: 430px;
       margin: 100px auto;
       border: 1px #ccc solid;
       border-radius: 3px;
@@ -76,34 +76,19 @@
 <div class="back">
   <p>back</p>
 </div>
-<form method="post" action="add">
+<form method="post" action="StockAdd">
 <div class="box">
   <div>
-    <h2>基本信息</h2>
+    <h2>添加的药品名称</h2>
   </div>
   <div>
     <input type="text" placeholder="药品名">
   </div>
   <div>
-    <input type="text" placeholder="药品编码">
+    <h2>添加数量</h2>
   </div>
   <div>
-    <input type="text" placeholder="供应商编码">
-  </div>
-  <div>
-    <input type="text" placeholder="药品类别代码">
-  </div>
-  <div>
-    <h2>详细信息</h2>
-  </div>
-  <div>
-    <input type="text" placeholder="进价">
-    <input type="text" placeholder="售价">
-    <input type="text" placeholder="库存">
-  </div>
-  <div>
-    <input type="text" placeholder="生产日期">
-    <input type="text" placeholder="有效日期">
+    <input type="text" placeholder="数量">
   </div>
   <div class="down">
     <input type="submit" value="提交" class="submit">

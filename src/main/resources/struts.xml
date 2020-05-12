@@ -19,5 +19,20 @@
             <result name="success">WEB-INF/success.jsp</result>
         </action>
 
+
+        <action name="user_*" class="com.zte.medicine.action.UserAction" method="{1}">
+            <result name="regist">WEB-INF/pages/jsp/register.jsp</result>
+            <result name="login">WEB-INF/pages/jsp/login.jsp</result>
+            <result name="fail">WEB-INF/pages/jsp/fail.jsp</result>
+        </action>
+
+
+
     </package>
+
+
+
+
+
+
 </struts>

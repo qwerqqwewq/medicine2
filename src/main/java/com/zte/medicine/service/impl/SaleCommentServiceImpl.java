@@ -18,6 +18,14 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class SaleCommentServiceImpl implements SaleCommentService {
 
+    public SaleCommentDao getSaleCommentDao() {
+        return saleCommentDao;
+    }
+
+    public void setSaleCommentDao(SaleCommentDao saleCommentDao) {
+        this.saleCommentDao = saleCommentDao;
+    }
+
     private SaleCommentDao saleCommentDao;
 
     @Override

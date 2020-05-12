@@ -1,6 +1,7 @@
 package com.zte.medicine.action;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Customer;
 import com.zte.medicine.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.Map;
 @Scope("prototype")
 @RequestMapping("/customer")
 @SessionAttributes("customer")
-public class CustomerAction{
+public class CustomerAction extends ActionSupport {
     public CustomerService getCustomerService() {
         return customerService;
     }

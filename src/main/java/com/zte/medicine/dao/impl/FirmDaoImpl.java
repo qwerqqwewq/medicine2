@@ -17,6 +17,14 @@ import javax.annotation.Resource;
 @Repository("FirmDao")
 public class FirmDaoImpl implements FirmDao {
 
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 

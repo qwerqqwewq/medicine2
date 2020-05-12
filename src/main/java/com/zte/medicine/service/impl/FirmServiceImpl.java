@@ -16,6 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class FirmServiceImpl implements FirmService {
 
+    public FirmDao getFirmDao() {
+        return firmDao;
+    }
+
+    public void setFirmDao(FirmDao firmDao) {
+        this.firmDao = firmDao;
+    }
+
     private FirmDao firmDao;
 
     @Override

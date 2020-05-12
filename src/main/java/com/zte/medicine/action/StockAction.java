@@ -1,6 +1,7 @@
 package com.zte.medicine.action;
 
 import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Medicine;
 import com.zte.medicine.entity.Stock;
 import com.zte.medicine.entity.StockComment;
@@ -26,7 +27,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/stock")
 @SessionAttributes("stock")
-public class StockAction {
+public class StockAction extends ActionSupport {
+    public StockService getStockService() {
+        return stockService;
+    }
+
+    public void setStockService(StockService stockService) {
+        this.stockService = stockService;
+    }
+
     @Autowired
     private StockService stockService;
     private StockCommentService stockCommentService;

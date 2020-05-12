@@ -2,6 +2,8 @@ package com.zte.medicine.service;
 
 import com.zte.medicine.entity.User;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-07 17:12
@@ -13,7 +15,7 @@ public interface UserService {
      * @param  name
      * @return
      **/
-    public User findByName(String name);
+    public List<User> findByName(String name);
     /**
      * 根据用户编号查询
      * @param  Id

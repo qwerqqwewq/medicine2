@@ -125,12 +125,12 @@ public class UserAction extends ActionSupport {
             String mpwd =MD5Util.MD5Encode(pwd);
             user.setPassword(mpwd);
             if (name!=null) {
-                if (userService.findByName(name).size()==0) {
+                if (true) {
                     userService.addUser(user);
                     return "login";
                 } else {
                     out.print("<script>alert('该用户名已存在！')</script>");
-                    out.print("<script>window.locatio n.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
+                    out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
                     out.flush();
                     out.close();
                 }

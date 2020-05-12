@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Description:<描述>
  */
 @Entity
-@Table(name = "t_user", schema = "medicine", catalog = "")
+@Table(name = "t_user", schema = "medicine", catalog = "user_conf")
 public class User {
     private Integer id;
     private String name;

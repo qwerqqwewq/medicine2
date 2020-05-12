@@ -2,7 +2,9 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.UserDao;
 import com.zte.medicine.entity.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,12 @@ public class UserDaoImpl implements UserDao {
         this.sessionFactory = sessionFactory;
     }
 
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
@@ -40,7 +48,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void insertUser(User user) {
-        sessionFactory.getCurrentSession().createSQLQuery("insert into t_user(username,password,powerId) values ('"+user.getUsername()+"','"+user.getPassword()+"',"+1+");");
+        Session session = sessionFactory.getCurrentSession();
+
+        Transaction tx = session.beginTransaction();
+
+        session.createSQLQuery("insert into t_user(username,password,powerId) values ('"+user.getUsername()+"','"+user.getPassword()+"',"+1+");");
+
+
+        //session.save(user);
+
+        tx.commit();
+
+        session.close();
     }
 
     @Override

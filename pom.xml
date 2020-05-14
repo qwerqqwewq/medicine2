@@ -10,9 +10,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.2.4.RELEASE</spring.version>
+    <spring.version>5.2.6.RELEASE</spring.version>
     <hibernate.version>5.0.7.Final</hibernate.version>
-    <struts2.version>2.3.24</struts2.version>
+    <struts2.version>2.5.22</struts2.version>
+    <log4j2.version>2.12.1</log4j2.version>
   </properties>
 
 
@@ -26,6 +27,12 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -82,9 +89,13 @@
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
       <version>${struts2.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>javassist</artifactId>
+          <groupId>javassist</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-
-
 
 
     <!--config-browser-plugin插件，使用了这个插件之后，就可以很方便的浏览项目中的所有action及其与 jsp view的映射 -->
@@ -181,46 +192,71 @@
       <version>4.3.14.RELEASE</version>
     </dependency>
 
-
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard-impl</artifactId>
+      <version>1.2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard-spec</artifactId>
+      <version>1.2.5</version>
+    </dependency>
 
   </dependencies>
   <build>
+    <resources>
+      <!--编译src/main/java目录下的xml文件-->
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
     <plugins>
-      <!--tomcat7插件  start-->
-      <!--<plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <configuration>
-          <path>/online</path>
-          <port>80</port>
-          <uriEncoding>utf-8</uriEncoding>
-          &lt;!&ndash;<staticContextPath>/online/p</staticContextPath>&ndash;&gt;
-          &lt;!&ndash;<staticContextDocbase>D:\Program Files (x86)\3DHGAME\videos</staticContextDocbase>&ndash;&gt;
-
-
-        </configuration>
-
-      </plugin>-->
-      <!--tomcat7插件  end-->
-
+      <!-- 忽略编译项目时的测试运行 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.2</version>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
         <configuration>
-          <webResources>
-            <resource>
-              <directory>src\main\webapp</directory>
-            </resource>
-          </webResources>
+          <skip>true</skip>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <!-- 设置resouce目录下的所有文件编码，否则如果配置xml文件中有中文字符，部署后可能会引起运行失败 -->
+      <!-- 设置配置文件的编码 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <!-- 打包时对以下文件忽略编码 -->
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+            <nonFilteredFileExtension>docx</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
         </configuration>
       </plugin>
     </plugins>

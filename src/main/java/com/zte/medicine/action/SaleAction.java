@@ -79,15 +79,13 @@ public class SaleAction extends ActionSupport {
         saleComment.setMedicineCode(request.getParameter("MedicineCode"));
         saleComment.setNumber(Integer.parseInt(request.getParameter("Number")));
         saleComment.setPrice(request.getParameter("Price"));
-
         try {
             saleService.addSale(sale);
             saleCommentService.addSaleComment(saleComment);
-            map.put("msg", "添加成功");
+            return "success";
         } catch (Exception e) {
-            map.put("msg", "插入失败");
+            return "fail";
         }
-        return gson.toJson(map);
     }
 
 

@@ -2,6 +2,7 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.UserDao;
 import com.zte.medicine.entity.User;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,12 +39,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> selectByName(String name) {
-
-        SQLQuery createSQLQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where username='" + name + "';");
-
-        createSQLQuery.addEntity(User.class);
-        List<User> list = (List<User>)createSQLQuery.list();
-        return list;
+        /*
+        sql:sql语句;表名和列名
+        hql:hibernate query language;只能出现类名和属性名
+        qbc:
+        dqbc
+        *  */
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where username = :username");
+        /*Map<String,Object> parametersMap = new HashMap<>();
+        parametersMap.put("username",name);
+        query.setProperties(parametersMap);*/
+        query.setParameter("username",name);
+        return query.list();
         //return (List<User>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where username='" + name + "';").list();
     }
 

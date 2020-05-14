@@ -62,7 +62,7 @@
       <th>有效日期</th>
       <th>操作</th>
     </tr>
-    <c:forEach items="${list}" var="uinfo">
+    <c:forEach items="${medicines}" var="medicine">
       <tr>
         <td>${t_medicine.MedicineName}</td>
         <td>${t_medicine.MedicineCode}</td>
@@ -72,7 +72,7 @@
         <td>${t_medicine.UsefullDate}</td>
         <td>
           <a href="/userInfo/to_update?sn=${uinfo.sn}">编辑</a>
-          <a href="/userInfo/remove?sn=${uinfo.sn}">删除</a>
+          <a href="${pageContext.request.contextPath}/medicine_delete.action">删除</a>
         </td>
       </tr>
     </c:forEach>

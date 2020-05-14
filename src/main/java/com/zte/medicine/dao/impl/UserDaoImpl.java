@@ -2,9 +2,9 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.UserDao;
 import com.zte.medicine.entity.User;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +38,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> selectByName(String name) {
-        return (List<User>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where username=" + name + ";").list();
+
+        SQLQuery createSQLQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where username='" + name + "';");
+
+        createSQLQuery.addEntity(User.class);
+        List<User> list = (List<User>)createSQLQuery.list();
+        return list;
+        //return (List<User>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_user where username='" + name + "';").list();
     }
 
     @Override
@@ -49,17 +55,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void insertUser(User user) {
         Session session = sessionFactory.getCurrentSession();
-
-        Transaction tx = session.beginTransaction();
-
-        session.createSQLQuery("insert into t_user(username,password,powerId) values ('"+user.getUsername()+"','"+user.getPassword()+"',"+1+");");
-
-
+        SQLQuery sqlQuery = session.createSQLQuery("insert into t_user(username,password,powerId) values ('" + user.getUsername() + "','" + user.getPassword() + "'," + 1 + ");");
+        int i = sqlQuery.executeUpdate();
+        System.out.println("==i==" + i);
         //session.save(user);
-
-        tx.commit();
-
-        session.close();
     }
 
     @Override

@@ -9,21 +9,13 @@
         <!-- 如果不指定method，那么默认方法是execute-->
         <!--name:Action类的名字，具有唯一性，页面上通过name来访问Action类 -->
 
-        <action name="med" class="com.action.MedAction" method="test">
-        <!-- 配置结果集 :name属性的值一定要与execute方法的返回值一致-->
-        <result name="test">WEB-INF/test.jsp</result>
-        </action>
-
-        <action name="ceshi" class="com.action.MedAction" method="ceshi">
-            <!-- 配置结果集 :name属性的值一定要与execute方法的返回值一致-->
-            <result name="success">WEB-INF/success.jsp</result>
-        </action>
 
 
         <action name="user_*" class="com.zte.medicine.action.UserAction" method="{1}">
             <result name="regist">WEB-INF/pages/jsp/register.jsp</result>
             <result name="login">WEB-INF/pages/jsp/login.jsp</result>
             <result name="fail">WEB-INF/pages/jsp/fail.jsp</result>
+            <result name="success">WEB-INF/pages/jsp/main.jsp</result>
         </action>
 
 

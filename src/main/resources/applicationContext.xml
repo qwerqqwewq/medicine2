@@ -67,7 +67,7 @@
          <!-- 注册切面 -->
         <aop:config>
          <!-- Service 层 -->
-             <aop:pointcut expression="execution(* *..service.*.*(..))"
+             <aop:pointcut expression="execution(* com.zte.medicine.service.*.*(..))"
                  id="txPoint" />
              <aop:advisor advice-ref="txadvice" pointcut-ref="txPoint" />
         </aop:config>

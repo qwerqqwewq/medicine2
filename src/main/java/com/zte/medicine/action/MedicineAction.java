@@ -50,7 +50,6 @@ public class MedicineAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/add")
     public String add() throws Exception{
 
         HttpServletRequest request = ServletActionContext.getRequest();
@@ -111,17 +110,47 @@ public class MedicineAction extends ActionSupport {
         medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
         medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
         medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
-        Firm firm = firmService.findFirmByCode(request.getParameter("FirmCode"));
+        Firm firm = firmService.findFirmByName(request.getParameter("FirmName"));
         medicine.settFirmByFirmCode(firm);
         Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
         medicine.settKindByKindCode(kind);
         try {
             medicineService.modifyMedicine(medicine);
-            map.put("msg", "修改成功");
+            out.print("<script>alert('修改成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         } catch (Exception e) {
-            map.put("msg", "修改失败");
+            out.print("<script>alert('修改失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         }
-        return gson.toJson(map);
+        return "main";
+    }
+
+    /**
+     * 查询药品界面
+     * @return
+     */
+    public String medicinePage(){
+        return "search";
+    }
+
+    /**
+     * 添加药品界面
+     * @return
+     */
+    public String addPage(){
+        return "add";
+    }
+
+    /**
+     * 编辑药品界面
+     * @return
+     */
+    public String changePage(){
+        return "change";
     }
 
     /**
@@ -143,22 +172,29 @@ public class MedicineAction extends ActionSupport {
         Gson gson =new Gson();
 
         Medicine medicine = new Medicine();
-        medicine.setMedicineCode(request.getParameter("MedicineCode"));
-        medicine.setMedicineName(request.getParameter("MedicineName"));
-        medicine.setListPrice(request.getParameter("ListPrice"));
-        medicine.setPrice(request.getParameter("Price"));
-        medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
-        medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
-        medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
-        Firm firm = firmService.findFirmByCode(request.getParameter("FirmCode"));
-        medicine.settFirmByFirmCode(firm);
-        Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
-        medicine.settKindByKindCode(kind);
+        medicine = medicineService.findMedicineByName(request.getParameter("MedicineName")).get(0);
+        //medicine.setMedicineCode(request.getParameter("MedicineCode"));
+        //medicine.setMedicineName(request.getParameter("MedicineName"));
+        //medicine.setListPrice(request.getParameter("ListPrice"));
+        //medicine.setPrice(request.getParameter("Price"));
+        //medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
+        //medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
+        //medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
+        //Firm firm = firmService.findFirmByCode(request.getParameter("FirmCode"));
+        //medicine.settFirmByFirmCode(firm);
+        //Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
+        //medicine.settKindByKindCode(kind);
         try {
             medicineService.removeMedicine(medicine);
-            map.put("msg", "修改成功");
+            out.print("<script>alert('删除成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         } catch (Exception e) {
-            map.put("msg", "修改失败");
+            out.print("<script>alert('删除失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         }
         return gson.toJson(map);
     }
@@ -169,7 +205,7 @@ public class MedicineAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    public String search() throws Exception {
+    public void search() throws Exception {
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -185,9 +221,13 @@ public class MedicineAction extends ActionSupport {
         if (medicineService.findMedicineByName(request.getParameter("MedicineName")) != null) {
             List<Medicine> medicines = medicineService.findMedicineByName(request.getParameter("MedicineName"));
             request.setAttribute("medicines", medicines);
-            return "success";
+            //return "success";
         } else {
-            return "fail";
+            out.print("<script>alert('没有结果！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
+            //return "fail";
         }
 
     }
@@ -207,12 +247,15 @@ public class MedicineAction extends ActionSupport {
         PrintWriter out = response.getWriter();
 
         String stock =  request.getParameter("stock2");
-        if (request.getParameter("MedicineCode")!=null||request.getParameter("MedicineName")!=null|| request.getParameter("KindCode")!=null||request.getParameter("Stock")!=null|| request.getParameter("FirmCode")!=null|| request.getParameter("FirstDate")!=null||request.getParameter("UsefullDate")!=null) {
+        if (request.getParameter("MedicineCode")!=null||request.getParameter("MedicineName")!=null|| request.getParameter("KindCode")!=null||request.getParameter("Stock")!=null|| request.getParameter("FirmCode")!=null|| request.getParameter("FirstDate")!=null||request.getParameter("UsefullDate")!=null||stock!=null) {
             List<Medicine> medicines = medicineService.advancedSearch(request.getParameter("MedicineCode"),request.getParameter("MedicineName"), request.getParameter("KindCode"),Integer.parseInt(request.getParameter("Stock")), stock, request.getParameter("FirmCode"), Timestamp.valueOf(request.getParameter("FirstDate")), Timestamp.valueOf(request.getParameter("UsefullDate")));
             request.setAttribute("medicines",medicines);
             //return "success";
         } else {
-            //return "fail";
+            out.print("<script>alert('没有搜索结果！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         }
 
     }

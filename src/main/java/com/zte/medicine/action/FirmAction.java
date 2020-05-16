@@ -4,13 +4,15 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Firm;
 import com.zte.medicine.service.FirmService;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +25,6 @@ import java.util.Map;
 @RequestMapping("/firm")
 @SessionAttributes("firm")
 public class FirmAction extends ActionSupport {
-    public FirmService getFirmService() {
-        return firmService;
-    }
 
     public void setFirmService(FirmService firmService) {
         this.firmService = firmService;
@@ -36,12 +35,17 @@ public class FirmAction extends ActionSupport {
 
     /**
      * 添加供应商信息
-     * @param request
      * @return
      * @throws Exception
      */
-    @RequestMapping("/add")
-    public String addFirm(HttpServletRequest request, Model model)throws Exception{
+    public String addFirm()throws Exception{
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         Map map = new HashMap(50);
         Gson gson =new Gson();
@@ -69,14 +73,16 @@ public class FirmAction extends ActionSupport {
 
     /**
      * 修改供应商信息
-     * @param request
      * @return
      * @throws Exception
      */
-    @RequestMapping("/update")
-    public String updateFirm( HttpServletRequest request,Model model)throws Exception{
-        Map map = new HashMap(50);
-        Gson gson =new Gson();
+    public void updateFirm()throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         Firm firm = new Firm();
 
@@ -88,21 +94,36 @@ public class FirmAction extends ActionSupport {
 
 
         try {
-            firmService.modifyFirm(firm);
-            map.put("msg", "添加成功");
+            if (firmService.findFirmByCode(firm.getFirmCode())!=null){
+                out.print("<script>alert('该供应商编码已存在，请更换！')</script>");
+                out.print("<script>window.location.href='${pageContext.request.contextPath}/firm_firmPage.action'</script>");
+                out.flush();
+                out.close();
+            }else {
+                firmService.modifyFirm(firm);
+            }
+            //map.put("msg", "添加成功");
         } catch (Exception e) {
-            map.put("msg", "插入失败");
+            //map.put("msg", "插入失败");
+            out.print("<script>alert('修改失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/firm_firmPage.action'</script>");
+            out.flush();
+            out.close();
         }
 
-        return gson.toJson(map);
+        //return gson.toJson(map);
     }
 
     /**
      * 根据姓名显示供应商信息
      */
-    @RequestMapping("/viewAll")
     public void viewByName(HttpServletRequest request){
 
         firmService.findFirmByName(request.getParameter("FirmName"));
     }
+
+    public String firmPage(){
+        return "main";
+    }
+
 }

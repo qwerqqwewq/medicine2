@@ -9,64 +9,63 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <html>
+
 <head>
-    <title></title>
   <meta charset="utf-8">
-  <script src="${pageContext.request.contextPath }/common/resource/jquery.min.js"></script>
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/css/main.css" type="text/css">
+  <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 </head>
+
 <body>
 <div class="box1">
   <h1>医药管理系统</h1>
-  <label><img src="images/ing.png"></label>
+  <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
   <span>名字</span>
 </div>
-<form method="post" action="main">
-<div class="left">
+<form method="post">
+  <div class="left">
+    <ul class="nav">
+      <li>
+        <img src="${pageContext.request.contextPath}/images/m1.png" alt="#">
+        <a href="javascript:;" class="m1">药品管理</a>
+        <ul>
+          <li class="med_search"><a href="${pageContext.request.contextPath}/WEB-INF/pages/jsp/search.jsp">查询药品</a></li>
+          <li class="med_add">添加药品</li>
+        </ul>
+      </li>
+      <li>
+        <img src="${pageContext.request.contextPath}/images/m2.png" alt="#">
+        <a href="javascript:;" class="m2">药品库存</a>
+        <ul>
+          <li class="stock_search">查询库存信息</li>
+          <li class="stock_add">添加库存信息</li>
+        </ul>
+      </li>
+      <li>
+        <img src="${pageContext.request.contextPath}/images/m3.png" alt="#">
+        <a href="javascript:;" class="m3">药品销售</a>
+        <ul>
+          <li class="sale_search">查询销售信息</li>
+          <li class="sale_add">添加销售信息</li>
+        </ul>
+      </li>
+      <li>
+        <img src="${pageContext.request.contextPath}/images/m4.png" alt="#">
+        <a href="javascript:;" class="m4">供应商</a>
+        <ul>
+          <li class="supplier_search">查询供应商信息</li>
+          <li class="supplier_add">添加供应商信息</li>
+        </ul>
+      </li>
+    </ul>
 
-  <ul class="nav">
-    <li>
-      <img src="images/m1.png" alt="#">
-      <a href="javascript:;" class="m1">药品管理</a>
-      <ul>
-        <li class="med_search">查询药品</li>
-        <li class="med_add">添加药品</li>
-        <li>修改药品信息</li>
-      </ul>
-    </li>
-    <li>
-      <img src="images/m2.png" alt="#">
-      <a href="javascript:;" class="m2">药品库存</a>
-      <ul>
-        <li class="stock_search">查询库存信息</li>
-        <li>修改库存信息</li>
-      </ul>
-    </li>
-    <li>
-      <img src="images/m3.png" alt="#">
-      <a href="javascript:;" class="m3">药品销售</a>
-      <ul>
-        <li>查询销售信息</li>
-        <li>添加销售信息</li>
-      </ul>
-    </li>
-    <li>
-      <img src="images/m4.png" alt="#">
-      <a href="javascript:;" class="m4">供应商</a>
-      <ul>
-        <li>查询供应商信息</li>
-        <li>添加供应商信息</li>
-      </ul>
-    </li>
-  </ul>
-
-</div>
+  </div>
   <div class="right">
 
   </div>
-  <div class="down">
+  <div class="down1">
     <div class="span">
-      <span>个人中心</span>
+      <span><a href="${pageContext.request.contextPath}/WEB-INF/pages/jsp/changepassword.jsp">修改密码</a></span>
     </div>
     <div>
       <span>退出登录</span>
@@ -79,7 +78,7 @@
       $(this).siblings("ul").stop().slideToggle(200);
     })
     $(".box1").children("span").click(function() {
-      $(".down").stop().slideToggle(200);
+      $(".down1").stop().slideToggle(200);
     })
     $(".m1").click(function() {
       var flag = $(this).siblings("img").attr("src");
@@ -114,15 +113,31 @@
       }
     })
     $(".med_search").click(function() {
-      window.location.href = "search.html";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/search.jsp";
     })
     $(".med_add").click(function() {
-      window.location.href = "add.html";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/add.jsp";
     })
     $(".stock_search").click(function() {
-      window.location.href = "StockSearch.html";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/stockSearch.jsp";
+    })
+    $(".stock_add").click(function() {
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/stockAdd.jsp";
+    })
+    $(".sale_search").click(function() {
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SaleSearch.jsp";
+    })
+    $(".sale_add").click(function() {
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SaleAdd.jsp";
+    })
+    $(".supplier_search").click(function() {
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SupplierSearch.jsp";
+    })
+    $(".supplier_add").click(function() {
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SupplierAdd.jsp";
     })
   })
 </script>
 </body>
+
 </html>

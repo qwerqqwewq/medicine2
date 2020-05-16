@@ -8,6 +8,7 @@ import com.zte.medicine.entity.StockComment;
 import com.zte.medicine.service.MedicineService;
 import com.zte.medicine.service.StockCommentService;
 import com.zte.medicine.service.StockService;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,13 +55,20 @@ public class StockAction extends ActionSupport {
 
     /**
      * 插入库存信息
-     * @param request
-     * @param response
      * @return
      * @throws Exception
      */
-    @RequestMapping("/add")
-    public String add( HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public String add() throws Exception{
+
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+
         Map map = new HashMap(50);
         Gson gson =new Gson();
 
@@ -77,8 +86,6 @@ public class StockAction extends ActionSupport {
         Medicine medicine = new Medicine();
         medicine=medicineService.findMedicineByCode(stockComment.getMedicineCode());
         stockComment.setAmount(Double.parseDouble(medicine.getPrice())*Double.valueOf(stockComment.getNumber()));
-
-
 
 
         try {

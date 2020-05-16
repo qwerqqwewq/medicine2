@@ -32,7 +32,6 @@ public class StockCommentAction extends ActionSupport {
      * 显示所有的详细销售记录
      * @param request
      */
-    @RequestMapping("/viewAll")
     public void viewAll(HttpServletRequest request) {
         request.setAttribute("sale",stockCommentService.findStockCommentAll());
     }
@@ -42,7 +41,6 @@ public class StockCommentAction extends ActionSupport {
      * @param request
      * @throws Exception
      */
-    @RequestMapping("/viewByName")
     public void viewByName(HttpServletRequest request)throws Exception{
         request.setAttribute("saleComment",stockCommentService.findStockCommentByNum(Integer.parseInt(request.getParameter("StockNum"))));
     }
@@ -52,7 +50,6 @@ public class StockCommentAction extends ActionSupport {
      * @param request
      * @throws Exception
      */
-    @RequestMapping("/viewByCode")
     public void viewByCode(HttpServletRequest request)throws Exception{
         request.setAttribute("saleComment",stockCommentService.findStockCommentByCode(request.getParameter("MedicineCode")));
     }

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Kind;
 import com.zte.medicine.service.KindService;
-import org.apache.struts2.dispatcher.mapper.ActionMapping;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,10 +26,6 @@ import java.util.Map;
 @SessionAttributes("/kind")
 public class KindAction extends ActionSupport {
 
-    public KindService getKindService() {
-        return kindService;
-    }
-
     public void setKindService(KindService kindService) {
         this.kindService = kindService;
     }
@@ -36,10 +33,17 @@ public class KindAction extends ActionSupport {
     @Autowired
     private KindService kindService;
 
-    @RequestMapping("/add")
-    public String add(ActionMapping mapping,
-                             HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+
+    public String add()throws Exception {
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+
         Map map = new HashMap(50);
         Gson gson =new Gson();
 

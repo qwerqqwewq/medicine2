@@ -51,7 +51,6 @@ public class SaleAction extends ActionSupport {
      * 打开销售界面后显示所有的销售记录
      * @param request
      */
-    @RequestMapping("/viewAll")
     public void viewAll(HttpServletRequest request) {
         request.setAttribute("sale",saleService.findAll());
     }
@@ -63,7 +62,6 @@ public class SaleAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/add")
     public String add( HttpServletRequest request, HttpServletResponse response) throws Exception{
         Map map = new HashMap(50);
         Gson gson =new Gson();
@@ -98,7 +96,6 @@ public class SaleAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    @RequestMapping("advancedSearch")
     public String advancedSearch( HttpServletRequest request, HttpServletResponse response) throws Exception {
         String amount2 =  request.getParameter("amount2");
 

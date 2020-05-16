@@ -43,7 +43,6 @@ public class CustomerAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/add")
     public String addCustomer()throws Exception{
 
         HttpServletRequest request = ServletActionContext.getRequest();
@@ -136,7 +135,11 @@ public class CustomerAction extends ActionSupport {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        customerService.findCustomerByName(request.getParameter("CustomerName"));
+        Customer customer = customerService.findCustomerByName(request.getParameter("CustomerName"));
+        request.setAttribute("City", customer.getCity());
+        request.setAttribute("CustomerCode", customer.getCustomerCode());
+        request.setAttribute("CustomerName",customer.getCustomerName());
+        request.setAttribute("CustomerTel",customer.getCustomerTel());
     }
 
 }

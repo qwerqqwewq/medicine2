@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wei
-  Date: 2020/5/8
-  Time: 21:07
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -13,74 +5,68 @@
   <script src="jquery.min.js"></script>
   <link rel="stylesheet" href="main.css" type="text/css">
   <style>
-    body {
-      background: rgb(238, 238, 238);
+    body{
+      background: rgb(238,238,238);
     }
-
     .box {
-      background: rgb(250, 250, 250);
-      width: 1550px;
-      height: 754px;
-      margin: 100px auto;
-      margin-right:30px;
-      border: 1px #ccc solid;
-      border-radius: 3px;
-      padding: 30px;
-
-    }
-
-    .box input {
-      width: 190px;
-      height: 30px;
-    }
-
-    .box div {
-      margin-top: 20px;
-    }
-
-
-
-    .high_submit {
-      float: right;
-      background-color: rgb(45, 147, 214);
-      outline: none;
-      color: white;
-      border: 1px #ccc solid;
-      border-radius: 5px;
-    }
-
-    .up {
-      height: 180px;
-    }
-
-    .down {
-
-      width: 100%;
-      height: 550px;
-      overflow: auto;
-    }
-    .all-list {
       background: rgb(250,250,250);
-      width: 1500px;
-      height: 700px;
+      width: 1000px;
+      height: 430px;
       margin: 100px auto;
       border: 1px #ccc solid;
       border-radius: 3px;
     }
-    .table-box1{
-      margin: 0 auto;
-      width: 90%;
-      border-bottom:1px #ccc solid;
-      color:rgb(102,102,102);
-      overflow: auto;
+
+    h2 {
+      text-align: center;
     }
-    tr{
-      border-bottom:1px #ccc solid;
+
+    input {
+      height: 40px;
+      width: 288px;
+      margin-top: 25px;
+      margin-left: 30px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px #ccc solid;
+      padding-left: 10px;
+    }
+
+
+    .submit {
+      color: white;
+      background-color: rgb(45, 147, 214);
+      height: 70px;
+      width: 90%;
+      margin: 40px auto;
+      border: 1px #ccc solid;
+      margin-top: 50px;
+      margin-right: 0;
+      padding-left: 0;
+      margin-left: 50px;
+    }
+
+    .back {
+      position: absolute;
+      top: 20px;
+      left: 100px;
+      cursor: pointer;
+    }
+
+    .back p {
+      width: 50px;
+      height: 30px;
+      border: 2px skyblue solid;
+      padding-left: 10px;
+      line-height: 30px;
     }
   </style>
 </head>
 
 <body>
+<div class="back">
+  <p>back</p>
+</div>
 <div class="box1">
   <h1>医药管理系统</h1>
   <label><img src="images/ing.png"></label>
@@ -89,17 +75,17 @@
 <div class="left">
   <ul class="nav">
     <li>
-      <img src="images/m5.png" alt="#">
+      <img src="images/m1.png" alt="#">
       <a href="javascript:;" class="m1">药品管理</a>
-      <ul style="display:block">
+      <ul>
         <li class="med_search">查询药品</li>
         <li class="med_add">添加药品</li>
       </ul>
     </li>
     <li>
-      <img src="images/m2.png" alt="#">
+      <img src="images/m6.png" alt="#">
       <a href="javascript:;" class="m2">药品库存</a>
-      <ul>
+      <ul style="display:block">
         <li class="stock_search">查询库存信息</li>
         <li class="stock_add">添加库存信息</li>
       </ul>
@@ -124,70 +110,21 @@
 
 </div>
 <div class="box">
-  <div class="up">
-    <div>
-      <span>药品名称</span>
-      <input type="text">
-      <span>药品类别代码</span>
-      <input type="text">
-      <span>供应商编码</span>
-      <input type="text">
-    </div>
-    <div>
-      <span>进价范围</span>
-      <input type="text">
-      <span>到</span>
-      <input type="text">
-      <span>售价范围</span>
-      <input type="text">
-      <span>到</span>
-      <input type="text">
-    </div>
-    <div>
-      <span>生产日期</span>
-      <input type="text" placeholder="xxxx-xx-xx">
-      <span>到</span>
-      <input type="text" placeholder="xxxx-xx-xx">
-      <span>有效日期</span>
-      <input type="text" placeholder="xxxx-xx-xx">
-      <span>到</span>
-      <input type="text" placeholder="xxxx-xx-xx">
-    </div>
-    <div>
-      <input type="submit" value="查询" class="high_submit">
-    </div>
+  <div>
+    <h2>添加的药品名称</h2>
+  </div>
+  <div>
+    <input type="text" placeholder="药品名">
+  </div>
+  <div>
+    <h2>添加数量</h2>
+  </div>
+  <div>
+    <input type="text" placeholder="数量">
   </div>
   <div class="down">
-    <div class="all-list">
-      <table class="table-box1">
-        <tr>
-          <th>药品名称</th>
-          <th>药品编号</th>
-          <th>药品种类</th>
-          <th>供应商</th>
-          <th>生产日期</th>
-          <th>有效日期</th>
-          <th>操作</th>
-        </tr>
-        <c:forEach items="${list}" var="uinfo">
-          <tr>
-            <td>${medicine.MedicineName}</td>
-            <td>${medicine.MedicineCode}</td>
-            <td>${medicine.KindCode}</td>
-            <td>${medicine.FirmCode}</td>
-            <td>${medicine.FirstDate}</td>
-            <td>${medicine.UsefullDate}</td>
-            <td>
-              <a href="Change.html">编辑</a>
-              <a href="/userInfo/remove?sn=${uinfo.sn}">删除</a>
-            </td>
-          </tr>
-        </c:forEach>
-      </table>
-    </div>
-
+    <input type="submit" value="提交" class="submit">
   </div>
-
 </div>
 <div class="down1">
   <div class="span">
@@ -199,6 +136,15 @@
 </div>
 <script>
   $(function() {
+    $(".back").click(function() {
+      window.location.href = "main.html";
+    })
+    $(".high").click(function() {
+      $(".down").stop().slideToggle(200);
+    })
+    $(".back").click(function() {
+      window.location.href = "main.html";
+    })
     $(".nav>li>a").click(function() {
       $(this).siblings("ul").stop().slideToggle(200);
     })

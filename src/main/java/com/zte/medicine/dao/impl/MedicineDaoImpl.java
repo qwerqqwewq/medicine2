@@ -2,6 +2,7 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.MedicineDao;
 import com.zte.medicine.entity.Medicine;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,6 +85,7 @@ public class MedicineDaoImpl implements MedicineDao {
             hql = hql+"intersect"+hql8;
         }
 
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 
         return (List<Medicine>)sessionFactory.getCurrentSession().createSQLQuery(hql);

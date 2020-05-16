@@ -59,12 +59,12 @@
                 </tr>         
             <c:forEach items="${list}" var="uinfo">
                 <tr>
-                    <td>${t_medicine.MedicineName}</td>
-                    <td>${t_medicine.MedicineCode}</td>
-                    <td>${t_medicine.KindCode}</td>
-                    <td>${t_medicine.FirmCode}</td>
-                    <td>${t_medicine.FirstDate}</td>
-                    <td>${t_medicine.UsefullDate}</td>
+                    <td>${uinfo.MedicineName}</td>
+                    <td>${uinfo.MedicineCode}</td>
+                    <td>${uinfo.KindCode}</td>
+                    <td>${uinfo.FirmCode}</td>
+                    <td>${uinfo.FirstDate}</td>
+                    <td>${uinfo.UsefullDate}</td>
                     <td>
                         <a href="/userInfo/to_update?sn=${uinfo.sn}">编辑</a>
                         <a href="/userInfo/remove?sn=${uinfo.sn}">删除</a>

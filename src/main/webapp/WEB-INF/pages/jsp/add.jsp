@@ -76,7 +76,7 @@
 <div class="back">
   <p>back</p>
 </div>
-<form method="post" action="add">
+<form method="post" action="${pageContext.request.contextPath}/medicine_add.action">
 <div class="box">
   <div>
     <h2>基本信息</h2>

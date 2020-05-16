@@ -50,7 +50,7 @@ public class MedicineAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    public String add() throws Exception{
+    public void add() throws Exception{
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -78,11 +78,16 @@ public class MedicineAction extends ActionSupport {
         medicine.settKindByKindCode(kind);
         try {
             medicineService.addMedicine(medicine);
-            map.put("msg", "添加成功");
+            out.print("<script>alert('添加成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         } catch (Exception e) {
-            map.put("msg", "插入失败");
+            out.print("<script>alert('添加失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
+            out.flush();
+            out.close();
         }
-        return gson.toJson(map);
     }
 
     /**
@@ -90,7 +95,7 @@ public class MedicineAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    public String updateMedicine() throws Exception{
+    public void updateMedicine() throws Exception{
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -126,7 +131,6 @@ public class MedicineAction extends ActionSupport {
             out.flush();
             out.close();
         }
-        return "main";
     }
 
     /**
@@ -205,7 +209,7 @@ public class MedicineAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    public void search() throws Exception {
+    public String search() throws Exception {
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -214,20 +218,20 @@ public class MedicineAction extends ActionSupport {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-
-        Map map = new HashMap(50);
-        Gson gson =new Gson();
+        //
+        //Map map = new HashMap(50);
+        //Gson gson =new Gson();
 
         if (medicineService.findMedicineByName(request.getParameter("MedicineName")) != null) {
             List<Medicine> medicines = medicineService.findMedicineByName(request.getParameter("MedicineName"));
             request.setAttribute("medicines", medicines);
-            //return "success";
+            return "search";
         } else {
             out.print("<script>alert('没有结果！')</script>");
             out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
             out.flush();
             out.close();
-            //return "fail";
+            return "search";
         }
 
     }
@@ -237,7 +241,7 @@ public class MedicineAction extends ActionSupport {
      * @return
      * @throws Exception
      */
-    public void advancedSearch() throws Exception {
+    public String advancedSearch() throws Exception {
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -250,12 +254,13 @@ public class MedicineAction extends ActionSupport {
         if (request.getParameter("MedicineCode")!=null||request.getParameter("MedicineName")!=null|| request.getParameter("KindCode")!=null||request.getParameter("Stock")!=null|| request.getParameter("FirmCode")!=null|| request.getParameter("FirstDate")!=null||request.getParameter("UsefullDate")!=null||stock!=null) {
             List<Medicine> medicines = medicineService.advancedSearch(request.getParameter("MedicineCode"),request.getParameter("MedicineName"), request.getParameter("KindCode"),Integer.parseInt(request.getParameter("Stock")), stock, request.getParameter("FirmCode"), Timestamp.valueOf(request.getParameter("FirstDate")), Timestamp.valueOf(request.getParameter("UsefullDate")));
             request.setAttribute("medicines",medicines);
-            //return "success";
+            return "search";
         } else {
             out.print("<script>alert('没有搜索结果！')</script>");
             out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
             out.flush();
             out.close();
+            return "search";
         }
 
     }

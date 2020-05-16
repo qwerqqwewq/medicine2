@@ -169,7 +169,7 @@
           <th>有效日期</th>
           <th>操作</th>
         </tr>
-        <c:forEach items="${list}" var="uinfo">
+        <c:forEach items="${medicine}" var="medicine">
           <tr>
             <td>${medicine.MedicineName}</td>
             <td>${medicine.MedicineCode}</td>
@@ -261,7 +261,6 @@
     $(".supplier_add").click(function() {
       window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierAdd.jsp";
     })
-  })
   })
 </script>
 </body>

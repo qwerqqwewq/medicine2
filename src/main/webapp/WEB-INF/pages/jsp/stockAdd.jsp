@@ -2,8 +2,8 @@
 
 <head>
   <meta charset="utf-8">
-  <script src="jquery.min.js"></script>
-  <link rel="stylesheet" href="main.css" type="text/css">
+  <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
     body{
       background: rgb(238,238,238);
@@ -69,13 +69,13 @@
 </div>
 <div class="box1">
   <h1>医药管理系统</h1>
-  <label><img src="images/ing.png"></label>
+  <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
   <span>名字</span>
 </div>
 <div class="left">
   <ul class="nav">
     <li>
-      <img src="images/m1.png" alt="#">
+      <img src="${pageContext.request.contextPath}/images/m1.png" alt="#">
       <a href="javascript:;" class="m1">药品管理</a>
       <ul>
         <li class="med_search">查询药品</li>
@@ -83,7 +83,7 @@
       </ul>
     </li>
     <li>
-      <img src="images/m6.png" alt="#">
+      <img src="${pageContext.request.contextPath}/images/m6.png" alt="#">
       <a href="javascript:;" class="m2">药品库存</a>
       <ul style="display:block">
         <li class="stock_search">查询库存信息</li>
@@ -91,7 +91,7 @@
       </ul>
     </li>
     <li>
-      <img src="images/m3.png" alt="#">
+      <img src="${pageContext.request.contextPath}/images/m3.png" alt="#">
       <a href="javascript:;" class="m3">药品销售</a>
       <ul>
         <li class="sale_search">查询销售信息</li>
@@ -99,7 +99,7 @@
       </ul>
     </li>
     <li>
-      <img src="images/m4.png" alt="#">
+      <img src="${pageContext.request.contextPath}/images/m4.png" alt="#">
       <a href="javascript:;" class="m4">供应商</a>
       <ul>
         <li class="supplier_search">查询供应商信息</li>
@@ -207,7 +207,6 @@
     $(".supplier_add").click(function() {
       window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierAdd.jsp";
     })
-  })
   })
 </script>
 </body>

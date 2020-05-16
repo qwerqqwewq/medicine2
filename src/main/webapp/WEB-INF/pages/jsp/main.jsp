@@ -83,59 +83,60 @@
     $(".m1").click(function() {
       var flag = $(this).siblings("img").attr("src");
       if (flag == "images/m1.png") {
-        $(this).siblings("img").attr("src", "images/m5.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m5.png");
       } else {
-        $(this).siblings("img").attr("src", "images/m1.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m1.png");
       }
     })
     $(".m2").click(function() {
       var flag = $(this).siblings("img").attr("src");
       if (flag == "images/m2.png") {
-        $(this).siblings("img").attr("src", "images/m6.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m6.png");
       } else {
-        $(this).siblings("img").attr("src", "images/m2.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m2.png");
       }
     })
     $(".m3").click(function() {
       var flag = $(this).siblings("img").attr("src");
       if (flag == "images/m3.png") {
-        $(this).siblings("img").attr("src", "images/m7.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m7.png");
       } else {
-        $(this).siblings("img").attr("src", "images/m3.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m3.png");
       }
     })
     $(".m4").click(function() {
       var flag = $(this).siblings("img").attr("src");
       if (flag == "images/m4.png") {
-        $(this).siblings("img").attr("src", "images/m8.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m8.png");
       } else {
-        $(this).siblings("img").attr("src", "images/m4.png");
+        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m4.png");
       }
     })
     $(".med_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/search.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/search.jsp";
     })
     $(".med_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/add.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/add.jsp";
     })
     $(".stock_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/stockSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockSearch.jsp";
     })
     $(".stock_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/stockAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockAdd.jsp";
     })
     $(".sale_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SaleSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleSearch.jsp";
     })
     $(".sale_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SaleAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleAdd.jsp";
     })
     $(".supplier_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SupplierSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierSearch.jsp";
     })
     $(".supplier_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/SupplierAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierAdd.jsp";
     })
+  })
   })
 </script>
 </body>

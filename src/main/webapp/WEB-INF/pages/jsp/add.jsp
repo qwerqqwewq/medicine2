@@ -9,7 +9,7 @@
 <html>
 <head>
     <title></title>
-  <script src="../../../common/resource/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
   <style>
     body{
       background: rgb(238,238,238);
@@ -113,7 +113,7 @@
 <script>
   $(function() {
     $(".back").click(function() {
-      window.location.href = "main.html";
+      window.location.href = "${pageContext.request.contextPath}/WEB-INF/pages/jsp/main.jsp";
     })
   })
 </script>

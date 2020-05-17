@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author:helloboy
@@ -34,13 +35,13 @@ public class FirmDaoImpl implements FirmDao {
     }
 
     @Override
-    public Firm selectFirmByCode(String code) {
-        return (Firm)sessionFactory.getCurrentSession().get(Firm.class,code);
+    public List<Firm> selectFirmByCode(String code) {
+        return (List<Firm>)sessionFactory.getCurrentSession().get(Firm.class,code);
     }
 
     @Override
-    public Firm selectFirmByName(String name) {
-        return (Firm)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmName="+name+";");
+    public List<Firm> selectFirmByName(String name) {
+        return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmName="+name+";");
     }
 
     @Override

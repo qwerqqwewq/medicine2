@@ -39,12 +39,12 @@ public class StockCommentServiceImpl implements StockCommentService {
     }
 
     @Override
-    public StockComment findStockCommentByNum(Integer num) {
+    public List<StockComment> findStockCommentByNum(Integer num) {
         return stockCommentDao.selectStockCommentByNum(num);
     }
 
     @Override
-    public StockComment findStockCommentByCode(String code) {
+    public List<StockComment> findStockCommentByCode(String code) {
         return stockCommentDao.selectStockCommentByCode(code);
     }
 }

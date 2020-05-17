@@ -2,6 +2,8 @@ package com.zte.medicine.dao;
 
 import com.zte.medicine.entity.Firm;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-28 10:46
@@ -21,14 +23,14 @@ public interface FirmDao {
      * @param code
      * @return
      */
-    public Firm selectFirmByCode(String code);
+    public List<Firm> selectFirmByCode(String code);
 
     /**
      * 根据供应商姓名查询信息
      * @param name
      * @return
      */
-    public Firm selectFirmByName(String name);
+    public List<Firm> selectFirmByName(String name);
 
     /**
      * 修改供应商信息

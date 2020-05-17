@@ -28,12 +28,12 @@ public interface SaleCommentService {
      * @param num
      * @return
      */
-    public SaleComment findSaleCommentByNum(String num);
+    public List<SaleComment> findSaleCommentByNum(String num);
 
     /**
      * 根据药品名称查询销售信息
      * @param code
      * @return
      */
-    public SaleComment findSaleCommentByCode(String code);
+    public List<SaleComment> findSaleCommentByCode(String code);
 }

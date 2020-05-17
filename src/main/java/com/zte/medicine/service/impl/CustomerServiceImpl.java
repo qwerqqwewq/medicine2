@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author:helloboy
  * Date:2020-02-07 17:20
@@ -32,12 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findCustomerByCode(String code) {
+    public List<Customer> findCustomerByCode(String code) {
         return customerDao.selectCustomerByCode(code);
     }
 
     @Override
-    public Customer findCustomerByName(String name) {
+    public List<Customer> findCustomerByName(String name) {
         return customerDao.selectCustomerByName(name);
     }
 

@@ -37,26 +37,26 @@ public class StockDaoImpl implements StockDao {
 
     @Override
     public List<Stock> selectAll() {
-        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock;");
+        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock;").list();
     }
 
     @Override
-    public Stock selectStockByNum(Integer num) {
-        return (Stock)sessionFactory.getCurrentSession().get(Stock.class,num);
+    public List<Stock> selectStockByNum(Integer num) {
+        return (List<Stock>)sessionFactory.getCurrentSession().get(Stock.class,num);
     }
 
     @Override
-    public Stock selectStockById(Integer id) {
-        return (Stock)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where UserId="+ id +";");
+    public List<Stock> selectStockById(Integer id) {
+        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where UserId="+ id +";").list();
     }
 
     @Override
-    public Stock selectStockByType(String type) {
-        return (Stock)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where WorkType="+ type +";");
+    public List<Stock> selectStockByType(String type) {
+        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where WorkType="+ type +";").list();
     }
 
     @Override
-    public Stock selectStockByDate(Timestamp date) {
-        return (Stock)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where WorkDate="+date+";");
+    public List<Stock> selectStockByDate(Timestamp date) {
+        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where WorkDate="+date+";").list();
     }
 }

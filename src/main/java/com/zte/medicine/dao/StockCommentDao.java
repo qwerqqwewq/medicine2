@@ -29,12 +29,12 @@ public interface StockCommentDao {
      * @param num
      * @return
      */
-    public StockComment selectStockCommentByNum(Integer num);
+    public List<StockComment> selectStockCommentByNum(Integer num);
 
     /**
      * 根据药品编码查询
      * @param code
      * @return
      */
-    public StockComment selectStockCommentByCode(String code);
+    public List<StockComment> selectStockCommentByCode(String code);
 }

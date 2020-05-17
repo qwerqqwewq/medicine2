@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author:helloboy
@@ -34,27 +35,27 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public Sale findSaleByNum(Integer num) {
+    public List<Sale> findSaleByNum(Integer num) {
         return saleDao.selectSaleByNum(num);
     }
 
     @Override
-    public Sale findSaleById(Integer id) {
+    public List<Sale> findSaleById(Integer id) {
         return saleDao.selectSaleById(id);
     }
 
     @Override
-    public Sale findSaleByCode(String code) {
+    public List<Sale> findSaleByCode(String code) {
         return saleDao.selectSaleByCode(code);
     }
 
     @Override
-    public Sale findSaleByDate(Timestamp date) {
+    public List<Sale> findSaleByDate(Timestamp date) {
         return saleDao.selectSaleByDate(date);
     }
 
     @Override
-    public Sale findSaleByAmount(double amount) {
+    public List<Sale> findSaleByAmount(double amount) {
         return saleDao.selectSaleByAmount(amount);
     }
 
@@ -64,12 +65,12 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public Sale findSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2) {
+    public List<Sale> findSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2) {
         return saleDao.selectSale(saleNum,userId,customerCode,saleDate,amount1,amount2);
     }
 
     @Override
-    public Sale findAll() {
+    public List<Sale> findAll() {
         return saleDao.selectAll();
     }
 }

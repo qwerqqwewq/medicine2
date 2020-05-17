@@ -2,6 +2,8 @@ package com.zte.medicine.service;
 
 import com.zte.medicine.entity.Customer;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-07 17:14
@@ -20,14 +22,14 @@ public interface CustomerService {
      * @param code
      * @return
      */
-    public Customer findCustomerByCode(String  code);
+    public List<Customer> findCustomerByCode(String  code);
 
     /**
      * 根据客户姓名查询客户信息
      * @param name
      * @return
      */
-    public Customer findCustomerByName(String name);
+    public List<Customer> findCustomerByName(String name);
 
     /**
      * 修改客户信息

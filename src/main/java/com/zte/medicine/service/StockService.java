@@ -22,33 +22,33 @@ public interface StockService {
      * 显示全部库存信息（略）
      * @return
      */
-    public List<Stock> selectAll();
+    public List<Stock> findAll();
 
     /**
      * 根据操作编码查询
      * @param num
      * @return
      */
-    public Stock findStockByNum(Integer num);
+    public List<Stock> findStockByNum(Integer num);
 
     /**
      * 根据操作员编码查询
      * @param id
      * @return
      */
-    public Stock findStockById(Integer id);
+    public List<Stock> findStockById(Integer id);
 
     /**
      * 根据操作类型查询库存信息
      * @param type
      * @return
      */
-    public Stock findStockByType(String type);
+    public List<Stock> findStockByType(String type);
 
     /**
      * 根据操作时间查询
      * @param date
      * @return
      */
-    public Stock findStockByDate(Timestamp date);
+    public List<Stock> findStockByDate(Timestamp date);
 }

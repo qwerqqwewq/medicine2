@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author:helloboy
@@ -35,13 +36,13 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customer selectCustomerByCode(String code) {
-        return (Customer)sessionFactory.getCurrentSession().get(Customer.class,code);
+    public List<Customer> selectCustomerByCode(String code) {
+        return (List<Customer>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_customer where CustomerCode"+code+";");
     }
 
     @Override
-    public Customer selectCustomerByName(String name) {
-        return (Customer)sessionFactory.getCurrentSession().createSQLQuery("select * from t_customer where CustomerName="+name+";");
+    public List<Customer> selectCustomerByName(String name) {
+        return (List<Customer>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_customer where CustomerName="+name+";");
     }
 
     @Override

@@ -39,12 +39,12 @@ public class SaleCommentServiceImpl implements SaleCommentService {
     }
 
     @Override
-    public SaleComment findSaleCommentByCode(String code) {
+    public List<SaleComment> findSaleCommentByCode(String code) {
         return saleCommentDao.selectSaleCommentByCode(code);
     }
 
     @Override
-    public SaleComment findSaleCommentByNum(String num) {
+    public List<SaleComment> findSaleCommentByNum(String num) {
         return saleCommentDao.selectSaleCommentByNum(num);
     }
 }

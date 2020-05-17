@@ -35,27 +35,27 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public List<Stock> selectAll() {
+    public List<Stock> findAll() {
         return stockDao.selectAll();
     }
 
     @Override
-    public Stock findStockByNum(Integer num) {
+    public List<Stock> findStockByNum(Integer num) {
         return stockDao.selectStockByNum(num);
     }
 
     @Override
-    public Stock findStockById(Integer id) {
+    public List<Stock> findStockById(Integer id) {
         return stockDao.selectStockById(id);
     }
 
     @Override
-    public Stock findStockByType(String type) {
+    public List<Stock> findStockByType(String type) {
         return stockDao.selectStockByType(type);
     }
 
     @Override
-    public Stock findStockByDate(Timestamp date) {
+    public List<Stock> findStockByDate(Timestamp date) {
         return stockDao.selectStockByDate(date);
     }
 }

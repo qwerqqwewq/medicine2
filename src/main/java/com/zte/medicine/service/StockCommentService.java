@@ -29,12 +29,12 @@ public interface StockCommentService {
      * @param num
      * @return
      */
-    public StockComment findStockCommentByNum(Integer num);
+    public List<StockComment> findStockCommentByNum(Integer num);
 
     /**
      * 根据药品编码查询
      * @param code
      * @return
      */
-    public StockComment findStockCommentByCode(String code);
+    public List<StockComment> findStockCommentByCode(String code);
 }

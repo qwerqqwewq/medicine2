@@ -29,12 +29,12 @@ public interface SaleCommentDao {
      * @param num
      * @return
      */
-    public SaleComment selectSaleCommentByNum(String num);
+    public List<SaleComment> selectSaleCommentByNum(String num);
 
     /**
      * 根据药品编码查询销售信息
      * @param code
      * @return
      */
-    public SaleComment selectSaleCommentByCode(String code);
+    public List<SaleComment> selectSaleCommentByCode(String code);
 }

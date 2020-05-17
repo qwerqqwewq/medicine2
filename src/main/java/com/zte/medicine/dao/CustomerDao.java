@@ -2,6 +2,8 @@ package com.zte.medicine.dao;
 
 import com.zte.medicine.entity.Customer;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-28 10:46
@@ -20,14 +22,14 @@ public interface CustomerDao {
      * @param code
      * @return
      */
-    public Customer selectCustomerByCode(String  code);
+    public List<Customer> selectCustomerByCode(String  code);
 
     /**
      * 根据客户姓名查询客户信息
      * @param name
      * @return
      */
-    public Customer selectCustomerByName(String name);
+    public List<Customer> selectCustomerByName(String name);
 
     /**
      * 修改客户信息

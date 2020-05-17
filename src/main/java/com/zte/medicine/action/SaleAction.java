@@ -52,7 +52,7 @@ public class SaleAction extends ActionSupport {
      * @param request
      */
     public void viewAll(HttpServletRequest request) {
-        request.setAttribute("sale",saleService.findAll());
+        request.setAttribute("sales",saleService.findAll());
     }
 
     /**

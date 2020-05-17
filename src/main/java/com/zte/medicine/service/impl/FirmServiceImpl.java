@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-07 17:26
@@ -32,12 +34,12 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public Firm findFirmByCode(String code) {
+    public List<Firm> findFirmByCode(String code) {
         return firmDao.selectFirmByCode(code);
     }
 
     @Override
-    public Firm findFirmByName(String name) {
+    public List<Firm> findFirmByName(String name) {
         return firmDao.selectFirmByName(name);
     }
 

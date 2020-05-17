@@ -44,14 +44,26 @@ public class StockAction extends ActionSupport {
 
     @Autowired
     MedicineService medicineService;
-    //
-    ///**
-    // * 打开库存界面后显示所有的库存记录
-    // * @param request
-    // */
-    ////public void viewAll(HttpServletRequest request) {
-    ////    request.setAttribute("sale",saleService.findAll());
-    ////}
+
+    /**
+     * 打开库存界面后显示所有的库存记录
+     */
+    public void viewAll(HttpServletRequest request) {
+        request.setAttribute("stocks",stockService.findAll());
+    }
+
+
+    /**
+     * 添加库存页面
+     * @return
+     */
+    public String addPage(){
+        return "add";
+    }
+
+    public String searchPage(){
+        return "search";
+    }
 
     /**
      * 插入库存信息

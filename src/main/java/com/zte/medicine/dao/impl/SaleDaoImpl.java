@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author:helloboy
@@ -35,7 +36,7 @@ public class SaleDaoImpl implements SaleDao {
     }
 
     @Override
-    public Sale selectSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2) {
+    public List<Sale> selectSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2) {
         String hql="select * from t_sale;";
 
         if (saleNum != null) {
@@ -68,32 +69,32 @@ public class SaleDaoImpl implements SaleDao {
             hql = hql+"intersect"+hql6;
         }
 
-        return (Sale)sessionFactory.getCurrentSession().createSQLQuery(hql);
+        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery(hql).list();
     }
 
     @Override
-    public Sale selectSaleByNum(Integer num) {
-        return (Sale)sessionFactory.getCurrentSession().get(Sale.class,num);
+    public List<Sale> selectSaleByNum(Integer num) {
+        return (List<Sale>)sessionFactory.getCurrentSession().get(Sale.class,num);
     }
 
     @Override
-    public Sale selectSaleById(Integer id) {
-        return (Sale)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where UserId="+id+";");
+    public List<Sale> selectSaleById(Integer id) {
+        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where UserId="+id+";").list();
     }
 
     @Override
-    public Sale selectSaleByCode(String code) {
-        return (Sale)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where CustomerCode="+code+";");
+    public List<Sale> selectSaleByCode(String code) {
+        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where CustomerCode="+code+";").list();
     }
 
     @Override
-    public Sale selectSaleByDate(Timestamp date) {
-        return (Sale)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where SaleDate="+date+";");
+    public List<Sale> selectSaleByDate(Timestamp date) {
+        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where SaleDate="+date+";").list();
     }
 
     @Override
-    public Sale selectSaleByAmount(double amount) {
-        return (Sale)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where Amount="+amount+";");
+    public List<Sale> selectSaleByAmount(double amount) {
+        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where Amount="+amount+";").list();
     }
 
     @Override
@@ -102,7 +103,7 @@ public class SaleDaoImpl implements SaleDao {
     }
 
     @Override
-    public Sale selectAll() {
-        return (Sale)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale;");
+    public List<Sale> selectAll() {
+        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale;").list();
     }
 }

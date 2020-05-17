@@ -3,6 +3,7 @@ package com.zte.medicine.dao;
 import com.zte.medicine.entity.Sale;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author:helloboy
@@ -28,42 +29,42 @@ public interface SaleDao {
      * @param amount2 金额上限
      * @return
      */
-    public Sale selectSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2);
+    public List<Sale> selectSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2);
 
     /**
      * 根据销售编码查询销售信息
      * @param num
      * @return
      */
-    public Sale selectSaleByNum(Integer num);
+    public List<Sale> selectSaleByNum(Integer num);
 
     /**
      * 根据销售员编号查询销售信息
      * @param id
      * @return
      */
-    public Sale selectSaleById(Integer id);
+    public List<Sale> selectSaleById(Integer id);
 
     /**
      * 根据客户编码查询销售信息
      * @param code
      * @return
      */
-    public Sale selectSaleByCode(String code);
+    public List<Sale> selectSaleByCode(String code);
 
     /**
      * 根据销售日期查询销售信息
      * @param date
      * @return
      */
-    public Sale selectSaleByDate(Timestamp date);
+    public List<Sale> selectSaleByDate(Timestamp date);
 
     /**
      * 根据销售的总金额查询
      * @param amount
      * @return
      */
-    public Sale selectSaleByAmount(double amount);
+    public List<Sale> selectSaleByAmount(double amount);
 
     /**
      * 删除销售信息（仅管理员可）
@@ -76,5 +77,5 @@ public interface SaleDao {
      * 显示所有销售信息
      * @return
      */
-    public Sale selectAll();
+    public List<Sale> selectAll();
 }

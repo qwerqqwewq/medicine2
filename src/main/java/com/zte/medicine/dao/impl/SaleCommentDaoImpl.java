@@ -40,12 +40,12 @@ public class SaleCommentDaoImpl implements SaleCommentDao {
     }
 
     @Override
-    public SaleComment selectSaleCommentByNum(String num) {
-        return (SaleComment)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment where SaleNum="+num+";");
+    public List<SaleComment> selectSaleCommentByNum(String num) {
+        return (List<SaleComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment where SaleNum="+num+";");
     }
 
     @Override
-    public SaleComment selectSaleCommentByCode(String code) {
-        return (SaleComment)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment where MedicineCode="+code+";");
+    public List<SaleComment> selectSaleCommentByCode(String code) {
+        return (List<SaleComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment where MedicineCode="+code+";");
     }
 }

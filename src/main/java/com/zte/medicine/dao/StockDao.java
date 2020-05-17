@@ -30,26 +30,26 @@ public interface StockDao {
      * @param num
      * @return
      */
-    public Stock selectStockByNum(Integer num);
+    public List<Stock> selectStockByNum(Integer num);
 
     /**
      * 根据操作员编码查询
      * @param id
      * @return
      */
-    public Stock selectStockById(Integer id);
+    public List<Stock> selectStockById(Integer id);
 
     /**
      * 根据操作类型查询库存信息
      * @param type
      * @return
      */
-    public Stock selectStockByType(String type);
+    public List<Stock> selectStockByType(String type);
 
     /**
      * 根据操作时间查询
      * @param date
      * @return
      */
-    public Stock selectStockByDate(Timestamp date);
+    public List<Stock> selectStockByDate(Timestamp date);
 }

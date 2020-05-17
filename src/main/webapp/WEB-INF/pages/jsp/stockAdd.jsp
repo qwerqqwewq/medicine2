@@ -184,10 +184,10 @@
       }
     })
     $(".med_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/search.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_medicinePage.action";
     })
     $(".med_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/add.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_addPage.action";
     })
     $(".stock_search").click(function() {
       window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockSearch.jsp";

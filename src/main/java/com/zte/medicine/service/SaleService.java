@@ -3,6 +3,7 @@ package com.zte.medicine.service;
 import com.zte.medicine.entity.Sale;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author:helloboy
@@ -23,35 +24,35 @@ public interface SaleService {
      * @param num
      * @return
      */
-    public Sale findSaleByNum(Integer num);
+    public List<Sale> findSaleByNum(Integer num);
 
     /**
      * 根据销售员编号查询销售信息
      * @param id
      * @return
      */
-    public Sale findSaleById(Integer id);
+    public List<Sale> findSaleById(Integer id);
 
     /**
      * 根据客户编码查询销售信息
      * @param code
      * @return
      */
-    public Sale findSaleByCode(String code);
+    public List<Sale> findSaleByCode(String code);
 
     /**
      * 根据销售日期查询销售信息
      * @param date
      * @return
      */
-    public Sale findSaleByDate(Timestamp date);
+    public List<Sale> findSaleByDate(Timestamp date);
 
     /**
      * 根据销售的总金额查询
      * @param amount
      * @return
      */
-    public Sale findSaleByAmount(double amount);
+    public List<Sale> findSaleByAmount(double amount);
 
     /**
      * 删除销售信息（仅管理员可）
@@ -69,11 +70,11 @@ public interface SaleService {
      * @param amount2 金额上限
      * @return
      */
-    public Sale findSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2);
+    public List<Sale> findSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2);
 
     /**
      * 显示所有销售信息
      * @return
      */
-    public Sale findAll();
+    public List<Sale> findAll();
 }

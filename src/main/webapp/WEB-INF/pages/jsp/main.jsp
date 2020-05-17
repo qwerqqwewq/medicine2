@@ -29,7 +29,7 @@
         <img src="${pageContext.request.contextPath}/images/m1.png" alt="#">
         <a href="javascript:;" class="m1">药品管理</a>
         <ul>
-          <li class="med_search"><a href="${pageContext.request.contextPath}/WEB-INF/pages/jsp/search.jsp">查询药品</a></li>
+          <li class="med_search">查询药品</li>
           <li class="med_add">添加药品</li>
         </ul>
       </li>
@@ -113,30 +113,29 @@
       }
     })
     $(".med_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/search.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_medicinePage.action";
     })
     $(".med_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/add.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_addPage.action";
     })
     $(".stock_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/stock_stockSearchPage.action";
     })
     $(".stock_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/stock_stockAddPage.action";
     })
     $(".sale_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/sale_saleSearchPage.action";
     })
     $(".sale_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/sale_saleAddPage.action";
     })
     $(".supplier_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
     })
     $(".supplier_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
     })
-  })
   })
 </script>
 </body>

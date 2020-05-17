@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -101,8 +102,8 @@ public class SaleAction extends ActionSupport {
 
         Sale sale = new Sale();
         if (request.getParameter("SaleNum")!=null|| request.getParameter("UserId")!=null|| request.getParameter("CustomerCode")!=null|| request.getParameter("SaleDate")!=null|| request.getParameter("amount")!=null|| amount2!=null) {
-            sale = saleService.findSale(Integer.parseInt(request.getParameter("SaleNum")), Integer.parseInt(request.getParameter("UserId")),request.getParameter("CustomerCode"),Timestamp.valueOf(request.getParameter("SaleDate")),Double.valueOf(request.getParameter("amount")),amount2);
-            request.setAttribute("sale",sale);
+            List<Sale> sales = saleService.findSale(Integer.parseInt(request.getParameter("SaleNum")), Integer.parseInt(request.getParameter("UserId")),request.getParameter("CustomerCode"),Timestamp.valueOf(request.getParameter("SaleDate")),Double.valueOf(request.getParameter("amount")),amount2);
+            request.setAttribute("sales",sales);
             return "success";
         } else {
             return "fail";
@@ -110,6 +111,21 @@ public class SaleAction extends ActionSupport {
 
     }
 
+    /**
+     * 销售查询界面
+     * @return
+     */
+    public String saleSearchPage(){
+        return "search";
+    }
+
+    /**
+     * 销售添加页面
+     * @return
+     */
+    public String saleAddPage(){
+        return "add";
+    }
 
 
 }

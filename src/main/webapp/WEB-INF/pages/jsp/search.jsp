@@ -124,14 +124,15 @@
 
 </div>
 <div class="box">
+  <form action="medicine_advancedSearch.action" method="post">
   <div class="up">
     <div>
       <span>药品名称</span>
-      <input type="text">
+      <input type="text" name="MedicineName">
       <span>药品类别代码</span>
-      <input type="text">
+      <input type="text" name="KindCode">
       <span>供应商编码</span>
-      <input type="text">
+      <input type="text" name="FirmCode">
     </div>
     <div>
       <span>进价范围</span>
@@ -157,6 +158,7 @@
       <input type="submit" value="查询" class="high_submit">
     </div>
   </div>
+  </form>
   <div class="down">
     <div class="all-list">
       <table class="table-box1">
@@ -238,28 +240,28 @@
       }
     })
     $(".med_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/search.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_medicinePage.action";
     })
     $(".med_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/add.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_addPage.action";
     })
     $(".stock_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/stock_stockSearchPage.action";
     })
     $(".stock_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/stock_stockAddPage.action";
     })
     $(".sale_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/sale_saleSearchPage.action";
     })
     $(".sale_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/sale_saleAddPage.action";
     })
     $(".supplier_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
     })
     $(".supplier_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
     })
   })
 </script>

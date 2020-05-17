@@ -36,12 +36,12 @@ public class FirmDaoImpl implements FirmDao {
 
     @Override
     public List<Firm> selectFirmByCode(String code) {
-        return (List<Firm>)sessionFactory.getCurrentSession().get(Firm.class,code);
+        return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmCode="+code+";").list();
     }
 
     @Override
     public List<Firm> selectFirmByName(String name) {
-        return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmName="+name+";");
+        return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmName="+name+";").list();
     }
 
     @Override
@@ -51,6 +51,6 @@ public class FirmDaoImpl implements FirmDao {
 
     @Override
     public void deleteFirmByCode(String code) {
-        sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().get(Firm.class,code));
+        sessionFactory.getCurrentSession().delete(selectFirmByCode(code));
     }
 }

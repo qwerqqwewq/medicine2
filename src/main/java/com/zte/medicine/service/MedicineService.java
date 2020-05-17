@@ -25,17 +25,20 @@ public interface MedicineService {
 
     /**
      * 高级检索 （该函数参数以编码为主，实际情况可从名称查询代码）
-     * @param code1 药品编码
      * @param name  药品名称
      * @param code2 药品类别代码
-     * @param stock1 库存最小值（范围）
-     * @param stock2 库存最大值
      * @param code3 供应商编码
-     * @param date1 生产日期
-     * @param date2 有效期
+     * @param listPrice 进价最小值
+     * @param listPrice2 进价最大值
+     * @param price 售价最小值
+     * @param price2 售价最大值
+     * @param date1 生产日期最小值
+     * @param date2 生产日期最大值
+     * @param date3 有效期最小值
+     * @param date4 有效期最大值
      * @return
      */
-    public List<Medicine> advancedSearch(String code1, String name, String code2, Integer stock1, String stock2, String code3, Timestamp date1, Timestamp date2);
+    public List<Medicine> advancedSearch(String name, String code2, String code3, String listPrice,String listPrice2,String price,String price2,Timestamp date1, Timestamp date2,Timestamp date3,Timestamp date4);
 
     /**
      * 根据药品编码查询

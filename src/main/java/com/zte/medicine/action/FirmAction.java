@@ -122,8 +122,16 @@ public class FirmAction extends ActionSupport {
         firmService.findFirmByName(request.getParameter("FirmName"));
     }
 
-    public String firmPage(){
-        return "main";
+    /**
+     * 供应商查询页面
+     * @return
+     */
+    public String firmSearchPage(){
+        return "search";
+    }
+
+    public String firmAddPage(){
+        return "add";
     }
 
 }

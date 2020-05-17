@@ -1,3 +1,5 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -190,22 +192,22 @@
       window.location.href = "${pageContext.request.contextPath}/medicine_addPage.action";
     })
     $(".stock_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/stock_stockSearchPage.action";
     })
     $(".stock_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/stockAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/stock_stockAddPage.action";
     })
     $(".sale_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/sale_saleSearchPage.action";
     })
     $(".sale_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/saleAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/sale_saleAddPage.action";
     })
     $(".supplier_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierSearch.jsp";
+      window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
     })
     $(".supplier_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB_INF/pages/jsp/supplierAdd.jsp";
+      window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
     })
   })
 </script>

@@ -42,6 +42,23 @@ public class MedicineAction extends ActionSupport {
 
     @Autowired
     private MedicineService medicineService;
+
+    public FirmService getFirmService() {
+        return firmService;
+    }
+
+    public void setFirmService(FirmService firmService) {
+        this.firmService = firmService;
+    }
+
+    public KindService getKindService() {
+        return kindService;
+    }
+
+    public void setKindService(KindService kindService) {
+        this.kindService = kindService;
+    }
+
     private FirmService firmService;
     private KindService kindService;
 
@@ -72,7 +89,8 @@ public class MedicineAction extends ActionSupport {
         medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
         medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
         medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
-        Firm firm = firmService.findFirmByCode(request.getParameter("FirmCode"));
+        List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
+        Firm firm = list.get(0);
         medicine.settFirmByFirmCode(firm);
         Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
         medicine.settKindByKindCode(kind);
@@ -115,7 +133,8 @@ public class MedicineAction extends ActionSupport {
         medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
         medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
         medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
-        Firm firm = firmService.findFirmByName(request.getParameter("FirmName"));
+        List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
+        Firm firm = list.get(0);
         medicine.settFirmByFirmCode(firm);
         Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
         medicine.settKindByKindCode(kind);
@@ -251,8 +270,16 @@ public class MedicineAction extends ActionSupport {
         PrintWriter out = response.getWriter();
 
         String stock =  request.getParameter("stock2");
-        if (request.getParameter("MedicineCode")!=null||request.getParameter("MedicineName")!=null|| request.getParameter("KindCode")!=null||request.getParameter("Stock")!=null|| request.getParameter("FirmCode")!=null|| request.getParameter("FirstDate")!=null||request.getParameter("UsefullDate")!=null||stock!=null) {
-            List<Medicine> medicines = medicineService.advancedSearch(request.getParameter("MedicineCode"),request.getParameter("MedicineName"), request.getParameter("KindCode"),Integer.parseInt(request.getParameter("Stock")), stock, request.getParameter("FirmCode"), Timestamp.valueOf(request.getParameter("FirstDate")), Timestamp.valueOf(request.getParameter("UsefullDate")));
+        String listPrice = request.getParameter("ListPrice");
+        String listPrice2 = request.getParameter("ListPrice2");
+        String price = request.getParameter("Price");
+        String price2 = request.getParameter("Price2");
+        String date1 = request.getParameter("FirstDate");
+        String date2 = request.getParameter("FirstDate2");
+        String date3 = request.getParameter("UsefullDate");
+        String date4 = request.getParameter("UsefullDate2");
+        if (request.getParameter("MedicineName")!=null|| request.getParameter("KindCode")!=null|| request.getParameter("FirmCode")!=null||listPrice!=null||listPrice2!=null||price!=null||price2!=null||date1!=null||date2!=null||date3!=null||date4!=null) {
+            List<Medicine> medicines = medicineService.advancedSearch(request.getParameter("MedicineName"), request.getParameter("KindCode"),request.getParameter("FirmCode"),listPrice,listPrice2,price,price2,Timestamp.valueOf(date1),Timestamp.valueOf(date2),Timestamp.valueOf(date3),Timestamp.valueOf(date4));
             request.setAttribute("medicines",medicines);
             return "search";
         } else {

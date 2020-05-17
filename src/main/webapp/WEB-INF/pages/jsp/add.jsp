@@ -82,28 +82,28 @@
     <h2>基本信息</h2>
   </div>
   <div>
-    <input type="text" placeholder="药品名">
+    <input type="text" placeholder="药品名" name="MedicineName">
   </div>
   <div>
-    <input type="text" placeholder="药品编码">
+    <input type="text" placeholder="药品编码" name="MedicineCode">
   </div>
   <div>
-    <input type="text" placeholder="供应商编码">
+    <input type="text" placeholder="供应商编码" name="FirmCode">
   </div>
   <div>
-    <input type="text" placeholder="药品类别代码">
+    <input type="text" placeholder="药品类别代码" name="KindCode">
   </div>
   <div>
     <h2>详细信息</h2>
   </div>
   <div>
-    <input type="text" placeholder="进价">
-    <input type="text" placeholder="售价">
-    <input type="text" placeholder="库存">
+    <input type="text" placeholder="进价" name="ListPrice">
+    <input type="text" placeholder="售价" name="Price">
+    <input type="text" placeholder="库存" name="Stock">
   </div>
   <div>
-    <input type="text" placeholder="生产日期">
-    <input type="text" placeholder="有效日期">
+    <input type="text" placeholder="生产日期" name="FirstDate">
+    <input type="text" placeholder="有效日期" name="UsefullDate">
   </div>
   <div class="down">
     <input type="submit" value="提交" class="submit">
@@ -113,7 +113,7 @@
 <script>
   $(function() {
     $(".back").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/WEB-INF/pages/jsp/main.jsp";
+      window.location.href = "${pageContext.request.contextPath}/medicine_medicinePage.action";
     })
   })
 </script>

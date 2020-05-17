@@ -42,36 +42,36 @@ public class MedicineDaoImpl implements MedicineDao {
     }
 
     @Override
-    public List<Medicine> advancedSearch(String code1, String name, String code2, Integer stock1, String stock2, String code3, Timestamp date1, Timestamp date2) {
+    public List<Medicine> advancedSearch(String name, String code2, String code3, String listPrice,String listPrice2,String price,String price2,Timestamp date1, Timestamp date2,Timestamp date3,Timestamp date4){
         String hql="select * from t_medicine;";
 
-        if (code1 != null) {
-             String hql1 = "select * from t_medicine where MedicineCode=" + code1 + ";";
+        if (name != null) {
+             String hql1 = "select * from t_medicine where MedicineName like'%" + name + "%';";
              hql = hql+"intersect"+hql1;
         }
 
-        if (name != null) {
-            String hql2 = "select * from t_medicine where MedicineName like'%" + name + "%';";
+        if (code2 != null) {
+            String hql2 = "select * from t_medicine where KindCode=" + code2 + ";";
             hql = hql+"intersect"+hql2;
         }
 
-        if (code2 != null) {
-            String hql3 = "select * from t_medicine where KindCode=" + code2 + ";";
+        if (listPrice != null) {
+            String hql3 = "select * from t_medicine where ListPrice>=" + listPrice + ";";
             hql = hql+"intersect"+hql3;
         }
 
-        if (stock1 != null) {
-            String hql4 = "select * from t_medicine where Stock>=" + stock1 + ";";
+        if (listPrice2 != null) {
+            String hql4 = "select * from t_medicine where ListPrice<=" + listPrice2 + ";";
             hql = hql+"intersect"+hql4;
         }
 
-        if (stock2 != null) {
-            String hql5 = "select * from t_medicine where Stock<=" + stock2 + ";";
+        if (price != null) {
+            String hql5 = "select * from t_medicine where Price>=" + price + ";";
             hql = hql+"intersect"+hql5;
         }
 
-        if (code3 != null) {
-            String hql6 = "select * from t_medicine where FirmCode=" + code3 + ";";
+        if (price2 != null) {
+            String hql6 = "select * from t_medicine where Price<=" + price2 + ";";
             hql = hql+"intersect"+hql6;
         }
 
@@ -81,14 +81,24 @@ public class MedicineDaoImpl implements MedicineDao {
         }
 
         if (date2 != null) {
-            String hql8 = "select * from t_medicine where UsefullDate<=to_date('" + date1 + "');";
+            String hql8 = "select * from t_medicine where FirstDate<=to_date('" + date2 + "');";
             hql = hql+"intersect"+hql8;
+        }
+
+        if (date3 != null) {
+            String hql9 = "select * from t_medicine where UsefullDate>=to_date('" + date3 + "');";
+            hql = hql+"intersect"+hql9;
+        }
+
+        if (date4 != null) {
+            String hql10 = "select * from t_medicine where UsefullDate<=to_date('" + date4 + "');";
+            hql = hql+"intersect"+hql10;
         }
 
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 
-        return (List<Medicine>)sessionFactory.getCurrentSession().createSQLQuery(hql);
+        return (List<Medicine>)sessionFactory.getCurrentSession().createSQLQuery(hql).list();
     }
 
     @Override

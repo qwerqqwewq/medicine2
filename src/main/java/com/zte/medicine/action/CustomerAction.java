@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -135,7 +136,8 @@ public class CustomerAction extends ActionSupport {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        Customer customer = customerService.findCustomerByName(request.getParameter("CustomerName"));
+        List<Customer> list = customerService.findCustomerByName(request.getParameter("CustomerName"));
+        Customer customer = list.get(0);
         request.setAttribute("City", customer.getCity());
         request.setAttribute("CustomerCode", customer.getCustomerCode());
         request.setAttribute("CustomerName",customer.getCustomerName());

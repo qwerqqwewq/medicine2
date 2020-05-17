@@ -40,8 +40,8 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public List<Medicine> advancedSearch(String code1, String name, String code2, Integer stock1, String stock2, String code3, Timestamp date1, Timestamp date2) {
-        return medicineDao.advancedSearch(code1,name,code2,stock1,stock2,code3,date1,date2);
+    public List<Medicine> advancedSearch(String name, String code2, String code3, String listPrice,String listPrice2,String price,String price2,Timestamp date1, Timestamp date2,Timestamp date3,Timestamp date4) {
+        return medicineDao.advancedSearch(name,code2,code3,listPrice,listPrice2,price,price2,date1,date2,date3,date4);
     }
 
     @Override

@@ -110,6 +110,22 @@ public class StockAction extends ActionSupport {
         return gson.toJson(map);
     }
 
+    /**
+     * 库存查询页面
+     * @return
+     */
+    public String stockSearchPage(){
+        return "search";
+    }
+
+    /**
+     * 库存添加页面
+     * @return
+     */
+    public String stockAddPage(){
+        return "add";
+    }
+
 
 
 

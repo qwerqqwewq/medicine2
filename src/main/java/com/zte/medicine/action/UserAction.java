@@ -102,9 +102,7 @@ public class UserAction extends ActionSupport {
     }
 
 
-    public String loginpage(){
-        return "login";
-    }
+
 
     /**
      * 注册表
@@ -161,10 +159,63 @@ public class UserAction extends ActionSupport {
         return "fail";
     }
 
+    public String changePassword() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String name = request.getParameter("userName");
+        String pwd = request.getParameter("pwd");
+        String npwd = request.getParameter("npwd");
+        String tpwd = request.getParameter("tpwd");
+        if (npwd.equals(tpwd)) {
+            if (userService.findByName(name).get(0).getPassword().equals(MD5Util.MD5Encode(pwd))) {
+                User user = userService.findByName(name).get(0);
+                user.setPassword(MD5Util.MD5Encode(npwd));
+                userService.modifyUser(user);
+                return "main";
+            } else {
+                out.print("<script>alert('原密码不对！')</script>");
+                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_passwordPage.action'</script>");
+                out.flush();
+                out.close();
+                return "change";
+            }
+        }else {
+            out.print("<script>alert('原密码不对！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_passwordPage.action'</script>");
+            out.flush();
+            out.close();
+            return "change";
+        }
+    }
+
+    /**
+     * 修改密码界面
+     * @return
+     */
+    public String passwordPage(){
+        return "change";
+    }
 
 
+    /**
+     * 注册界面
+     * @return
+     */
     public String registpage(){
         return "regist";
+    }
+
+    /**
+     * 登录界面
+     * @return
+     */
+    public String loginpage(){
+        return "login";
     }
 
 

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <meta charset="utf-8">
     <style>
@@ -11,6 +12,7 @@
             height: 750px;
             background: rgb(250, 250, 250);
             margin: 0 auto;
+            margin-top: 70px;
             position: relative;
             border: 2px #ccc solid;
             border-radius: 5px;
@@ -41,7 +43,7 @@
         }
 
         .left>div {
-            height: 80px;
+            height: 60px;
             line-height: 80px;
         }
 
@@ -51,14 +53,17 @@
         }
 
         .right>div {
-            height: 100px;
-            line-height: 100px;
+            height: 60px;
+            line-height: 80px;
+            width: 100%;
         }
 
         .right input {
             width: 400px;
             height: 35px;
-            margin-left: 50px;
+            float: right;
+            margin-top: 24px;
+            margin-right: 100px;
             outline: none;
             border: 1px #ccc solid;
             border-radius: 5px;
@@ -100,45 +105,72 @@
         </div>
         <div class="left">
             <div>
-                <span>xxx</span>
+                <span>药品名</span>
+                <span>${medicine.MedicineName}</span>
             </div>
             <div>
-                <span>xxx</span>
+                <span>药品编码</span>
+                <span>${medicine.MedicineCode}</span>
             </div>
             <div>
-                <span>xxx</span>
+                <span>供应商编码</span>
+                <span>${medicine.FirmCode}</span>
             </div>
             <div>
-                <span>xxx</span>
+                <span>药品类别代码</span>
+                <span>${medicine.KindCode}</span>
             </div>
             <div>
-                <span>xxx</span>
+                <span>进价</span>
+                <span>${medicine.ListPrice}</span>
             </div>
             <div>
-                <span>xxx</span>
+                <span>售价</span>
+                <span>${medicine.Price}</span>
+            </div>
+            <div>
+                <span>生产日期</span>
+                <span>${medicine.FirstDate}</span>
+            </div>
+            <div>
+                <span>有效日期</span>
+                <span>${medicine.UsefullDate}</span>
             </div>
         </div>
         <div class="right">
             <div>
-                <span>xxx</span>
-                <input type="text" name="" placeholder="xxx">
+                <span>药品名</span>
+                <input type="text" name="" placeholder="药品名">
             </div>
             <div>
-                <span>xxx</span>
-                <input type="text" name="" placeholder="xxx">
+                <span>药品编码</span>
+                <input type="text" name="" placeholder="药品编码">
             </div>
             <div>
-                <span>xxx</span>
-                <input type="text" name="" placeholder="xxx">
+                <span>供应商编码</span>
+                <input type="text" name="" placeholder="供应商编码">
             </div>
             <div>
-                <span>xxx</span>
-                <input type="text" name="" placeholder="xxx">
+                <span>药品类别代码</span>
+                <input type="text" name="" placeholder="药品类别代码">
             </div>
             <div>
-                <span>xxx</span>
-                <input type="text" name="" placeholder="xxx">
+                <span>进价</span>
+                <input type="text" name="" placeholder="进价">
             </div>
+            <div>
+                <span>售价</span>
+                <input type="text" name="" placeholder="售价">
+            </div>
+            <div>
+                <span>生产日期</span>
+                <input type="text" name="" placeholder="生产日期">
+            </div>
+            <div>
+                <span>有效日期</span>
+                <input type="text" name="" placeholder="有效日期">
+            </div>
+
         </div>
         <div class="down">
             <input type="submit" value="提交">
@@ -147,4 +179,5 @@
 </div>
 
 </body>
+
 </html>

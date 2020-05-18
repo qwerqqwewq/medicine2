@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,15 +18,7 @@ import java.util.List;
 @Service("StockCommentService")
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class StockCommentServiceImpl implements StockCommentService {
-
-    public StockCommentDao getStockCommentDao() {
-        return stockCommentDao;
-    }
-
-    public void setStockCommentDao(StockCommentDao stockCommentDao) {
-        this.stockCommentDao = stockCommentDao;
-    }
-
+    @Resource
     private StockCommentDao stockCommentDao;
 
     @Override

@@ -6,7 +6,7 @@
 
     <class name="com.zte.medicine.entity.Medicine" table="t_medicine" schema="medicine">
         <id name="medicineCode">
-            <column name="MedicineCode" sql-type="char(6)" length="6"/>
+            <column name="MedicineCode" sql-type="varchar(6)" length="6"/>
         </id>
         <property name="medicineName">
             <column name="MedicineName" sql-type="varchar(32)" length="32"/>

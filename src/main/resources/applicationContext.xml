@@ -10,17 +10,20 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+        http://www.springframework.org/schema/tx/spring-tx.xsd"
+    default-autowire="byName">
+    
     <!-- 注册数据库链接文件，引入外部属性文件-->
     <context:property-placeholder location="classpath:jdbc.properties" />
+    
+    <context:component-scan base-package="com.zte"/>
 
     <!--配置c3p0连接池-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="${jdbc.username}"></property>
         <property name="password" value="${jdbc.password}"></property>
         <property name="driverClass" value="${jdbc.driverClassname}"></property>
-        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}&amp;zeroDateTimeBehavior=convertToNull"></property>
         <property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
         <property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
     </bean>
@@ -65,26 +68,10 @@
     </tx:advice>
 
          <!-- 注册切面 -->
-        <aop:config>
-         <!-- Service 层 -->
-             <aop:pointcut expression="execution(* com.zte.medicine.service.*.*(..))"
-                 id="txPoint" />
-             <aop:advisor advice-ref="txadvice" pointcut-ref="txPoint" />
-        </aop:config>
-
-        <!-- Dao -->
-        <bean id="userDao" class="com.zte.medicine.dao.impl.UserDaoImpl">
-            <property name="sessionFactory" ref="sessionFactory"></property>
-        </bean>
-
-        <!-- Service -->
-        <bean id="userService" class="com.zte.medicine.service.impl.UserServiceImpl">
-            <property name="UserDao" ref="userDao"></property>
-        </bean>
-
-        <!-- Action -->
-        <bean id="userAction" class="com.zte.medicine.action.UserAction">
-            <property name="UserService" ref="userService"></property>
-        </bean>
-
+    <aop:config>
+     <!-- Service 层 -->
+         <aop:pointcut expression="execution(* com.zte.medicine.service.*.*(..))"
+             id="txPoint" />
+         <aop:advisor advice-ref="txadvice" pointcut-ref="txPoint" />
+    </aop:config>
 </beans>

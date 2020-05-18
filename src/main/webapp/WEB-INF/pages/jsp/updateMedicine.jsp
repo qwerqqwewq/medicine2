@@ -96,7 +96,7 @@
 
 <body>
 <div class="big">
-    <form>
+    <form action="${pageContext.request.contextPath}/medicine_updateMedicine.action">
         <div class="topleft">
             <span>当前信息</span>
         </div>
@@ -140,35 +140,35 @@
         <div class="right">
             <div>
                 <span>药品名</span>
-                <input type="text" name="" placeholder="药品名">
+                <input type="text" name="MedicineName" placeholder="药品名">
             </div>
             <div>
                 <span>药品编码</span>
-                <input type="text" name="" placeholder="药品编码">
+                <input type="text" name="MedicineCode" placeholder="药品编码">
             </div>
             <div>
                 <span>供应商编码</span>
-                <input type="text" name="" placeholder="供应商编码">
+                <input type="text" name="FirmCode" placeholder="供应商编码">
             </div>
             <div>
                 <span>药品类别代码</span>
-                <input type="text" name="" placeholder="药品类别代码">
+                <input type="text" name="KindCode" placeholder="药品类别代码">
             </div>
             <div>
                 <span>进价</span>
-                <input type="text" name="" placeholder="进价">
+                <input type="text" name="ListPrice" placeholder="进价">
             </div>
             <div>
                 <span>售价</span>
-                <input type="text" name="" placeholder="售价">
+                <input type="text" name="Price" placeholder="售价">
             </div>
             <div>
                 <span>生产日期</span>
-                <input type="text" name="" placeholder="生产日期">
+                <input type="text" name="FirstDate" placeholder="生产日期">
             </div>
             <div>
                 <span>有效日期</span>
-                <input type="text" name="" placeholder="有效日期">
+                <input type="text" name="UsefullDate" placeholder="有效日期">
             </div>
 
         </div>

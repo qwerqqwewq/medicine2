@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,25 +19,10 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
 
-    public UserDao getUserDao() {
-        return userDao;
-    }
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
+    @Resource
     private UserDao userDao;
 
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     @Override
     public List<User> findByName(String name) {

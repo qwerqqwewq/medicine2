@@ -10,6 +10,7 @@ import com.zte.medicine.service.KindService;
 import com.zte.medicine.service.MedicineService;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -28,38 +29,15 @@ import java.util.Map;
  * Description:<描述>
  */
 @Controller
+@Scope("prototype")
 @RequestMapping("/medicine")
 @SessionAttributes("medicine")
 public class MedicineAction extends ActionSupport {
-
-    public MedicineService getMedicineService() {
-        return medicineService;
-    }
-
-    public void setMedicineService(MedicineService medicineService) {
-        this.medicineService = medicineService;
-    }
-
     @Autowired
     private MedicineService medicineService;
-
-    public FirmService getFirmService() {
-        return firmService;
-    }
-
-    public void setFirmService(FirmService firmService) {
-        this.firmService = firmService;
-    }
-
-    public KindService getKindService() {
-        return kindService;
-    }
-
-    public void setKindService(KindService kindService) {
-        this.kindService = kindService;
-    }
-
+    @Autowired
     private FirmService firmService;
+    @Autowired
     private KindService kindService;
 
     /**
@@ -269,7 +247,10 @@ public class MedicineAction extends ActionSupport {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        String stock =  request.getParameter("stock2");
+        //String stock =  request.getParameter("stock2");
+        String medicineName = request.getParameter("MedicineName");
+        String kindCode = request.getParameter("KindCode");
+        String firmCode = request.getParameter("FirmCode");
         String listPrice = request.getParameter("ListPrice");
         String listPrice2 = request.getParameter("ListPrice2");
         String price = request.getParameter("Price");
@@ -278,8 +259,34 @@ public class MedicineAction extends ActionSupport {
         String date2 = request.getParameter("FirstDate2");
         String date3 = request.getParameter("UsefullDate");
         String date4 = request.getParameter("UsefullDate2");
-        if (request.getParameter("MedicineName")!=null|| request.getParameter("KindCode")!=null|| request.getParameter("FirmCode")!=null||listPrice!=null||listPrice2!=null||price!=null||price2!=null||date1!=null||date2!=null||date3!=null||date4!=null) {
-            List<Medicine> medicines = medicineService.advancedSearch(request.getParameter("MedicineName"), request.getParameter("KindCode"),request.getParameter("FirmCode"),listPrice,listPrice2,price,price2,Timestamp.valueOf(date1),Timestamp.valueOf(date2),Timestamp.valueOf(date3),Timestamp.valueOf(date4));
+
+        Timestamp date1Time = null ;
+        Timestamp date2Time = null ;
+        Timestamp date3Time = null ;
+        Timestamp date4Time = null ;
+
+        if(date1 != null && !"".equalsIgnoreCase(date1))
+        {
+            date1Time = Timestamp.valueOf(date1);
+        }
+
+        if(date2 != null && !"".equalsIgnoreCase(date2))
+        {
+            date2Time = Timestamp.valueOf(date2);
+        }
+
+        if(date3 != null && !"".equalsIgnoreCase(date3))
+        {
+            date3Time = Timestamp.valueOf(date3);
+        }
+
+        if(date4 != null && !"".equalsIgnoreCase(date4))
+        {
+            date4Time = Timestamp.valueOf(date4);
+        }
+
+        if (medicineName!=null|| kindCode!=null|| firmCode!=null||listPrice!=null||listPrice2!=null||price!=null||price2!=null||date1!=null||date2!=null||date3!=null||date4!=null) {
+            List<Medicine> medicines = medicineService.advancedSearch(medicineName,kindCode,firmCode,listPrice,listPrice2,price,price2,date1Time,date2Time,date3Time,date4Time);
             request.setAttribute("medicines",medicines);
             return "search";
         } else {

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * @author:helloboy
  * Date:2020-02-07 17:26
@@ -16,14 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class KindServiceImpl implements KindService {
 
-    public KindDao getKindDao() {
-        return kindDao;
-    }
 
-    public void setKindDao(KindDao kindDao) {
-        this.kindDao = kindDao;
-    }
-
+    @Resource
     private KindDao kindDao;
 
     @Override

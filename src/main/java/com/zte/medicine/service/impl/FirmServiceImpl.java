@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,18 +15,11 @@ import java.util.List;
  * Date:2020-02-07 17:26
  * Description:<描述>
  */
-@Service("FirmService")
+@Service("firmService")
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class FirmServiceImpl implements FirmService {
 
-    public FirmDao getFirmDao() {
-        return firmDao;
-    }
-
-    public void setFirmDao(FirmDao firmDao) {
-        this.firmDao = firmDao;
-    }
-
+    @Resource
     private FirmDao firmDao;
 
     @Override

@@ -89,6 +89,7 @@
 <div>
     <h1>密码修改</h1>
 </div>
+<form action="${pageContext.request.contextPath}/user_changePassword.action">
 <div class="all">
     <div>
         <span>请输入当前密码</span>
@@ -114,6 +115,7 @@
 
 
 </div>
+</form>
 <div class="back">
     <p>back</p>
 </div>

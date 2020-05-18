@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,14 +20,9 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class MedicineServiceImpl implements MedicineService {
 
-    public MedicineDao getMedicineDao() {
-        return medicineDao;
-    }
 
-    public void setMedicineDao(MedicineDao medicineDao) {
-        this.medicineDao = medicineDao;
-    }
 
+    @Resource
     private MedicineDao medicineDao;
 
     @Override

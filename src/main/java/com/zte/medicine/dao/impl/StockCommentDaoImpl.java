@@ -15,7 +15,7 @@ import java.util.List;
  * Description:<描述>
  */
 @Transactional(rollbackFor = Exception.class)
-@Repository("StockCommentDao")
+@Repository("stockCommentDao")
 public class StockCommentDaoImpl implements StockCommentDao {
 
     public SessionFactory getSessionFactory() {

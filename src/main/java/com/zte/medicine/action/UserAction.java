@@ -27,8 +27,6 @@ import java.util.List;
 @SessionAttributes("user")
 @RequestMapping("/user")
 public class UserAction extends ActionSupport {
-
-
     @Autowired
     private UserService userService;
 

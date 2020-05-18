@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * @Author:helloboy
  * Date:2020-02-07 17:25
@@ -16,14 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class PowerServiceImpl implements PowerService {
 
-    public PowerDao getPowerDao() {
-        return powerDao;
-    }
 
-    public void setPowerDao(PowerDao powerDao) {
-        this.powerDao = powerDao;
-    }
-
+    @Resource
     private PowerDao powerDao;
 
     @Override

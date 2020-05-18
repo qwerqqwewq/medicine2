@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:helloboy
@@ -43,62 +45,72 @@ public class MedicineDaoImpl implements MedicineDao {
 
     @Override
     public List<Medicine> advancedSearch(String name, String code2, String code3, String listPrice,String listPrice2,String price,String price2,Timestamp date1, Timestamp date2,Timestamp date3,Timestamp date4){
-        String hql="select * from t_medicine;";
+        StringBuilder hql=new StringBuilder("from Medicine where 1=1");
 
-        if (name != null) {
-             String hql1 = "select * from t_medicine where MedicineName like'%" + name + "%';";
-             hql = hql+"intersect"+hql1;
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if (name.length()!=0) {
+             hql.append(" and MedicineName like :MedicineName");
+            map.put("MedicineName", "%" + name + "%");
         }
 
-        if (code2 != null) {
-            String hql2 = "select * from t_medicine where KindCode=" + code2 + ";";
-            hql = hql+"intersect"+hql2;
+        if (code2.length()!=0) {
+            hql.append(" and KindCode = :KindCode");
+            map.put("KindCode", code2);
         }
 
-        if (listPrice != null) {
-            String hql3 = "select * from t_medicine where ListPrice>=" + listPrice + ";";
-            hql = hql+"intersect"+hql3;
+        if (code3.length()!=0){
+            hql.append(" and FirmCode = :FirmCode");
+            map.put("FirmCode", code3);
         }
 
-        if (listPrice2 != null) {
-            String hql4 = "select * from t_medicine where ListPrice<=" + listPrice2 + ";";
-            hql = hql+"intersect"+hql4;
+        if (listPrice.length()!=0) {
+            hql.append(" and ListPrice >= :ListPrice ");
+            map.put("ListPrice", listPrice);
         }
 
-        if (price != null) {
-            String hql5 = "select * from t_medicine where Price>=" + price + ";";
-            hql = hql+"intersect"+hql5;
+        if (listPrice2.length()!=0) {
+            hql.append(" and ListPrice <= :ListPrice2" );
+            map.put("ListPrice2", listPrice2);
         }
 
-        if (price2 != null) {
-            String hql6 = "select * from t_medicine where Price<=" + price2 + ";";
-            hql = hql+"intersect"+hql6;
+        if (price.length()!=0) {
+            hql.append(" and Price >= :Price" );
+            map.put("Price", price);
+        }
+
+        if (price2.length()!=0) {
+            hql.append(" and Price <= :Price2") ;
+            map.put("Price2", price2);
         }
 
         if (date1 != null) {
-            String hql7 = "select * from t_medicine where FirstDate>=to_date('" + date1 + "');";
-            hql = hql+"intersect"+hql7;
+            hql.append(" and FirstDate >= :date1");
+            map.put("FirstDate", date1);
         }
 
         if (date2 != null) {
-            String hql8 = "select * from t_medicine where FirstDate<=to_date('" + date2 + "');";
-            hql = hql+"intersect"+hql8;
+            hql.append(" and FirstDate <= :date2");
+            map.put("FirstDate2", date2);
         }
 
         if (date3 != null) {
-            String hql9 = "select * from t_medicine where UsefullDate>=to_date('" + date3 + "');";
-            hql = hql+"intersect"+hql9;
+            hql.append(" and UsefullDate >= :date3");
+            map.put("UsefullDate", date3);
         }
 
         if (date4 != null) {
-            String hql10 = "select * from t_medicine where UsefullDate<=to_date('" + date4 + "');";
-            hql = hql+"intersect"+hql10;
+            hql.append(" and UsefullDate <= :date4");
+            map.put("UsefullDate2", date4);
         }
 
-        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        Query query = sessionFactory.getCurrentSession().createQuery(hql.toString());
+        query.setProperties(map);
+        return query.list();
 
 
-        return (List<Medicine>)sessionFactory.getCurrentSession().createSQLQuery(hql).list();
+        //return (List<Medicine>)sessionFactory.getCurrentSession().createSQLQuery(hql).list();
     }
 
     @Override

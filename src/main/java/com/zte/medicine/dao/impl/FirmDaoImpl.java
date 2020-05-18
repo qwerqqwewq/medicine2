@@ -2,6 +2,7 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.FirmDao;
 import com.zte.medicine.entity.Firm;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,11 @@ public class FirmDaoImpl implements FirmDao {
 
     @Override
     public List<Firm> selectFirmByCode(String code) {
-        return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmCode="+code+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Firm where FirmCode = :FirmCode");
+        query.setParameter("FirmCode", code);
+        return query.list();
+
+        //return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmCode="+code+";").list();
     }
 
     @Override

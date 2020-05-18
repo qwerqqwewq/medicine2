@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,15 +19,9 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class CustomerServiceImpl implements CustomerService {
 
+    @Resource
     CustomerDao customerDao;
 
-    public CustomerDao getCustomerDao() {
-        return customerDao;
-    }
-
-    public void setCustomerDao(CustomerDao customerDao) {
-        this.customerDao = customerDao;
-    }
 
     @Override
     public void addCustomer(Customer customer) {

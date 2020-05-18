@@ -1,31 +1,30 @@
-html { 
-    height:100%;  
+html {
+    height: 100%;
 }
-body{
-    background:rgb(238,238,238);
+
+body {
+    background: rgb(238, 238, 238);
     margin: 0;
     padding: 0;
-    height:100%;
-    overflow:hidden;
+    height: 100%;
 }
-
-
 
 .left {
     width: 12%;
     height: 850px;
     background: #767473;
     position: absolute;
-    top:65px;
-    left:0;
+    top: 65px;
+    left: 0;
 }
-.right{
-    background: pink;
+
+.right {
+
     width: 88%;
     height: 850px;
     position: absolute;
-    top:65px;
-    right:0;
+    top: 65px;
+    right: 0;
 }
 
 .nav {
@@ -58,7 +57,7 @@ body{
 }
 
 .nav ul>li {
-    list-style-type:none;
+    list-style-type: none;
     height: 35px;
     line-height: 35px;
     cursor: pointer;
@@ -69,22 +68,26 @@ body{
     top: 8px;
     left: 10px;
 }
-h1{
+
+h1 {
     text-align: center;
     height: 65px;
-    line-height: 20px;
+    line-height: 65px;
+    margin: 0;
+    padding: 0;
 }
+
 .box1 {
-    background:rgb(255,255,255);
+    background: rgb(255, 255, 255);
     height: 65px;
     width: 100%;
     margin: 0;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     border-bottom: 1px #ccc solid;
-    
 }
+
 .box1 span {
     position: absolute;
     right: 100px;
@@ -98,7 +101,7 @@ h1{
     top: 20px;
 }
 
-.down {
+.down1 {
     position: absolute;
     top: 50px;
     right: 20px;
@@ -110,17 +113,14 @@ h1{
     display: none;
 }
 
-.down div {
+.down1 div {
     height: 50%;
     text-align: center;
 }
 
-.down span {
+.down1 span {
     height: 100%;
     line-height: 60px;
     cursor: pointer;
 }
 
-.span {
-    border-bottom: 2px #ccc solid;
-}

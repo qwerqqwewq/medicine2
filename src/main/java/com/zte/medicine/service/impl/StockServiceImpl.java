@@ -3,6 +3,7 @@ package com.zte.medicine.service.impl;
 import com.zte.medicine.dao.StockDao;
 import com.zte.medicine.entity.Stock;
 import com.zte.medicine.service.StockService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,18 +16,10 @@ import java.util.List;
  * Date:2020-02-07 17:24
  * Description:<描述>
  */
-@Service("StockDao")
+@Service("stockService")
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class StockServiceImpl implements StockService {
-
-    public StockDao getStockDao() {
-        return stockDao;
-    }
-
-    public void setStockDao(StockDao stockDao) {
-        this.stockDao = stockDao;
-    }
-
+    @Autowired
     private StockDao stockDao;
 
     @Override

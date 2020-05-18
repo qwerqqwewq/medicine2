@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,14 +20,8 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
 public class SaleServiceImpl implements SaleService {
 
-    public SaleDao getSaleDao() {
-        return saleDao;
-    }
 
-    public void setSaleDao(SaleDao saleDao) {
-        this.saleDao = saleDao;
-    }
-
+    @Resource
     private SaleDao saleDao;
 
     @Override

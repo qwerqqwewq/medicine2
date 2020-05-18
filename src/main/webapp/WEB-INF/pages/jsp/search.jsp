@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 
 <head>
@@ -84,7 +87,7 @@
 <div class="box1">
   <h1>医药管理系统</h1>
   <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
-  <span>名字</span>
+  <span>{user.username}</span>
 </div>
 <div class="left">
   <ul class="nav">
@@ -124,8 +127,9 @@
 
 </div>
 <div class="box">
-  <form action="medicine_advancedSearch.action" method="post">
+
   <div class="up">
+    <form action="medicine_advancedSearch.action" method="post">
     <div>
       <span>药品名称</span>
       <input type="text" name="MedicineName">
@@ -136,29 +140,30 @@
     </div>
     <div>
       <span>进价范围</span>
-      <input type="text">
+      <input type="text" name="ListPrice">
       <span>到</span>
-      <input type="text">
+      <input type="text" name="ListPrice2">
       <span>售价范围</span>
-      <input type="text">
+      <input type="text" name="Price">
       <span>到</span>
-      <input type="text">
+      <input type="text" name="Price2">
     </div>
     <div>
       <span>生产日期</span>
-      <input type="text" placeholder="xxxx-xx-xx">
+      <input type="text" placeholder="xxxx-xx-xx" name="FirstDate">
       <span>到</span>
-      <input type="text" placeholder="xxxx-xx-xx">
+      <input type="text" placeholder="xxxx-xx-xx" name="FirstDate2">
       <span>有效日期</span>
-      <input type="text" placeholder="xxxx-xx-xx">
+      <input type="text" placeholder="xxxx-xx-xx" name="UsefullDate">
       <span>到</span>
-      <input type="text" placeholder="xxxx-xx-xx">
+      <input type="text" placeholder="xxxx-xx-xx" name="UsefullDate2">
     </div>
     <div>
       <input type="submit" value="查询" class="high_submit">
     </div>
+    </form>
   </div>
-  </form>
+
   <div class="down">
     <div class="all-list">
       <table class="table-box1">
@@ -171,14 +176,14 @@
           <th>有效日期</th>
           <th>操作</th>
         </tr>
-        <c:forEach items="${medicine}" var="medicine">
+        <c:forEach items="${medicines}" var="medicine">
           <tr>
-            <td>${medicine.MedicineName}</td>
-            <td>${medicine.MedicineCode}</td>
-            <td>${medicine.KindCode}</td>
-            <td>${medicine.FirmCode}</td>
-            <td>${medicine.FirstDate}</td>
-            <td>${medicine.UsefullDate}</td>
+            <td>${medicine.medicineName}</td>
+            <td>${medicine.medicineCode}</td>
+            <td>${medicine.tKindByKindCode.kindCode}</td>
+            <td>${medicine.tFirmByFirmCode.firmCode}</td>
+            <td>${medicine.firstDate}</td>
+            <td>${medicine.usefullDate}</td>
             <td>
               <a href="Change.html">编辑</a>
               <a href="${pageContext.request.contextPath}/medicine_deleteMedicine.action">删除</a>

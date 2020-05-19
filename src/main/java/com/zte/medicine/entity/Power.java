@@ -1,10 +1,11 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -37,19 +38,13 @@ public class Power {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Power that = (Power) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (power != null ? !power.equals(that.power) : that.power != null) return false;
-
-        return true;
+        Power power = (Power) o;
+        return id == power.id &&
+                Objects.equals(this.power, power.power);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (power != null ? power.hashCode() : 0);
-        return result;
+        return Objects.hash(id, power);
     }
 }

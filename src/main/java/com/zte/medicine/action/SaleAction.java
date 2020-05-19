@@ -86,11 +86,11 @@ public class SaleAction extends ActionSupport {
         //if (saleDate != null && "".equalsIgnoreCase(saleDate)) {
         //    timestamp = Timestamp.valueOf(saleDate);
         //}
-        sale.setSaleDate(Timestamp.valueOf("1111-11-11 11:11:11"));
+        sale.setSaleDate(new Timestamp(System.currentTimeMillis()));
 
         String saleNum = request.getParameter("SaleNum");
         Integer integer = 0;
-        if (saleNum != null && "".equalsIgnoreCase(saleNum)) {
+        if (saleNum != null) {
             integer = Integer.parseInt(saleNum);
         }
         sale.setSaleNum(Integer.parseInt(request.getParameter("SaleNum")));
@@ -108,12 +108,15 @@ public class SaleAction extends ActionSupport {
             integer2 = Integer.parseInt(number);
         }
         saleComment.setNumber(integer2);
+        saleComment.setPrice("111");
+        saleComment.setSaleBySaleNum(sale);
         //saleComment.setPrice(request.getParameter("Price"));
         try {
             saleService.addSale(sale);
             saleCommentService.addSaleComment(saleComment);
             return "add";
         } catch (Exception e) {
+            e.printStackTrace();
             return "fail";
         }
     }

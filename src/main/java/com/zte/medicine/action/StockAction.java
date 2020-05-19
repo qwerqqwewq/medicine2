@@ -92,7 +92,7 @@ public class StockAction extends ActionSupport {
         User user = (User)request.getSession().getAttribute("user");
         Integer id = user.getId();
         stock.setUserId(id);
-        stock.setWorkDate(Timestamp.valueOf("1111-11-11 11:11:11"));
+        stock.setWorkDate(new Timestamp(System.currentTimeMillis()));
         stock.setWorkType(request.getParameter("WorkType"));
         stockComment.setStockNum(stock.getStockNum());
         String medicineName = request.getParameter("MedicineName");
@@ -111,6 +111,7 @@ public class StockAction extends ActionSupport {
         //Medicine medicine = new Medicine();
         //medicine=medicineService.findMedicineByCode(stockComment.getMedicineCode()).get(0);
         stockComment.setAmount(Double.parseDouble(medicine.getPrice())*Double.valueOf(stockComment.getNumber()));
+
 
 
         try {

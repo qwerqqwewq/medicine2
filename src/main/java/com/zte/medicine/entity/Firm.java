@@ -1,10 +1,11 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -70,25 +71,16 @@ public class Firm {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Firm that = (Firm) o;
-
-        if (firmCode != null ? !firmCode.equals(that.firmCode) : that.firmCode != null) return false;
-        if (firmName != null ? !firmName.equals(that.firmName) : that.firmName != null) return false;
-        if (link != null ? !link.equals(that.link) : that.link != null) return false;
-        if (linkTel != null ? !linkTel.equals(that.linkTel) : that.linkTel != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-
-        return true;
+        Firm firm = (Firm) o;
+        return Objects.equals(firmCode, firm.firmCode) &&
+                Objects.equals(firmName, firm.firmName) &&
+                Objects.equals(link, firm.link) &&
+                Objects.equals(linkTel, firm.linkTel) &&
+                Objects.equals(city, firm.city);
     }
 
     @Override
     public int hashCode() {
-        int result = firmCode != null ? firmCode.hashCode() : 0;
-        result = 31 * result + (firmName != null ? firmName.hashCode() : 0);
-        result = 31 * result + (link != null ? link.hashCode() : 0);
-        result = 31 * result + (linkTel != null ? linkTel.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        return result;
+        return Objects.hash(firmCode, firmName, link, linkTel, city);
     }
 }

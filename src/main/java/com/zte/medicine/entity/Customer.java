@@ -1,10 +1,11 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -59,23 +60,15 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Customer that = (Customer) o;
-
-        if (customerCode != null ? !customerCode.equals(that.customerCode) : that.customerCode != null) return false;
-        if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null) return false;
-        if (customerTel != null ? !customerTel.equals(that.customerTel) : that.customerTel != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-
-        return true;
+        Customer customer = (Customer) o;
+        return Objects.equals(customerCode, customer.customerCode) &&
+                Objects.equals(customerName, customer.customerName) &&
+                Objects.equals(customerTel, customer.customerTel) &&
+                Objects.equals(city, customer.city);
     }
 
     @Override
     public int hashCode() {
-        int result = customerCode != null ? customerCode.hashCode() : 0;
-        result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
-        result = 31 * result + (customerTel != null ? customerTel.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        return result;
+        return Objects.hash(customerCode, customerName, customerTel, city);
     }
 }

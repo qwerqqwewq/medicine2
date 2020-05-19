@@ -6,7 +6,7 @@
 
     <class name="com.zte.medicine.entity.Medicine" table="t_medicine" schema="medicine">
         <id name="medicineCode">
-            <column name="MedicineCode" sql-type="varchar(6)" length="6"/>
+            <column name="MedicineCode" sql-type="char(6)" length="6"/>
         </id>
         <property name="medicineName">
             <column name="MedicineName" sql-type="varchar(32)" length="32"/>
@@ -26,10 +26,10 @@
         <property name="usefullDate">
             <column name="UsefullDate" sql-type="datetime" not-null="true"/>
         </property>
-        <many-to-one name="tKindByKindCode" class="com.zte.medicine.entity.Kind">
+        <many-to-one name="kindByKindCode" class="com.zte.medicine.entity.Kind">
             <column name="KindCode" not-null="true"/>
         </many-to-one>
-        <many-to-one name="tFirmByFirmCode" class="com.zte.medicine.entity.Firm">
+        <many-to-one name="firmByFirmCode" class="com.zte.medicine.entity.Firm">
             <column name="FirmCode" not-null="true"/>
         </many-to-one>
     </class>

@@ -69,9 +69,9 @@ public class MedicineAction extends ActionSupport {
         medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
         List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
         Firm firm = list.get(0);
-        medicine.settFirmByFirmCode(firm);
+        medicine.setFirmByFirmCode(firm);
         Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
-        medicine.settKindByKindCode(kind);
+        medicine.setKindByKindCode(kind);
         try {
             medicineService.addMedicine(medicine);
             out.print("<script>alert('添加成功！')</script>");
@@ -136,9 +136,9 @@ public class MedicineAction extends ActionSupport {
         medicine.setUsefullDate(timestamp2);
         List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
         Firm firm = list.get(0);
-        medicine.settFirmByFirmCode(firm);
+        medicine.setFirmByFirmCode(firm);
         Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
-        medicine.settKindByKindCode(kind);
+        medicine.setKindByKindCode(kind);
         try {
             medicineService.modifyMedicine(medicine);
             out.print("<script>alert('修改成功！')</script>");

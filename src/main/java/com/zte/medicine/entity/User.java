@@ -1,23 +1,22 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
-@Table(name = "t_user", schema = "medicine", catalog = "user_conf")
+@Table(name = "t_user", schema = "medicine", catalog = "")
 public class User {
     private Integer id;
     private String name;
     private String username;
     private String password;
     private String position;
-    private Power PowerByPowerId;
-
-    Power power;
+    private Power powerByPowerId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -73,35 +72,26 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        User that = (User) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (position != null ? !position.equals(that.position) : that.position != null) return false;
-
-        return true;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(position, user.position);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (position != null ? position.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, username, password, position);
     }
 
     @ManyToOne
     @JoinColumn(name = "powerId", referencedColumnName = "id", nullable = false)
     public Power getPowerByPowerId() {
-        return PowerByPowerId;
+        return powerByPowerId;
     }
 
-    public void setPowerByPowerId(Power PowerByPowerId) {
-        this.PowerByPowerId = PowerByPowerId;
+    public void setPowerByPowerId(Power powerByPowerId) {
+        this.powerByPowerId = powerByPowerId;
     }
 }

@@ -1,10 +1,11 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -37,19 +38,13 @@ public class Kind {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Kind that = (Kind) o;
-
-        if (kindCode != null ? !kindCode.equals(that.kindCode) : that.kindCode != null) return false;
-        if (kindRemark != null ? !kindRemark.equals(that.kindRemark) : that.kindRemark != null) return false;
-
-        return true;
+        Kind kind = (Kind) o;
+        return Objects.equals(kindCode, kind.kindCode) &&
+                Objects.equals(kindRemark, kind.kindRemark);
     }
 
     @Override
     public int hashCode() {
-        int result = kindCode != null ? kindCode.hashCode() : 0;
-        result = 31 * result + (kindRemark != null ? kindRemark.hashCode() : 0);
-        return result;
+        return Objects.hash(kindCode, kindRemark);
     }
 }

@@ -1,10 +1,11 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -15,7 +16,7 @@ public class SaleComment {
     private String price;
     private Integer number;
     private Double amount;
-    private Sale tSaleBySaleNum;
+    private Sale saleBySaleNum;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -71,35 +72,26 @@ public class SaleComment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         SaleComment that = (SaleComment) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (medicineCode != null ? !medicineCode.equals(that.medicineCode) : that.medicineCode != null) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
-        if (number != null ? !number.equals(that.number) : that.number != null) return false;
-        if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
-
-        return true;
+        return id == that.id &&
+                Objects.equals(medicineCode, that.medicineCode) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(number, that.number) &&
+                Objects.equals(amount, that.amount);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (medicineCode != null ? medicineCode.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (number != null ? number.hashCode() : 0);
-        result = 31 * result + (amount != null ? amount.hashCode() : 0);
-        return result;
+        return Objects.hash(id, medicineCode, price, number, amount);
     }
 
     @ManyToOne
     @JoinColumn(name = "SaleNum", referencedColumnName = "SaleNum", nullable = false)
-    public Sale gettSaleBySaleNum() {
-        return tSaleBySaleNum;
+    public Sale getSaleBySaleNum() {
+        return saleBySaleNum;
     }
 
-    public void settSaleBySaleNum(Sale tSaleBySaleNum) {
-        this.tSaleBySaleNum = tSaleBySaleNum;
+    public void setSaleBySaleNum(Sale saleBySaleNum) {
+        this.saleBySaleNum = saleBySaleNum;
     }
 }

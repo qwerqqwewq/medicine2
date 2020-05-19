@@ -11,11 +11,11 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd"
-    default-autowire="byName">
-    
+       default-autowire="byName">
+
     <!-- 注册数据库链接文件，引入外部属性文件-->
     <context:property-placeholder location="classpath:jdbc.properties" />
-    
+
     <context:component-scan base-package="com.zte"/>
 
     <!--配置c3p0连接池-->
@@ -67,11 +67,11 @@
         </tx:attributes>
     </tx:advice>
 
-         <!-- 注册切面 -->
+    <!-- 注册切面 -->
     <aop:config>
-     <!-- Service 层 -->
-         <aop:pointcut expression="execution(* com.zte.medicine.service.*.*(..))"
-             id="txPoint" />
-         <aop:advisor advice-ref="txadvice" pointcut-ref="txPoint" />
+        <!-- Service 层 -->
+        <aop:pointcut expression="execution(* com.zte.medicine.service.*.*(..))"
+                      id="txPoint" />
+        <aop:advisor advice-ref="txadvice" pointcut-ref="txPoint" />
     </aop:config>
 </beans>

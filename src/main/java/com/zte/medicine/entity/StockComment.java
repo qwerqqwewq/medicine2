@@ -1,10 +1,11 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -81,27 +82,17 @@ public class StockComment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         StockComment that = (StockComment) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (stockNum != null ? !stockNum.equals(that.stockNum) : that.stockNum != null) return false;
-        if (medicineCode != null ? !medicineCode.equals(that.medicineCode) : that.medicineCode != null) return false;
-        if (workNum != null ? !workNum.equals(that.workNum) : that.workNum != null) return false;
-        if (number != null ? !number.equals(that.number) : that.number != null) return false;
-        if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
-
-        return true;
+        return id == that.id &&
+                stockNum == that.stockNum &&
+                Objects.equals(medicineCode, that.medicineCode) &&
+                Objects.equals(workNum, that.workNum) &&
+                Objects.equals(number, that.number) &&
+                Objects.equals(amount, that.amount);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (stockNum != null ? stockNum.hashCode() : 0);
-        result = 31 * result + (medicineCode != null ? medicineCode.hashCode() : 0);
-        result = 31 * result + (workNum != null ? workNum.hashCode() : 0);
-        result = 31 * result + (number != null ? number.hashCode() : 0);
-        result = 31 * result + (amount != null ? amount.hashCode() : 0);
-        return result;
+        return Objects.hash(id, stockNum, medicineCode, workNum, number, amount);
     }
 }

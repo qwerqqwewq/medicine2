@@ -7,6 +7,7 @@
     <class name="com.zte.medicine.entity.StockComment" table="t_stock_comment" schema="medicine">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="stockNum">
             <column name="StockNum" sql-type="int(11)"/>
@@ -21,7 +22,7 @@
             <column name="Number" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="amount">
-            <column name="Amount" sql-type="double(64)" precision="64" not-null="true"/>
+            <column name="Amount" sql-type="double(64)" precision="64"/>
         </property>
     </class>
 </hibernate-mapping>

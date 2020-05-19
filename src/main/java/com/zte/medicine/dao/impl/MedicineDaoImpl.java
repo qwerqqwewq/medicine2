@@ -122,7 +122,9 @@ public class MedicineDaoImpl implements MedicineDao {
 
     @Override
     public List<Medicine> selectMedicineByName(String name) {
-        return (List<Medicine>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_medicine where MedicineName like '%"+name+"%';");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Medicine where medicineName like :MedicineName");
+        query.setParameter("MedicineName","%"+name+"%");
+        return query.list();
     }
 
     //@Override

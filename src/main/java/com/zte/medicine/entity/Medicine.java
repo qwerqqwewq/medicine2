@@ -2,10 +2,11 @@ package com.zte.medicine.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -18,8 +19,8 @@ public class Medicine {
     private Integer stock;
     private Timestamp firstDate;
     private Timestamp usefullDate;
-    private Kind tKindByKindCode;
-    private Firm tFirmByFirmCode;
+    private Kind kindByKindCode;
+    private Firm firmByFirmCode;
 
     @Id
     @Column(name = "MedicineCode", nullable = false, length = 6)
@@ -95,49 +96,38 @@ public class Medicine {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Medicine that = (Medicine) o;
-
-        if (medicineCode != null ? !medicineCode.equals(that.medicineCode) : that.medicineCode != null) return false;
-        if (medicineName != null ? !medicineName.equals(that.medicineName) : that.medicineName != null) return false;
-        if (listPrice != null ? !listPrice.equals(that.listPrice) : that.listPrice != null) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
-        if (stock != null ? !stock.equals(that.stock) : that.stock != null) return false;
-        if (firstDate != null ? !firstDate.equals(that.firstDate) : that.firstDate != null) return false;
-        if (usefullDate != null ? !usefullDate.equals(that.usefullDate) : that.usefullDate != null) return false;
-
-        return true;
+        Medicine medicine = (Medicine) o;
+        return Objects.equals(medicineCode, medicine.medicineCode) &&
+                Objects.equals(medicineName, medicine.medicineName) &&
+                Objects.equals(listPrice, medicine.listPrice) &&
+                Objects.equals(price, medicine.price) &&
+                Objects.equals(stock, medicine.stock) &&
+                Objects.equals(firstDate, medicine.firstDate) &&
+                Objects.equals(usefullDate, medicine.usefullDate);
     }
 
     @Override
     public int hashCode() {
-        int result = medicineCode != null ? medicineCode.hashCode() : 0;
-        result = 31 * result + (medicineName != null ? medicineName.hashCode() : 0);
-        result = 31 * result + (listPrice != null ? listPrice.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (stock != null ? stock.hashCode() : 0);
-        result = 31 * result + (firstDate != null ? firstDate.hashCode() : 0);
-        result = 31 * result + (usefullDate != null ? usefullDate.hashCode() : 0);
-        return result;
+        return Objects.hash(medicineCode, medicineName, listPrice, price, stock, firstDate, usefullDate);
     }
 
     @ManyToOne
     @JoinColumn(name = "KindCode", referencedColumnName = "KindCode")
-    public Kind gettKindByKindCode() {
-        return tKindByKindCode;
+    public Kind getKindByKindCode() {
+        return kindByKindCode;
     }
 
-    public void settKindByKindCode(Kind tKindByKindCode) {
-        this.tKindByKindCode = tKindByKindCode;
+    public void setKindByKindCode(Kind kindByKindCode) {
+        this.kindByKindCode = kindByKindCode;
     }
 
     @ManyToOne
     @JoinColumn(name = "FirmCode", referencedColumnName = "FirmCode")
-    public Firm gettFirmByFirmCode() {
-        return tFirmByFirmCode;
+    public Firm getFirmByFirmCode() {
+        return firmByFirmCode;
     }
 
-    public void settFirmByFirmCode(Firm tFirmByFirmCode) {
-        this.tFirmByFirmCode = tFirmByFirmCode;
+    public void setFirmByFirmCode(Firm firmByFirmCode) {
+        this.firmByFirmCode = firmByFirmCode;
     }
 }

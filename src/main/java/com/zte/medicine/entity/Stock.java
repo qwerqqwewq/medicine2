@@ -2,10 +2,11 @@ package com.zte.medicine.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
- * @Author:helloboy
- * Date:2020-03-12 23:23
+ * Author:helloboy
+ * Date:2020-05-19 22:24
  * Description:<描述>
  */
 @Entity
@@ -60,23 +61,15 @@ public class Stock {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Stock that = (Stock) o;
-
-        if (stockNum != null ? !stockNum.equals(that.stockNum) : that.stockNum != null) return false;
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (workType != null ? !workType.equals(that.workType) : that.workType != null) return false;
-        if (workDate != null ? !workDate.equals(that.workDate) : that.workDate != null) return false;
-
-        return true;
+        Stock stock = (Stock) o;
+        return stockNum == stock.stockNum &&
+                userId == stock.userId &&
+                Objects.equals(workType, stock.workType) &&
+                Objects.equals(workDate, stock.workDate);
     }
 
     @Override
     public int hashCode() {
-        int result = stockNum != null ? stockNum.hashCode() : 0;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (workType != null ? workType.hashCode() : 0);
-        result = 31 * result + (workDate != null ? workDate.hashCode() : 0);
-        return result;
+        return Objects.hash(stockNum, userId, workType, workDate);
     }
 }

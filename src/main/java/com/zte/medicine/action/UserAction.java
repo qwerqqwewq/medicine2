@@ -122,35 +122,42 @@ public class UserAction extends ActionSupport {
         //Gson gson = new Gson();
         String pwd = request.getParameter("pwd");
         String tpwd = request.getParameter("tpwd");
-        if (pwd.equals(tpwd)) {
-            User user = new User();
-            BeanUtils.populate(user, request.getParameterMap());
-            Power power = new Power();
-            String name = request.getParameter("name");
-            user.setUsername(name);
-            power.setId(1);
-            power.setPower("管理员");
-            user.setPowerByPowerId(power);
-            String mpwd =MD5Util.MD5Encode(pwd);
-            user.setPassword(mpwd);
-            if (name!=null) {
-                if (userService.findByName(name).size()==0) {
-                    userService.addUser(user);
-                    return "login";
+        if (pwd != null) {
+            if (pwd.equals(tpwd)) {
+                User user = new User();
+                BeanUtils.populate(user, request.getParameterMap());
+                Power power = new Power();
+                String name = request.getParameter("name");
+                user.setUsername(name);
+                power.setId(1);
+                power.setPower("管理员");
+                user.setPowerByPowerId(power);
+                String mpwd = MD5Util.MD5Encode(pwd);
+                user.setPassword(mpwd);
+                if (name != null) {
+                    if (userService.findByName(name).size() == 0) {
+                        userService.addUser(user);
+                        return "login";
+                    } else {
+                        out.print("<script>alert('该用户名已存在！')</script>");
+                        out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
+                        out.flush();
+                        out.close();
+                    }
                 } else {
-                    out.print("<script>alert('该用户名已存在！')</script>");
+                    out.print("<script>alert('用户名不能为空！')</script>");
                     out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
                     out.flush();
                     out.close();
                 }
-            }else {
-                out.print("<script>alert('用户名不能为空！')</script>");
+            } else {
+                out.print("<script>alert('两次输入的密码不同！')</script>");
                 out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
                 out.flush();
                 out.close();
             }
         }else {
-            out.print("<script>alert('两次输入的密码不同！')</script>");
+            out.print("<script>alert('密码不能为空！')</script>");
             out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
             out.flush();
             out.close();

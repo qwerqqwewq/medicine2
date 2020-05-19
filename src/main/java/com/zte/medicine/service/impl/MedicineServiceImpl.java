@@ -41,7 +41,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public Medicine findMedicineByCode(String code) {
+    public List<Medicine> findMedicineByCode(String code) {
         return medicineDao.selectMedicineByCode(code);
     }
 

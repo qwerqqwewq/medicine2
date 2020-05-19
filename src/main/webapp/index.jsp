@@ -4,7 +4,7 @@
 <html>
 <body>
 
-<jsp:forward page="WEB-INF/pages/jsp/login.jsp"></jsp:forward>
+<jsp:forward page="WEB-INF/pages/jsp/userPage/login.jsp"></jsp:forward>
 
 </body>
 </html>

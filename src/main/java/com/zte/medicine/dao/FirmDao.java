@@ -32,6 +32,15 @@ public interface FirmDao {
      */
     public List<Firm> selectFirmByName(String name);
 
+    public List<Firm> selectAll();
+
+    /**
+     * 根据供应商姓名和编码查询信息
+     * @param name
+     * @return
+     */
+    public List<Firm> selectFirm(String code,String name);
+
     /**
      * 修改供应商信息
      * @param firm

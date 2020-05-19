@@ -45,7 +45,7 @@ public interface MedicineService {
      * @param code
      * @return
      */
-    public Medicine findMedicineByCode(String code);
+    public List<Medicine> findMedicineByCode(String code);
 
     /**
      * 根据药品名称查询

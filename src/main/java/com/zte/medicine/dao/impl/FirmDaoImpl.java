@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:helloboy
@@ -36,6 +38,11 @@ public class FirmDaoImpl implements FirmDao {
     }
 
     @Override
+    public List<Firm> selectAll(){
+        return (List<Firm>) sessionFactory.getCurrentSession().createQuery("from Firm where 1=1").list();
+    }
+
+    @Override
     public List<Firm> selectFirmByCode(String code) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Firm where FirmCode = :FirmCode");
         query.setParameter("FirmCode", code);
@@ -47,6 +54,29 @@ public class FirmDaoImpl implements FirmDao {
     @Override
     public List<Firm> selectFirmByName(String name) {
         return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmName="+name+";").list();
+    }
+
+    @Override
+    public List<Firm> selectFirm(String code,String name){
+
+        String hql = "from Firm where 1=1";
+        Map<String, Object> map = new HashMap<>();
+
+        if (code.length()!=0) {
+            hql = hql + " and firmCode = :FirmCode";
+            map.put("FirmCode", code);
+        }
+
+        if (name.length()!=0) {
+            hql = hql + " and firmName = :FirmName";
+            map.put("FirmName", name);
+        }
+
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setProperties(map);
+        return query.list();
+
+
     }
 
     @Override

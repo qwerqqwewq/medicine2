@@ -60,8 +60,8 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public List<Sale> findSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2) {
-        return saleDao.selectSale(saleNum,userId,customerCode,saleDate,amount1,amount2);
+    public List<Sale> findSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate,Timestamp saleDate2, Double amount1, Double amount2) {
+        return saleDao.selectSale(saleNum,userId,customerCode,saleDate,saleDate2,amount1,amount2);
     }
 
     @Override

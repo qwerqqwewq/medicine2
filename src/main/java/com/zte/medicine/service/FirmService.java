@@ -31,6 +31,12 @@ public interface FirmService {
      */
     public List<Firm> findFirmByName(String name);
 
+
+    public List<Firm> findAll();
+
+
+    public List<Firm> findFirm(String code, String name);
+
     /**
      * 修改供应商信息
      * @param firm

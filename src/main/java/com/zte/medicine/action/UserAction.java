@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -78,21 +79,21 @@ public class UserAction extends ActionSupport {
             if (mpwd.equals(user.getPassword())){
                 String a="管理员";
                 if (user.getPowerByPowerId().getPower().equals(a)) {
-                    request.setAttribute("user", user);
+                    request.getSession().setAttribute("user", user);
                     return "success";
                 }else {
-                    request.setAttribute("user", user);
+                    request.getSession().setAttribute("user", user);
                     return "success";
                 }
             }else {
                 out.print("<script>alert('用户名或密码不正确！')</script>");
-                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
+                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_loginpage.action'</script>");
                 out.flush();
                 out.close();
             }
         }else {
             out.print("<script>alert('用户名不存在！')</script>");
-            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_registpage.action'</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_loginpage.action'</script>");
             out.flush();
             out.close();
         }
@@ -165,7 +166,8 @@ public class UserAction extends ActionSupport {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        String name = request.getParameter("userName");
+        User user1 = (User) request.getSession().getAttribute("user");
+        String name = user1.getUsername();
         String pwd = request.getParameter("pwd");
         String npwd = request.getParameter("npwd");
         String tpwd = request.getParameter("tpwd");
@@ -174,7 +176,11 @@ public class UserAction extends ActionSupport {
                 User user = userService.findByName(name).get(0);
                 user.setPassword(MD5Util.MD5Encode(npwd));
                 userService.modifyUser(user);
-                return "main";
+                out.print("<script>alert('修改成功，请重新登录！')</script>");
+                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_loginPage.action'</script>");
+                out.flush();
+                out.close();
+                return "login";
             } else {
                 out.print("<script>alert('原密码不对！')</script>");
                 out.print("<script>window.location.href='${pageContext.request.contextPath}/user_passwordPage.action'</script>");
@@ -189,6 +195,17 @@ public class UserAction extends ActionSupport {
             out.close();
             return "change";
         }
+    }
+
+    /**
+     * 退出登录
+     * @return
+     */
+    public String exitLogin(){
+        HttpServletRequest request =ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "login";
     }
 
     /**
@@ -216,6 +233,10 @@ public class UserAction extends ActionSupport {
         return "login";
     }
 
+
+    public String mainPage(){
+        return "success";
+    }
 
 
 

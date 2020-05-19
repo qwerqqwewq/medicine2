@@ -25,11 +25,12 @@ public interface SaleDao {
      * @param userId 销售员编码
      * @param customerCode 客户编码
      * @param saleDate 销售日期
+     * @param saleDate2 销售日期上限
      * @param amount1 金额下限
      * @param amount2 金额上限
      * @return
      */
-    public List<Sale> selectSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Double amount1, String amount2);
+    public List<Sale> selectSale(Integer saleNum, Integer userId, String customerCode, Timestamp saleDate, Timestamp saleDate2,Double amount1, Double amount2);
 
     /**
      * 根据销售编码查询销售信息

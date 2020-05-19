@@ -108,9 +108,32 @@ public class MedicineAction extends ActionSupport {
         medicine.setMedicineName(request.getParameter("MedicineName"));
         medicine.setListPrice(request.getParameter("ListPrice"));
         medicine.setPrice(request.getParameter("Price"));
-        medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
-        medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
-        medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
+
+        Integer integer = 0;
+        String stock = request.getParameter("Stock");
+        if (stock!=null&&"".equalsIgnoreCase(stock)){
+            integer = Integer.parseInt(stock);
+        }
+        medicine.setStock(integer);
+
+        Timestamp timestamp1 = null;
+        Timestamp timestamp2 = null;
+
+        String date1 = request.getParameter("FirstDate");
+        String date2 = request.getParameter("UsefullDate");
+
+        if(date1 != null && !"".equalsIgnoreCase(date1))
+        {
+            timestamp1 = Timestamp.valueOf(date1);
+        }
+
+        if(date2 != null && !"".equalsIgnoreCase(date2))
+        {
+            timestamp2 = Timestamp.valueOf(date2);
+        }
+
+        medicine.setFirstDate(timestamp1);
+        medicine.setUsefullDate(timestamp2);
         List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
         Firm firm = list.get(0);
         medicine.settFirmByFirmCode(firm);
@@ -150,8 +173,30 @@ public class MedicineAction extends ActionSupport {
      * 编辑药品界面
      * @return
      */
-    public String changePage(){
+    public String changePage() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String code = request.getParameter("MedicineCode");
+        List<Medicine> medicines = medicineService.findMedicineByCode(code);
+        request.setAttribute("medicines",medicines);
         return "change";
+    }
+
+    public String detailInf() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String code = request.getParameter("MedicineCode");
+        List<Medicine> medicines = medicineService.findMedicineByCode(code);
+        request.setAttribute("medicines",medicines);
+        return "detail";
     }
 
     /**
@@ -290,7 +335,7 @@ public class MedicineAction extends ActionSupport {
             request.setAttribute("medicines",medicines);
             return "search";
         } else {
-            out.print("<script>alert('没有搜索结果！')</script>");
+            out.print("<script>alert('请输入查询条件！')</script>");
             out.print("<script>window.location.href='${pageContext.request.contextPath}/medicine_medicinePage.action'</script>");
             out.flush();
             out.close();

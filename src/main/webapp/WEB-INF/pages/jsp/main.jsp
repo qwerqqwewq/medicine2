@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: wei
@@ -7,7 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 
 <head>
@@ -20,7 +21,7 @@
 <div class="box1">
   <h1>医药管理系统</h1>
   <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
-  <span>名字</span>
+  <span>${sessionScope.user.username}</span>
 </div>
 <form method="post">
   <div class="left">
@@ -65,10 +66,10 @@
   </div>
   <div class="down1">
     <div class="span">
-      <span><a href="${pageContext.request.contextPath}/WEB-INF/pages/jsp/changepassword.jsp">修改密码</a></span>
+      <span><a href="${pageContext.request.contextPath}/user_passwordPage.action">修改密码</a></span>
     </div>
     <div>
-      <span>退出登录</span>
+      <span><a href="${pageContext.request.contextPath}/user_exitLogin.action">退出登录</a></span>
     </div>
   </div>
 </form>

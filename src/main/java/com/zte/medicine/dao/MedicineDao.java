@@ -46,7 +46,7 @@ public interface MedicineDao {
      * @param code
      * @return
      */
-    public Medicine selectMedicineByCode(String code);
+    public List<Medicine> selectMedicineByCode(String code);
 
     /**
      * 根据药品名称查询

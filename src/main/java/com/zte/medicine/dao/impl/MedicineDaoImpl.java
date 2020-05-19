@@ -114,8 +114,10 @@ public class MedicineDaoImpl implements MedicineDao {
     }
 
     @Override
-    public Medicine selectMedicineByCode(String code) {
-        return (Medicine) sessionFactory.getCurrentSession().createSQLQuery("select * from t_medicine where MedicineCode like '%"+code+"%';");
+    public List<Medicine> selectMedicineByCode(String code) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Medicine where medicineCode = :MedicineCode");
+        query.setParameter("MedicineCode", code);
+        return query.list();
     }
 
     @Override

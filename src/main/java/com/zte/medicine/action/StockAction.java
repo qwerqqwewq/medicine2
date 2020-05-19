@@ -2,9 +2,7 @@ package com.zte.medicine.action;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
-import com.zte.medicine.entity.Medicine;
-import com.zte.medicine.entity.Stock;
-import com.zte.medicine.entity.StockComment;
+import com.zte.medicine.entity.*;
 import com.zte.medicine.service.MedicineService;
 import com.zte.medicine.service.StockCommentService;
 import com.zte.medicine.service.StockService;
@@ -19,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,10 +39,12 @@ public class StockAction extends ActionSupport {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
     private StockCommentService stockCommentService;
 
     @Autowired
-    MedicineService medicineService;
+    private MedicineService medicineService;
 
     /**
      * 打开库存界面后显示所有的库存记录
@@ -88,26 +89,63 @@ public class StockAction extends ActionSupport {
         StockComment stockComment = new StockComment();
 
         stock.setStockNum(Integer.parseInt(request.getParameter("StockNum")));
-        stock.setUserId(Integer.parseInt(request.getParameter("UserId")));
-        stock.setWorkDate(Timestamp.valueOf(request.getParameter("WorkDate")));
+        User user = (User)request.getSession().getAttribute("user");
+        Integer id = user.getId();
+        stock.setUserId(id);
+        stock.setWorkDate(Timestamp.valueOf("1111-11-11 11:11:11"));
         stock.setWorkType(request.getParameter("WorkType"));
         stockComment.setStockNum(stock.getStockNum());
-        stockComment.setMedicineCode(request.getParameter("MedicineCode"));
-        stockComment.setWorkNum(Integer.parseInt(request.getParameter("WorkNum")));
-        stockComment.setNumber(Integer.parseInt(request.getParameter("Number"))+stockComment.getWorkNum());
+        String medicineName = request.getParameter("MedicineName");
         Medicine medicine = new Medicine();
-        medicine=medicineService.findMedicineByCode(stockComment.getMedicineCode());
+        medicine = medicineService.findMedicineByName(medicineName).get(0);
+
+        stockComment.setMedicineCode(medicine.getMedicineCode());
+        stockComment.setWorkNum(Integer.parseInt(request.getParameter("WorkNum")));
+        Integer integer = 0;
+        String number = request.getParameter("Number");
+        if (number!=null&&"".equalsIgnoreCase(number)) {
+            integer = Integer.parseInt(number);
+        }
+        integer = integer+stockComment.getWorkNum();
+        stockComment.setNumber(integer);
+        //Medicine medicine = new Medicine();
+        //medicine=medicineService.findMedicineByCode(stockComment.getMedicineCode()).get(0);
         stockComment.setAmount(Double.parseDouble(medicine.getPrice())*Double.valueOf(stockComment.getNumber()));
 
 
         try {
             stockService.addStock(stock);
             stockCommentService.addStockComment(stockComment);
-            map.put("msg", "添加成功");
+            out.print("<script>alert('添加成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/stock_stockAddPage.action'</script>");
+            out.flush();
+            out.close();
         } catch (Exception e) {
-            map.put("msg", "插入失败");
+            out.print("<script>alert('添加失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/stock_stockAddPage.action'</script>");
+            out.flush();
+            out.close();
         }
-        return gson.toJson(map);
+        return "fail";
+    }
+
+
+    public String stockSearch() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String medicineName = request.getParameter("MedicineName");
+        Medicine medicine = new Medicine();
+        medicine =medicineService.findMedicineByName(medicineName).get(0);
+        String medicineCode = medicine.getMedicineCode();
+        List<StockComment> stockComments = stockCommentService.findStockCommentByCode(medicineCode);
+        request.setAttribute("stockComments", stockComments);
+
+        return "search";
     }
 
     /**
@@ -126,6 +164,20 @@ public class StockAction extends ActionSupport {
         return "add";
     }
 
+
+    public String detailInf() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String stockNum = request.getParameter("StockNum");
+        Integer integer = Integer.parseInt(stockNum);
+        List<StockComment> stockComments = stockCommentService.findStockCommentByNum(integer);
+        request.setAttribute("stockComments",stockComments);
+        return "detail";
+    }
 
 
 

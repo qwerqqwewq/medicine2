@@ -158,21 +158,17 @@
       <table class="table-box1">
         <tr>
           <th>药品名称</th>
-          <th>药品编号</th>
-          <th>药品种类</th>
-          <th>供应商</th>
-          <th>生产日期</th>
-          <th>有效日期</th>
+          <th>操作编码</th>
+          <th>操作员编码</th>
+          <th>剩余数量</th>
           <th>操作</th>
         </tr>
         <c:forEach items="${medicines}" var="medicine">
           <tr>
-            <td>${medicine.MedicineName}</td>
-            <td>${medicine.MedicineCode}</td>
-            <td>${medicine.KindCode}</td>
-            <td>${medicine.FirmCode}</td>
-            <td>${medicine.FirstDate}</td>
-            <td>${medicine.UsefullDate}</td>
+            <td>${medicine.medicineName}</td>
+            <td>${stock.stockNum}</td>
+            <td>${stock.userId}</td>
+            <td>${stock_comment.number}</td>
             <td>
               <a href="${pageContext.request.contextPath}/stock_detailInf.action?StockNum=${stock.stockNum}">查询详情</a>
             </td>

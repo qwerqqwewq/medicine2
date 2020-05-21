@@ -104,7 +104,7 @@
 </head>
 <body>
 <div class="big">
-    <form>
+    <form action="${pageContext.request.contextPath}/kind_updateKind.action">
         <div class="topleft">
             <span>当前信息</span>
         </div>
@@ -112,24 +112,26 @@
             <span>修改信息</span>
         </div>
         <div class="left">
+            <c:forEach items="${kinds}" var="kind">
             <div>
                 <span>药品类别</span>
-                <span>${}</span>
+                <span>${kind.kindCode}</span>
             </div>
             <div>
                 <span>药品类别编码</span>
-                <span>${}</span>
+                <span>${kind.kindRemark}</span>
             </div>
+            </c:forEach>
 
         </div>
         <div class="right">
             <div>
                 <span>药品类别</span>
-                <input type="text" name="" placeholder="药品名">
+                <input type="text" name="KindRemark" placeholder="药品名">
             </div>
             <div>
                 <span>类别编码</span>
-                <input type="text" name="" placeholder="药品编码">
+                <input type="text" name="KindCode" placeholder="药品编码">
             </div>
 
         </div>

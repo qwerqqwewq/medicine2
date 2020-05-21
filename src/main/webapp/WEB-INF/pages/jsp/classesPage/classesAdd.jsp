@@ -120,25 +120,27 @@
 
 </div>
 <div class="box">
+    <form action="${pageContext.request.contextPath}/kind_add.action">
     <div>
         <h2>类别信息</h2>
     </div>
     <div>
-        <input type="text" placeholder="类别名称">
+        <input type="text" placeholder="类别名称" name="KindRemark">
     </div>
     <div>
-        <input type="text" placeholder="类别编码">
+        <input type="text" placeholder="类别编码" name="KindCode">
     </div>
     <div class="down">
         <input type="submit" value="提交" class="submit">
     </div>
+    </form>
 </div>
 <div class="down1">
     <div class="span">
-        <span><a href="ChangePassword.html">修改密码</a></span>
+        <span><a href="${pageContext.request.contextPath}/user_passwordPage.action">修改密码</a></span>
     </div>
     <div>
-        <span>退出登录</span>
+        <span><a href="${pageContext.request.contextPath}/user_exitLogin.action">退出登录</a></span>
     </div>
 </div>
 <script>
@@ -207,6 +209,12 @@
         })
         $(".supplier_add").click(function() {
             window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
+        })
+        $(".medClasses_search").click(function() {
+            window.location.href = "${pageContext.request.contextPath}/kind_kindSearchPage.action";
+        })
+        $(".medClasses_add").click(function() {
+            window.location.href = "${pageContext.request.contextPath}/kind_kindAddPage.action";
         })
     })
 </script>

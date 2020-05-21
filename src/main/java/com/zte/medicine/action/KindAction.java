@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,14 +51,100 @@ public class KindAction extends ActionSupport {
         //创建类别对象
         Kind k = new Kind();
         try {
-            k.setKindCode(request.getParameter("KindCode"));
-            k.setKindRemark(request.getParameter("KindRemark"));
+            String kindCode = request.getParameter("KindCode");
+            String kindRemark = request.getParameter("KindRemark");
+
+            k.setKindCode(kindCode);
+            k.setKindRemark(kindRemark);
             kindService.addKind(k);
-            map.put("msg","添加成功");
+            out.print("<script>alert('添加成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/kind_kindAddPage.action'</script>");
+            out.flush();
+            out.close();
         }catch (Exception e){
-            map.put("msg", "添加失败");
+            out.print("<script>alert('添加失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/kind_kindAddPage.action'</script>");
+            out.flush();
+            out.close();
         }
 
         return gson.toJson(map);
+    }
+
+    public String search() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String kindCode = request.getParameter("KindCode");
+
+        List<Kind> kinds = kindService.findKindByCode(kindCode);
+        request.setAttribute("kinds",kinds);
+        return "search";
+    }
+
+    public String kindSearchPage() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        List<Kind> kinds = kindService.findAll();
+        request.setAttribute("kinds",kinds);
+        return "search";
+    }
+
+
+    public String kindAddPage(){
+        return "add";
+    }
+
+    public String updateKindPage() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String code = request.getParameter("KindCode");
+        List<Kind> kinds = kindService.findKindByCode(code);
+        request.setAttribute("kinds",kinds);
+        return "update";
+    }
+
+    public String updateKind() throws Exception{
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        Kind kind = new Kind();
+        String kindCode = request.getParameter("KindCode");
+        String kindRemark = request.getParameter("KindRemark");
+        kind.setKindCode(kindCode);
+        kind.setKindRemark(kindRemark);
+
+
+        try {
+            kindService.modifyKind(kind);
+            out.print("<script>alert('修改成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/kind_kindSearchPage.action'</script>");
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            out.print("<script>alert('修改失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/kindSearchPage.action'</script>");
+            out.flush();
+            out.close();
+        }
+        return "search";
     }
 }

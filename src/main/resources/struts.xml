@@ -67,5 +67,11 @@
 
         </action>
 
+        <action name="kind_*" class="com.zte.medicine.action.KindAction" method="{1}">
+            <result name="add">/WEB-INF/pages/jsp/classesPage/classesAdd.jsp</result>
+            <result name="search">/WEB-INF/pages/jsp/classesPage/classesSearch.jsp</result>
+            <result name="update">/WEB-INF/pages/jsp/classesPage/updateClasses.jsp</result>
+        </action>
+
     </package>
 </struts>

@@ -129,15 +129,17 @@
 </div>
 <div class="box">
     <div class="up">
+        <form action="${pageContext.request.contextPath}/kind_search.action">
         <div>
-            <span>类别名称</span>
-            <input type="text">
+<%--            <span>类别名称</span>--%>
+<%--            <input type="text">--%>
             <span>类别编码</span>
-            <input type="text">
+            <input type="text" name="KindCode">
         </div>
         <div>
             <input type="submit" value="查询" class="high_submit">
         </div>
+        </form>
     </div>
     <div class="down">
         <div class="all-list">
@@ -147,12 +149,12 @@
                     <th>类别编码</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach items="${list}" var="uinfo">
+                <c:forEach items="${kinds}" var="kind">
                     <tr>
-                        <td>${medicine.medicineName}</td>
-                        <td>${medicine.medicineCode}</td>
+                        <td>${kind.kindCode}</td>
+                        <td>${kind.kindRemark}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/medicine_changePage.action?MedicineCode=${medicine.medicineCode}">编辑</a>
+                            <a href="${pageContext.request.contextPath}/kind_updateKind.action?KindCode=${kind.kindCode}">编辑</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -164,10 +166,10 @@
 </div>
 <div class="down1">
     <div class="span">
-        <span><a href="ChangePassword.html">修改密码</a></span>
+        <span><a href="${pageContext.request.contextPath}/user_passwordPage.action">修改密码</a></span>
     </div>
     <div>
-        <span>退出登录</span>
+        <span><a href="${pageContext.request.contextPath}/user_exitLogin.action">退出登录</a></span>
     </div>
 </div>
 <script>
@@ -233,6 +235,12 @@
         })
         $(".supplier_add").click(function() {
             window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
+        })
+        $(".medClasses_search").click(function() {
+            window.location.href = "${pageContext.request.contextPath}/kind_kindSearchPage.action";
+        })
+        $(".medClasses_add").click(function() {
+            window.location.href = "${pageContext.request.contextPath}/kind_kindAddPage.action";
         })
     })
 </script>

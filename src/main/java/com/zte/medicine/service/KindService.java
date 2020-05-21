@@ -2,6 +2,8 @@ package com.zte.medicine.service;
 
 import com.zte.medicine.entity.Kind;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-07 17:15
@@ -13,7 +15,7 @@ public interface KindService {
      * @param code
      * @return
      */
-    public Kind findKindByCode(String code);
+    public List<Kind> findKindByCode(String code);
 
     /**
      * 添加药品种类
@@ -35,4 +37,7 @@ public interface KindService {
      * @return
      */
     public void removeKindByCode(String code);
+
+
+    public List<Kind> findAll();
 }

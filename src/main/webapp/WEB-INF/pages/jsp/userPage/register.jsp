@@ -19,7 +19,7 @@
     .all {
       background: rgb(250,250,250);
       width: 500px;
-      height: 300px;
+      height: 390px;
       margin: 100px auto;
       border: 1px #ccc solid;
       border-radius: 3px;
@@ -90,6 +90,9 @@
   <div>
     <input name="pwd" type="password" class="input" placeholder="请输入密码...">
   </div>
+    <div>
+      <span>再次输入密码</span>
+    </div>
     <div>
       <input name="tpwd" type="password" class="input" placeholder="请再次输入密码...">
     </div>

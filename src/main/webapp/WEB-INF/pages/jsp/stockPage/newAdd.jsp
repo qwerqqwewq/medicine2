@@ -273,6 +273,12 @@
             $(".supplier_add").click(function() {
                 window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
             })
+            $(".medClasses_search").click(function() {
+                window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
+            })
+            $(".medClasses_add").click(function() {
+                window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
+            })
         })
     </script>
 </body>

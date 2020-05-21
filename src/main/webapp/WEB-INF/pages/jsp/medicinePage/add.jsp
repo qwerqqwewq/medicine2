@@ -90,6 +90,8 @@
             <ul style="display:block">
                 <li class="med_search">查询药品</li>
                 <li class="med_add">添加药品</li>
+                <li class="medClasses_search">药品类别查询</li>
+                <li class="medClasses_add">药品类别添加</li>
             </ul>
         </li>
         <li>
@@ -228,6 +230,12 @@
     $(".supplier_add").click(function() {
       window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
     })
+      $(".medClasses_search").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
+      })
+      $(".medClasses_add").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
+      })
   })
 </script>
 </body>

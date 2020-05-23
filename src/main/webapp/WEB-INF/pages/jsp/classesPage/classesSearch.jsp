@@ -93,7 +93,7 @@
 <div class="left">
     <ul class="nav">
         <li>
-            <img src="images/m5.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m5.png" alt="#">
             <a href="javascript:;" class="m1">药品管理</a>
             <ul style="display:block">
                 <li class="med_search">查询药品</li>
@@ -103,7 +103,7 @@
             </ul>
         </li>
         <li>
-            <img src="images/m2.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m2.png" alt="#">
             <a href="javascript:;" class="m2">药品库存</a>
             <ul>
                 <li class="stock_search">查询库存信息</li>
@@ -111,7 +111,7 @@
             </ul>
         </li>
         <li>
-            <img src="images/m3.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m3.png" alt="#">
             <a href="javascript:;" class="m3">药品销售</a>
             <ul>
                 <li class="sale_search">查询销售信息</li>
@@ -119,7 +119,7 @@
             </ul>
         </li>
         <li>
-            <img src="images/m4.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m4.png" alt="#">
             <a href="javascript:;" class="m4">供应商</a>
             <ul>
                 <li class="supplier_search">查询供应商信息</li>
@@ -131,15 +131,17 @@
 </div>
 <div class="box">
     <div class="up">
+        <form action="${pageContext.request.contextPath}/kind_search.action">
         <div>
-            <span>类别名称</span>
-            <input type="text">
+<%--            <span>类别名称</span>--%>
+<%--            <input type="text">--%>
             <span>类别编码</span>
-            <input type="text">
+            <input type="text" name="KindCode">
         </div>
         <div>
             <input type="submit" value="查询" class="high_submit">
         </div>
+        </form>
     </div>
     <div class="down">
         <div class="all-list">
@@ -149,12 +151,12 @@
                     <th>类别编码</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach items="${list}" var="uinfo">
+                <c:forEach items="${kinds}" var="kind">
                     <tr>
-                        <td>${medicine.medicineName}</td>
-                        <td>${medicine.medicineCode}</td>
+                        <td>${kind.kindCode}</td>
+                        <td>${kind.kindRemark}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/medicine_changePage.action?MedicineCode=${medicine.medicineCode}">编辑</a>
+                            <a href="${pageContext.request.contextPath}/kind_updateKind.action?KindCode=${kind.kindCode}">编辑</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -166,10 +168,10 @@
 </div>
 <div class="down1">
     <div class="span">
-        <span><a href="ChangePassword.html">修改密码</a></span>
+        <span><a href="${pageContext.request.contextPath}/user_passwordPage.action">修改密码</a></span>
     </div>
     <div>
-        <span>退出登录</span>
+        <span><a href="${pageContext.request.contextPath}/user_exitLogin.action">退出登录</a></span>
     </div>
 </div>
 <script>
@@ -182,7 +184,7 @@
         })
         $(".m1").click(function() {
             var flag = $(this).siblings("img").attr("src");
-            if (flag == "images/m1.png") {
+            if (flag == "${pageContext.request.contextPath}/images/m1.png") {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m5.png");
             } else {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m1.png");
@@ -190,7 +192,7 @@
         })
         $(".m2").click(function() {
             var flag = $(this).siblings("img").attr("src");
-            if (flag == "images/m2.png") {
+            if (flag == "${pageContext.request.contextPath}/images/m2.png") {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m6.png");
             } else {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m2.png");
@@ -198,7 +200,7 @@
         })
         $(".m3").click(function() {
             var flag = $(this).siblings("img").attr("src");
-            if (flag == "images/m3.png") {
+            if (flag == "${pageContext.request.contextPath}/images/m3.png") {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m7.png");
             } else {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m3.png");
@@ -206,7 +208,7 @@
         })
         $(".m4").click(function() {
             var flag = $(this).siblings("img").attr("src");
-            if (flag == "images/m4.png") {
+            if (flag == "${pageContext.request.contextPath}/images/m4.png") {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m8.png");
             } else {
                 $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m4.png");
@@ -237,10 +239,10 @@
             window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
         })
         $(".medClasses_search").click(function() {
-            window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
+            window.location.href = "${pageContext.request.contextPath}/kind_kindSearchPage.action";
         })
         $(".medClasses_add").click(function() {
-            window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
+            window.location.href = "${pageContext.request.contextPath}/kind_kindAddPage.action";
         })
     })
 </script>

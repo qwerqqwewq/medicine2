@@ -13,6 +13,7 @@
 <head>
     <title></title>
   <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/WdatePicker.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
         body{
@@ -147,7 +148,8 @@
     <input type="text" placeholder="库存" name="Stock">
   </div>
   <div>
-    <input type="text" placeholder="生产日期" name="FirstDate">
+      <input class="Wdate" type="text" onClick="WdatePicker()" placeholder="生产日期">
+      <input type="text" class="Wdate" onClick="WdatePicker({autoPickDate:true,dateFmt:'yyyy-MM-dd'})" style="width: 120px;"/>
     <input type="text" placeholder="有效日期" name="UsefullDate">
   </div>
   <div class="down">
@@ -174,67 +176,67 @@
     $(".box1").children("span").click(function() {
       $(".down1").stop().slideToggle(200);
     })
-    $(".m1").click(function() {
-      var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m1.png") {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m5.png");
-      } else {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m1.png");
-      }
-    })
-    $(".m2").click(function() {
-      var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m2.png") {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m6.png");
-      } else {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m2.png");
-      }
-    })
-    $(".m3").click(function() {
-      var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m3.png") {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m7.png");
-      } else {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m3.png");
-      }
-    })
-    $(".m4").click(function() {
-      var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m4.png") {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m8.png");
-      } else {
-        $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m4.png");
-      }
-    })
-    $(".med_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/medicine_medicinePage.action";
-    })
-    $(".med_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/medicine_addPage.action";
-    })
-    $(".stock_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/stock_stockSearchPage.action";
-    })
-    $(".stock_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/stock_stockAddPage.action";
-    })
-    $(".sale_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/sale_saleSearchPage.action";
-    })
-    $(".sale_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/sale_saleAddPage.action";
-    })
-    $(".supplier_search").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
-    })
-    $(".supplier_add").click(function() {
-      window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
-    })
-      $(".medClasses_search").click(function() {
+      $(".m1").click(function() {
+          var flag = $(this).siblings("img").attr("src");
+          if (flag == "${pageContext.request.contextPath}/images/m1.png") {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m5.png");
+          } else {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m1.png");
+          }
+      })
+      $(".m2").click(function() {
+          var flag = $(this).siblings("img").attr("src");
+          if (flag == "${pageContext.request.contextPath}/images/m2.png") {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m6.png");
+          } else {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m2.png");
+          }
+      })
+      $(".m3").click(function() {
+          var flag = $(this).siblings("img").attr("src");
+          if (flag == "${pageContext.request.contextPath}/images/m3.png") {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m7.png");
+          } else {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m3.png");
+          }
+      })
+      $(".m4").click(function() {
+          var flag = $(this).siblings("img").attr("src");
+          if (flag == "${pageContext.request.contextPath}/images/m4.png") {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m8.png");
+          } else {
+              $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m4.png");
+          }
+      })
+      $(".med_search").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/medicine_medicinePage.action";
+      })
+      $(".med_add").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/medicine_addPage.action";
+      })
+      $(".stock_search").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/stock_stockSearchPage.action";
+      })
+      $(".stock_add").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/stock_stockAddPage.action";
+      })
+      $(".sale_search").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/sale_saleSearchPage.action";
+      })
+      $(".sale_add").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/sale_saleAddPage.action";
+      })
+      $(".supplier_search").click(function() {
           window.location.href = "${pageContext.request.contextPath}/firm_firmSearchPage.action";
       })
-      $(".medClasses_add").click(function() {
+      $(".supplier_add").click(function() {
           window.location.href = "${pageContext.request.contextPath}/firm_firmAddPage.action";
+      })
+      $(".medClasses_search").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/kind_kindSearchPage.action";
+      })
+      $(".medClasses_add").click(function() {
+          window.location.href = "${pageContext.request.contextPath}/kind_kindAddPage.action";
       })
   })
 </script>

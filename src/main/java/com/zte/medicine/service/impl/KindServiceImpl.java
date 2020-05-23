@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author:helloboy
@@ -23,7 +24,7 @@ public class KindServiceImpl implements KindService {
     private KindDao kindDao;
 
     @Override
-    public Kind findKindByCode(String code) {
+    public List<Kind> findKindByCode(String code) {
         return kindDao.selectKindByCode(code);
     }
 
@@ -40,5 +41,11 @@ public class KindServiceImpl implements KindService {
     @Override
     public void removeKindByCode(String code) {
         kindDao.deleteKindByCode(code);
+    }
+
+
+    @Override
+    public List<Kind> findAll(){
+        return kindDao.selectAll();
     }
 }

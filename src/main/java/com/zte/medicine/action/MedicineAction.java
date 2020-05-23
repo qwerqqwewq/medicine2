@@ -70,7 +70,7 @@ public class MedicineAction extends ActionSupport {
         List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
         Firm firm = list.get(0);
         medicine.setFirmByFirmCode(firm);
-        Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
+        Kind kind = kindService.findKindByCode(request.getParameter("KindCode")).get(0);
         medicine.setKindByKindCode(kind);
         try {
             medicineService.addMedicine(medicine);
@@ -137,7 +137,7 @@ public class MedicineAction extends ActionSupport {
         List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
         Firm firm = list.get(0);
         medicine.setFirmByFirmCode(firm);
-        Kind kind = kindService.findKindByCode(request.getParameter("KindCode"));
+        Kind kind = kindService.findKindByCode(request.getParameter("KindCode")).get(0);
         medicine.setKindByKindCode(kind);
         try {
             medicineService.modifyMedicine(medicine);

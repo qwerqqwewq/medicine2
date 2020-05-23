@@ -2,6 +2,8 @@ package com.zte.medicine.dao;
 
 import com.zte.medicine.entity.Kind;
 
+import java.util.List;
+
 /**
  * @Author:helloboy
  * Date:2020-02-28 10:47
@@ -13,7 +15,7 @@ public interface KindDao {
      * @param code
      * @return
      */
-    public Kind selectKindByCode(String code);
+    public List<Kind> selectKindByCode(String code);
 
     /**
      * 添加药品种类
@@ -35,4 +37,9 @@ public interface KindDao {
      * @return
      */
     public void deleteKindByCode(String code);
+
+    /**
+     * 显示全部种类
+     */
+    public List<Kind> selectAll();
 }

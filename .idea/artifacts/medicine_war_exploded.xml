@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="medicine:war exploded">
-    <output-path>$PROJECT_DIR$/target</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/medicine_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -49,8 +49,6 @@
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.2" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.23" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-catalina:9.0.12" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.12" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.12" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-el-api:9.0.12" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.12" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-annotations-api:9.0.12" />
@@ -63,6 +61,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.14.RELEASE" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-impl:1.2.5" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-spec:1.2.5" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.12" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.12" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="medicine/web/Web" />

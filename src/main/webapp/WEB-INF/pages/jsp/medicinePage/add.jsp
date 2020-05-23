@@ -13,7 +13,8 @@
 <head>
     <title></title>
   <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/WdatePicker.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/WdatePicker.js"></script>
+<%--    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/calendar.js"></script>--%>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
         body{
@@ -148,9 +149,9 @@
     <input type="text" placeholder="库存" name="Stock">
   </div>
   <div>
-      <input class="Wdate" type="text" onClick="WdatePicker()" placeholder="生产日期">
-      <input type="text" class="Wdate" onClick="WdatePicker({autoPickDate:true,dateFmt:'yyyy-MM-dd'})" style="width: 120px;"/>
-    <input type="text" placeholder="有效日期" name="UsefullDate">
+      <input class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="生产日期" name="FirstDate">
+      <input type="text" class="Wdate" onfocus="WdatePicker()" placeholder="有效日期" name="UsefullDate">
+<%--    <input type="text" placeholder="有效日期" name="UsefullDate">--%>
   </div>
   <div class="down">
     <input type="submit" value="提交" class="submit">

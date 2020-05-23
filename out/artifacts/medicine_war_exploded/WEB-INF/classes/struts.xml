@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!-- 修改扩展名 -->
+    <constant name="struts.action.extension" value="action"/>
+    <!-- 打开开发者模式 -->
+    <constant name="struts.devMode" value="false"/>
+    <!-- Struts2配置的常量
+		原来放到属性文件中的内容
+		参照:struts2-core-2.5.16.jar\org\apache\struts2\default.properties的内容
+		将动态方法调用启用
+	 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <!--所有配置action的请求都由struts2处理-->
+    <package name="test" extends="struts-default" namespace="/" strict-method-invocation="false">
+        <!-- 如果不指定method，那么默认方法是execute-->
+        <!--name:Action类的名字，具有唯一性，页面上通过name来访问Action类 -->
+        <action name="user_*" class="com.zte.medicine.action.UserAction" method="{1}">
+            <result name="regist">/WEB-INF/pages/jsp/userPage/register.jsp</result>
+            <result name="login">/WEB-INF/pages/jsp/userPage/login.jsp</result>
+            <result name="fail">/WEB-INF/pages/jsp/userPage/fail.jsp</result>
+            <result name="success">/WEB-INF/pages/jsp/main.jsp</result>
+            <result name="change">/WEB-INF/pages/jsp/userPage/changepassword.jsp</result>
+        </action>
+
+<!--        <action name="customer_*" class="com.zte.medicine.action.CustomerAction" method="{1}">-->
+<!--            <result name="success"></result>-->
+<!--            <result name="fail"></result>-->
+<!--            <result name="back"></result>-->
+<!--        </action>-->
+
+        <action name="medicine_*" class="com.zte.medicine.action.MedicineAction" method="{1}">
+            <result name="search">/WEB-INF/pages/jsp/medicinePage/search.jsp</result>
+            <result name="change">/WEB-INF/pages/jsp/medicinePage/updateMedicine.jsp</result>
+            <result name="add">/WEB-INF/pages/jsp/medicinePage/add.jsp</result>
+            <result name="main">/WEB-INF/pages/jsp/main.jsp</result>
+            <result name="detail">/WEB-INF/pages/jsp/medicinePage/detailedInf.jsp</result>
+        </action>
+
+        <action name="stock_*" class="com.zte.medicine.action.StockAction" method="{1}">
+            <result name="add">/WEB-INF/pages/jsp/stockPage/stockAdd.jsp</result>
+            <result name="search">/WEB-INF/pages/jsp/stockPage/stockSearch.jsp</result>
+            <result name="detail">/WEB-INF/pages/jsp/stockPage/stockDetailedInf.jsp</result>
+        </action>
+
+        <action name="stockComment_*" class="com.zte.medicine.action.StockCommentAction" method="{1}">
+
+        </action>
+
+        <action name="firm_*" class="com.zte.medicine.action.FirmAction" method="{1}">
+            <result name="search">/WEB-INF/pages/jsp/firmPage/supplierSearch.jsp</result>
+            <result name="add">/WEB-INF/pages/jsp/firmPage/supplierAdd.jsp</result>
+            <result name="update">/WEB-INF/pages/jsp/firmPage/supplierChange.jsp</result>
+            <result name="detail">/WEB-INF/pages/jsp/firmPage/supplierDetailedInf.jsp</result>
+        </action>
+
+        <action name="sale_*" class="com.zte.medicine.action.SaleAction" method="{1}">
+            <result name="search">/WEB-INF/pages/jsp/salePage/saleSearch.jsp</result>
+            <result name="add">/WEB-INF/pages/jsp/salePage/saleAdd.jsp</result>
+            <result name="detail">/WEB-INF/pages/jsp/salePage/saleDetailedInf.jsp</result>
+        </action>
+
+        <action name="saleComment_*" class="com.zte.medicine.action.SaleCommentAction" method="{1}">
+
+        </action>
+
+        <action name="kind_*" class="com.zte.medicine.action.KindAction" method="{1}">
+            <result name="add">/WEB-INF/pages/jsp/classesPage/classesAdd.jsp</result>
+            <result name="search">/WEB-INF/pages/jsp/classesPage/classesSearch.jsp</result>
+            <result name="update">/WEB-INF/pages/jsp/classesPage/updateClasses.jsp</result>
+        </action>
+
+    </package>
+</struts>

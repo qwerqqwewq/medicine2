@@ -87,7 +87,9 @@ public class UserAction extends ActionSupport {
                 String a="管理员";
                 if (user.getPowerByPowerId().getPower().equals(a)) {
                     request.getSession().setAttribute("user", user);
-                    adminPage();
+                    List<User> users = userService.findAll();
+                    request.setAttribute("users",users);
+                    return "admin";
                 }else {
                     request.getSession().setAttribute("user", user);
                     return "success";
@@ -291,10 +293,10 @@ public class UserAction extends ActionSupport {
         String id = request.getParameter("UserId");
         User user = new User();
         user = userService.findById(Integer.parseInt(id));
-        user.setId(-1);
+        //user.setId(-1);
 
         try {
-            userService.modifyUser(user);
+            userService.removeUser(Integer.parseInt(id));
             out.print("<script>alert('删除成功！')</script>");
             out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
             out.flush();
@@ -440,6 +442,7 @@ public class UserAction extends ActionSupport {
             user.setPowerByPowerId(power2);
             userService.modifyUser(user);
             out.print("<script>alert('修改成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
             out.flush();
             out.close();
             return "admin";
@@ -447,6 +450,7 @@ public class UserAction extends ActionSupport {
             user.setPowerByPowerId(power1);
             userService.modifyUser(user);
             out.print("<script>alert('修改成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
             out.flush();
             out.close();
             return "admin";

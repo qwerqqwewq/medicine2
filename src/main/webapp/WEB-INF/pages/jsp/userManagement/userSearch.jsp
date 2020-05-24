@@ -144,7 +144,7 @@
                         <td>${user.name}</td>
                         <td>${user.username}</td>
                         <td>${user.password}</td>
-                        <td>${user.power}</td>
+                        <td>${user.powerByPowerId.power}</td>
                         <td>
                             <a href="${pageContext.request.contextPath}/user_setPower.action?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
                         </td>
@@ -187,7 +187,7 @@
             $(".down1").stop().slideToggle(200);
         })
         $(".right").click(function() {
-            window.location.href = "${pageContext.request.contextPath}user_adminAdd.action";
+            window.location.href = "${pageContext.request.contextPath}/user_adminAdd.action";
         })
     })
 </script>

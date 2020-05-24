@@ -44,4 +44,11 @@ public interface UserDao {
      * @return
      */
     public void updateUser(User user);
+
+    /**
+     * 显示用户信息
+     * @return
+     */
+    public List<User> selectAll();
+
 }

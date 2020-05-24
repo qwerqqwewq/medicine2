@@ -144,9 +144,9 @@
                         <td>${user.name}</td>
                         <td>${user.username}</td>
                         <td>${user.password}</td>
-                        <td>${user.power}</td>
+                        <td>${user.powerByPowerId.power}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/user_.setPoweraction?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
+                            <a href="${pageContext.request.contextPath}/user_setPower.action?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/user_reset.action?UserId=${user.id}">重置密码</a>
@@ -187,7 +187,7 @@
             $(".down1").stop().slideToggle(200);
         })
         $(".right").click(function() {
-            window.location.href = "${pageContext.request.contextPath}user_adminAdd.action";
+            window.location.href = "${pageContext.request.contextPath}/user_adminAdd.action";
         })
     })
 </script>

@@ -146,7 +146,7 @@
                         <td>${user.password}</td>
                         <td>${user.power}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/user_.setPoweraction?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
+                            <a href="${pageContext.request.contextPath}/user_setPower.action?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/user_reset.action?UserId=${user.id}">重置密码</a>

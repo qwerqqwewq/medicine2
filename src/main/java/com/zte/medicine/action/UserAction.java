@@ -343,6 +343,15 @@ public class UserAction extends ActionSupport {
 
 
     /**
+     * 管理员添加用户界面
+     * @return
+     */
+    public String adminAdd(){
+        return "adminAdd";
+    }
+
+
+    /**
      * 管理员添加用户
      * @return
      */

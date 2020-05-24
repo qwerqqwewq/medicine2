@@ -129,6 +129,7 @@
         <div class="all-list">
             <table class="table-box1">
                 <tr>
+                    <th>ID</th>
                     <th>姓名</th>
                     <th>用户登陆名</th>
                     <th>密码</th>
@@ -136,18 +137,19 @@
                     <th>权限操作</th>
                     <th>其他操作</th>
                 </tr>
-                <c:forEach items="${list}" var="uinfo">
+                <c:forEach items="${users}" var="user">
                     <tr>
+                        <td>${user.id}</td>
                         <td>${user.name}</td>
                         <td>${user.username}</td>
                         <td>${user.password}</td>
                         <td>${user.power}</td>
                         <td>
-                            <button onclick="window.alert('确定要修改吗')">修改权限</button>
+                            <a href="${pageContext.request.contextPath}/user_.action?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}">重置密码</a>
-                            <a href="${pageContext.request.contextPath}">删除用户</a>
+                            <a href="${pageContext.request.contextPath}/user_reset.action?UserId=${user.id}">重置密码</a>
+                            <a href="${pageContext.request.contextPath}/user_delete.action?UserId=${user.id}">删除用户</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -169,6 +171,13 @@
     </div>
 </div>
 <script>
+    function warring(){
+        if(confirm('确定要修改吗')==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
     $(function() {
         $(".nav>li>a").click(function() {
             $(this).siblings("ul").stop().slideToggle(200);
@@ -177,7 +186,7 @@
             $(".down1").stop().slideToggle(200);
         })
         $(".right").click(function() {
-            window.location.href = "${pageContext.request.contextPath}";
+            window.location.href = "${pageContext.request.contextPath}user_adminAdd.action";
         })
     })
 </script>

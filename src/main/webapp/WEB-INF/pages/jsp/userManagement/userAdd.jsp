@@ -89,28 +89,30 @@
 </div>
 
 <div class="box">
+    <form action="${pageContext.request.contextPath}/user_addUser.action" method="post">
     <div>
         <h2>添加用户信息</h2>
     </div>
     <div>
-        <input type="text" placeholder="姓名">
+        <input type="text" placeholder="姓名" name="name">
     </div>
     <div>
-        <input type="text" placeholder="用户登陆名">
+        <input type="text" placeholder="用户登陆名" name="userName">
     </div>
     <div>
-        <input type="text" placeholder="权限等级">
+        <input type="text" placeholder="权限等级" name="powerId">
     </div>
     <div>
-        <input type="text" placeholder="身份">
+        <input type="text" placeholder="身份" name="position">
     </div>
     <div>
-        <input type="text" placeholder="密码">
-        <input type="text" placeholder="再次输入密码">
+        <input type="text" placeholder="密码" name="pwd">
+        <input type="text" placeholder="再次输入密码" name="tpwd">
     </div>
     <div class="down">
         <input type="submit" value="提交" class="submit">
     </div>
+    </form>
 </div>
 <div class="down1">
     <div class="span">

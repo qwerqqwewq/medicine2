@@ -115,15 +115,16 @@
 </div>
 <div class="box">
     <div class="up">
+        <form action="${pageContext.request.contextPath}/user_adminSearch.action">
         <div>
-            <span>姓名</span>
-            <input type="text">
+
             <span>用户登陆名</span>
-            <input type="text">
+            <input type="text" name="userName">
         </div>
         <div>
             <input type="submit" value="查询" class="high_submit">
         </div>
+        </form>
     </div>
     <div class="down">
         <div class="all-list">
@@ -145,7 +146,7 @@
                         <td>${user.password}</td>
                         <td>${user.power}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/user_.action?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
+                            <a href="${pageContext.request.contextPath}/user_.setPoweraction?UserId=${user.id}" onclick="javascript:return warring()">修改权限</a>
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/user_reset.action?UserId=${user.id}">重置密码</a>

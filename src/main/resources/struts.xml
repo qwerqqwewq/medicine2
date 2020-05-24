@@ -24,8 +24,8 @@
             <result name="fail">/WEB-INF/pages/jsp/userPage/fail.jsp</result>
             <result name="success">/WEB-INF/pages/jsp/main.jsp</result>
             <result name="change">/WEB-INF/pages/jsp/userPage/changepassword.jsp</result>
-            <result name="admin">/WEB-INF/pages/jsp/userPage/userSearch.jsp</result>
-            <result name="adminAdd">/WEB-INF/pages/jsp/userPage/userAdd.jsp</result>
+            <result name="admin">/WEB-INF/pages/jsp/userManagement/userSearch.jsp</result>
+            <result name="adminAdd">/WEB-INF/pages/jsp/userManagement/userAdd.jsp</result>
         </action>
 
 <!--        <action name="customer_*" class="com.zte.medicine.action.CustomerAction" method="{1}">-->

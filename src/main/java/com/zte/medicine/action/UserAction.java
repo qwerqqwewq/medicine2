@@ -276,7 +276,6 @@ public class UserAction extends ActionSupport {
 
     }
 
-
     /**
      * 删除用户
      * @throws Exception
@@ -310,7 +309,6 @@ public class UserAction extends ActionSupport {
 
     }
 
-
     /**
      * 重置密码
      * @throws Exception
@@ -341,7 +339,6 @@ public class UserAction extends ActionSupport {
 
     }
 
-
     /**
      * 管理员添加用户界面
      * @return
@@ -349,7 +346,6 @@ public class UserAction extends ActionSupport {
     public String adminAdd(){
         return "adminAdd";
     }
-
 
     /**
      * 管理员添加用户
@@ -417,6 +413,66 @@ public class UserAction extends ActionSupport {
             out.flush();
             out.close();
         }
+    }
+
+    /**
+     * 修改权限
+     * @return
+     * @throws Exception
+     */
+    public String setPower() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String id = request.getParameter("UserId");
+        User user = new User();
+        Power power1 = new Power();
+        power1 = powerService.findById(1);
+        Power power2 = new Power();
+        power2 = powerService.findById(2);
+        user = userService.findById(Integer.parseInt(id));
+        String power = user.getPowerByPowerId().getPower();
+        if (power.equals("管理员")) {
+            user.setPowerByPowerId(power2);
+            userService.modifyUser(user);
+            out.print("<script>alert('修改成功！')</script>");
+            out.flush();
+            out.close();
+            return "admin";
+        }else {
+            user.setPowerByPowerId(power1);
+            userService.modifyUser(user);
+            out.print("<script>alert('修改成功！')</script>");
+            out.flush();
+            out.close();
+            return "admin";
+        }
+
+    }
+
+    /**
+     * 查询用户
+     * @return
+     * @throws Exception
+     */
+    public String adminSearch() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String username = request.getParameter("userName");
+
+        List<User> users = userService.findByName(username);
+        request.setAttribute("users", users);
+        return "admin";
+
     }
 
 }

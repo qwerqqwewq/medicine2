@@ -75,13 +75,13 @@
 <body>
   <div class="box1">
     <h1>医药管理系统</h1>
-    <label><img src="images/ing.png"></label>
+    <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
     <span>${sessionScope.user.username}</span>
   </div>
 <div class="left">
     <ul class="nav">
         <li>
-            <img src="images/m5.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m1.png" alt="#">
             <a href="javascript:;" class="m1">药品管理</a>
             <ul>
                 <li class="med_search">查询药品</li>
@@ -91,7 +91,7 @@
             </ul>
         </li>
         <li>
-            <img src="images/m2.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m2.png" alt="#">
             <a href="javascript:;" class="m2">药品库存</a>
             <ul>
                 <li class="stock_search">查询库存信息</li>
@@ -99,7 +99,7 @@
             </ul>
         </li>
         <li>
-            <img src="images/m3.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m3.png" alt="#">
             <a href="javascript:;" class="m3">药品销售</a>
             <ul>
                 <li class="sale_search">查询销售信息</li>
@@ -107,7 +107,7 @@
             </ul>
         </li>
         <li>
-            <img src="images/m4.png" alt="#">
+            <img src="${pageContext.request.contextPath}/images/m8.png" alt="#">
             <a href="javascript:;" class="m4">供应商</a>
             <ul style="display:block">
                 <li class="supplier_search">查询供应商信息</li>
@@ -163,7 +163,7 @@
     })
     $(".m1").click(function() {
       var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m1.png") {
+      if (flag == "${pageContext.request.contextPath}/images/m1.png") {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m5.png");
       } else {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m1.png");
@@ -171,7 +171,7 @@
     })
     $(".m2").click(function() {
       var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m2.png") {
+      if (flag == "${pageContext.request.contextPath}/images/m2.png") {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m6.png");
       } else {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m2.png");
@@ -179,7 +179,7 @@
     })
     $(".m3").click(function() {
       var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m3.png") {
+      if (flag == "${pageContext.request.contextPath}/images/m3.png") {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m7.png");
       } else {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m3.png");
@@ -187,7 +187,7 @@
     })
     $(".m4").click(function() {
       var flag = $(this).siblings("img").attr("src");
-      if (flag == "images/m4.png") {
+      if (flag == "${pageContext.request.contextPath}/images/m4.png") {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m8.png");
       } else {
         $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m4.png");

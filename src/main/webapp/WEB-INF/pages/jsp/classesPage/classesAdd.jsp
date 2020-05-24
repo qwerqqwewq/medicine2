@@ -79,7 +79,7 @@
 <body>
 <div class="box1">
     <h1>医药管理系统</h1>
-    <label><img src="images/ing.png"></label>
+    <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
     <span>名字</span>
 </div>
 <div class="left">

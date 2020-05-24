@@ -199,7 +199,7 @@
             })
             $(".m1").click(function() {
                 var flag = $(this).siblings("img").attr("src");
-                if (flag == "images/m1.png") {
+                if (flag == "${pageContext.request.contextPath}/images/m1.png") {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m5.png");
                 } else {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m1.png");
@@ -207,7 +207,7 @@
             })
             $(".m2").click(function() {
                 var flag = $(this).siblings("img").attr("src");
-                if (flag == "images/m2.png") {
+                if (flag == "${pageContext.request.contextPath}/images/m2.png") {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m6.png");
                 } else {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m2.png");
@@ -215,7 +215,7 @@
             })
             $(".m3").click(function() {
                 var flag = $(this).siblings("img").attr("src");
-                if (flag == "images/m3.png") {
+                if (flag == "${pageContext.request.contextPath}/images/m3.png") {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m7.png");
                 } else {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m3.png");
@@ -223,7 +223,7 @@
             })
             $(".m4").click(function() {
                 var flag = $(this).siblings("img").attr("src");
-                if (flag == "images/m4.png") {
+                if (flag == "${pageContext.request.contextPath}/images/m4.png") {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m8.png");
                 } else {
                     $(this).siblings("img").attr("src", "${pageContext.request.contextPath}/images/m4.png");

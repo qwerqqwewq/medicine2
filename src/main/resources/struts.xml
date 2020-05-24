@@ -24,6 +24,7 @@
             <result name="fail">/WEB-INF/pages/jsp/userPage/fail.jsp</result>
             <result name="success">/WEB-INF/pages/jsp/main.jsp</result>
             <result name="change">/WEB-INF/pages/jsp/userPage/changepassword.jsp</result>
+            <result name="admin"></result>
         </action>
 
 <!--        <action name="customer_*" class="com.zte.medicine.action.CustomerAction" method="{1}">-->

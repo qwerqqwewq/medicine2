@@ -43,4 +43,6 @@ public interface UserService {
      * @return
      */
     public void modifyUser(User user);
+
+    public List<User> findAll();
 }

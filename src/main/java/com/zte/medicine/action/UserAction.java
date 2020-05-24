@@ -3,6 +3,7 @@ package com.zte.medicine.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.zte.medicine.entity.Power;
 import com.zte.medicine.entity.User;
+import com.zte.medicine.service.PowerService;
 import com.zte.medicine.service.UserService;
 import com.zte.medicine.utils.MD5Util;
 import org.apache.commons.beanutils.BeanUtils;
@@ -31,6 +32,12 @@ public class UserAction extends ActionSupport {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PowerService powerService;
+
+    public void setPowerService(PowerService powerService) {
+        this.powerService = powerService;
+    }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -80,7 +87,7 @@ public class UserAction extends ActionSupport {
                 String a="管理员";
                 if (user.getPowerByPowerId().getPower().equals(a)) {
                     request.getSession().setAttribute("user", user);
-                    return "success";
+                    adminPage();
                 }else {
                     request.getSession().setAttribute("user", user);
                     return "success";
@@ -99,9 +106,6 @@ public class UserAction extends ActionSupport {
         }
         return "fail";
     }
-
-
-
 
     /**
      * 注册表
@@ -129,8 +133,8 @@ public class UserAction extends ActionSupport {
                 Power power = new Power();
                 String name = request.getParameter("name");
                 user.setUsername(name);
-                power.setId(1);
-                power.setPower("管理员");
+                power.setId(2);
+                power.setPower("用户");
                 user.setPowerByPowerId(power);
                 String mpwd = MD5Util.MD5Encode(pwd);
                 user.setPassword(mpwd);
@@ -165,6 +169,11 @@ public class UserAction extends ActionSupport {
         return "fail";
     }
 
+    /**
+     * 修改密码
+     * @return
+     * @throws Exception
+     */
     public String changePassword() throws Exception{
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -223,7 +232,6 @@ public class UserAction extends ActionSupport {
         return "change";
     }
 
-
     /**
      * 注册界面
      * @return
@@ -240,13 +248,166 @@ public class UserAction extends ActionSupport {
         return "login";
     }
 
-
+    /**
+     * 主界面
+     * @return
+     */
     public String mainPage(){
         return "success";
     }
 
 
+    /**
+     * 管理员界面
+     * @return
+     * @throws Exception
+     */
+    public String adminPage() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        List<User> users = userService.findAll();
+        request.setAttribute("users",users);
+
+        return "admin";
+
+    }
 
 
+    /**
+     * 删除用户
+     * @throws Exception
+     */
+    public void delete() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String id = request.getParameter("UserId");
+        User user = new User();
+        user = userService.findById(Integer.parseInt(id));
+        user.setId(-1);
+
+        try {
+            userService.modifyUser(user);
+            out.print("<script>alert('删除成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            out.print("<script>alert('删除失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+            out.flush();
+            out.close();
+        }
+
+
+    }
+
+
+    /**
+     * 重置密码
+     * @throws Exception
+     */
+    public void reset() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String id = request.getParameter("UserId");
+        User user = userService.findById(Integer.parseInt(id));
+        user.setPassword(MD5Util.MD5Encode("111111"));
+        try {
+            userService.modifyUser(user);
+            out.print("<script>alert('重置密码成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+            out.flush();
+            out.close();
+        }catch (Exception e){
+            out.print("<script>alert('重置密码失败！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+            out.flush();
+            out.close();
+        }
+
+    }
+
+
+    /**
+     * 管理员添加用户
+     * @return
+     */
+    public void addUser() throws Exception{
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String name = request.getParameter("name");
+        String username = request.getParameter("userName");
+        String pwd = request.getParameter("pwd");
+        String tpwd = request.getParameter("tpwd");
+        String position = request.getParameter("position");
+        String powerId = request.getParameter("powerId");
+        Integer id = Integer.parseInt(powerId);
+
+        if (pwd != null) {
+            if (pwd.equals(tpwd)) {
+                User user = new User();
+                BeanUtils.populate(user, request.getParameterMap());
+                Power power = new Power();
+                user.setUsername(username);
+                user.setName(name);
+                String mpwd = MD5Util.MD5Encode(pwd);
+                user.setPassword(mpwd);
+                //power.setId(id);
+                //power.setPower(powerService.findById(id).getPower());
+                power = powerService.findById(id);
+                user.setPowerByPowerId(power);
+                user.setPosition(position);
+
+                if (name != null) {
+                    if (userService.findByName(name).size() == 0) {
+                        userService.addUser(user);
+                        out.print("<script>alert('添加成功！')</script>");
+                        out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+                        out.flush();
+                        out.close();
+                    } else {
+                        out.print("<script>alert('该用户名已存在！')</script>");
+                        out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+                        out.flush();
+                        out.close();
+                    }
+                } else {
+                    out.print("<script>alert('用户名不能为空！')</script>");
+                    out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+                    out.flush();
+                    out.close();
+                }
+            } else {
+                out.print("<script>alert('两次输入的密码不同！')</script>");
+                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+                out.flush();
+                out.close();
+            }
+        }else {
+            out.print("<script>alert('密码不能为空！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
+            out.flush();
+            out.close();
+        }
+    }
 
 }

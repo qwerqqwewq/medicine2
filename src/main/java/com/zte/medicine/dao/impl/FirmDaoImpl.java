@@ -52,8 +52,10 @@ public class FirmDaoImpl implements FirmDao {
     }
 
     @Override
-    public List<Firm> selectFirmByName(String name) {
-        return (List<Firm>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_firm where FirmName="+name+";").list();
+    public List<Firm> selectFirmByName(String firmName) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Firm where FirmName = :FirmName");
+        query.setParameter("FirmName", firmName);
+        return query.list();
     }
 
     @Override

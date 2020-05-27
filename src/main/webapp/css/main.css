@@ -123,4 +123,7 @@ h1 {
     line-height: 60px;
     cursor: pointer;
 }
+td{
+    text-align:center;
+}
 

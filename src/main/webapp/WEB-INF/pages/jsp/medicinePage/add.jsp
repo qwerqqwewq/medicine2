@@ -149,8 +149,8 @@
     <input type="text" placeholder="库存" name="Stock">
   </div>
   <div>
-      <input class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="生产日期" name="FirstDate">
-      <input type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="有效日期" name="UsefullDate">
+      <input class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" placeholder="生产日期" name="FirstDate">
+      <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" placeholder="有效日期" name="UsefullDate">
 <%--    <input type="text" placeholder="有效日期" name="UsefullDate">--%>
   </div>
   <div class="down">

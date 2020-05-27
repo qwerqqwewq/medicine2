@@ -8,6 +8,7 @@
 <head>
     <meta charset="utf-8">
     <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/WdatePicker.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
     <style>
         body {
@@ -66,6 +67,7 @@
             width: 100%;
             height: 550px;
             overflow: auto;
+            border: 1px #ccc solid;
         }
         .all-list {
             background: rgb(250,250,250);
@@ -84,6 +86,12 @@
         } 
         tr{
             border-bottom:1px #ccc solid;
+        }
+        input {
+            width: 190px;
+            height: 30px;
+            border: 1px #ccc solid;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -152,9 +160,9 @@
             </div>
             <div>
                 <span>销售日期</span>
-                <input type="text" placeholder="xxxx-xx-xx" name="saleDate">
+                <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="saleDate">
                 <span>到</span>
-                <input type="text" placeholder="xxxx-xx-xx" name="saleDate2">
+                <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="saleDate2">
             </div>
             <div>
                 <input type="submit" value="查询" class="high_submit">

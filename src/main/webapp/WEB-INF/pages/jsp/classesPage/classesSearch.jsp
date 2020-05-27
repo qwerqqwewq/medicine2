@@ -82,6 +82,13 @@
         tr{
             border-bottom:1px #ccc solid;
         }
+        input {
+            width: 190px;
+            height: 30px;
+            border: 1px #ccc solid;
+            border-radius: 3px;
+        }
+        
     </style>
 </head>
 <body>
@@ -153,8 +160,8 @@
                 </tr>
                 <c:forEach items="${kinds}" var="kind">
                     <tr>
-                        <td>${kind.kindCode}</td>
                         <td>${kind.kindRemark}</td>
+                        <td>${kind.kindCode}</td>
                         <td>
                             <a href="${pageContext.request.contextPath}/kind_updateKind.action?KindCode=${kind.kindCode}">编辑</a>
                         </td>

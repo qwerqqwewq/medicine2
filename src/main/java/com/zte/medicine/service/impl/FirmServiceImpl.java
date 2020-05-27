@@ -38,8 +38,8 @@ public class FirmServiceImpl implements FirmService {
     }
 
     @Override
-    public List<Firm> findFirmByName(String name) {
-        return firmDao.selectFirmByName(name);
+    public List<Firm> findFirmByName(String firmName) {
+        return firmDao.selectFirmByName(firmName);
     }
 
     @Override

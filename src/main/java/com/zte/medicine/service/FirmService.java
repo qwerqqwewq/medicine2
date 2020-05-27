@@ -26,10 +26,10 @@ public interface FirmService {
 
     /**
      * 根据供应商姓名查询信息
-     * @param name
+     * @param firmName
      * @return
      */
-    public List<Firm> findFirmByName(String name);
+    public List<Firm> findFirmByName(String firmName);
 
 
     public List<Firm> findAll();

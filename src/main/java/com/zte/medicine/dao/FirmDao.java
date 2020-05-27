@@ -27,10 +27,10 @@ public interface FirmDao {
 
     /**
      * 根据供应商姓名查询信息
-     * @param name
+     * @param firmName
      * @return
      */
-    public List<Firm> selectFirmByName(String name);
+    public List<Firm> selectFirmByName(String firmName);
 
     public List<Firm> selectAll();
 

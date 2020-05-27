@@ -53,7 +53,8 @@ public class FirmAction extends ActionSupport {
 
         Firm firm = new Firm();
 
-        if (firmService.findFirmByName(request.getParameter("FirmName"))!=null) {
+        String firmName = request.getParameter("FirmName");
+        if (firmService.findFirmByName(firmName).size()==0) {
             firm.setCity(request.getParameter("City"));
             firm.setFirmCode(request.getParameter("FirmCode"));
             firm.setFirmName(request.getParameter("FirmName"));

@@ -9,7 +9,10 @@
     <title>Document</title>
     <style>
         body{
-            background: rgb(238,238,238);
+            background-image: url(${pageContext.request.contextPath}/images/m11.jpg);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
         }
         .all {
             background: rgb(250,250,250);
@@ -69,19 +72,19 @@
             font-size: 20px;
         }
         h1{
-            margin-top: 85px;
+            margin-top: 125px;
         }
         .back {
             position: absolute;
-            top: 20px;
-            left: 100px;
+            top: 120px;
+            left: 230px;
             cursor: pointer;
         }
 
         .back p {
             width: 50px;
             height: 30px;
-            border: 2px skyblue solid;
+            border: 2px #000000 solid;
             padding-left: 10px;
             line-height: 30px;
         }
@@ -120,7 +123,7 @@
 </div>
 </form>
 <div class="back">
-    <p onclick="javascript:history.back();">back</p>
+    <p onclick="javascript:history.back();">返回</p>
 </div>
 <%--<script>--%>
 <%--    $(function() {--%>

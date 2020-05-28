@@ -17,9 +17,7 @@
 <%--    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/calendar.js"></script>--%>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
-        body{
-            background: rgb(238,238,238);
-        }
+
         .box {
             background: rgb(250,250,250);
             width: 1000px;

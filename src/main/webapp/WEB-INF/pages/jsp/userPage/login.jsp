@@ -14,7 +14,10 @@
     <title></title>
   <style>
     body{
-      background: rgb(238,238,238);
+      background-image: url(${pageContext.request.contextPath}/images/m11.jpg);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
     .all {
       background: rgb(250,250,250);
@@ -74,7 +77,7 @@
       font-size: 20px;
     }
     h1{
-      margin-top: 85px;
+      margin-top: 125px;
     }
   </style>
 </head>

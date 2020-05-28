@@ -3,7 +3,11 @@ html {
 }
 
 body {
-    background: rgb(238, 238, 238);
+    background-image: url(../images/m10.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity:0.9;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -11,7 +15,7 @@ body {
 
 .left {
     width: 12%;
-    height: 850px;
+    height: 920px;
     background: #767473;
     position: absolute;
     top: 65px;

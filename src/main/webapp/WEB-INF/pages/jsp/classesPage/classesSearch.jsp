@@ -16,9 +16,7 @@
     <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
     <style>
-        body {
-            background: rgb(238, 238, 238);
-        }
+
 
         .box {
             background: rgb(250, 250, 250);
@@ -88,14 +86,14 @@
             border: 1px #ccc solid;
             border-radius: 3px;
         }
-        
+
     </style>
 </head>
 <body>
 <div class="box1">
     <h1>医药管理系统</h1>
     <label><img src="${pageContext.request.contextPath}/images/ing.png"></label>
-    <span>名字</span>
+    <span>${sessionScope.user.username}</span>
 </div>
 <div class="left">
     <ul class="nav">

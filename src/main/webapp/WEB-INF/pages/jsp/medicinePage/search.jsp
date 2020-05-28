@@ -14,11 +14,10 @@
 <head>
   <meta charset="utf-8">
   <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/WdatePicker.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
-    body {
-      background: rgb(238, 238, 238);
-    }
+
 
     .box {
       background: rgb(250, 250, 250);
@@ -61,6 +60,7 @@
       width: 100%;
       height: 550px;
       overflow: auto;
+      border: 1px #ccc solid;
     }
     .all-list {
       background: rgb(250,250,250);
@@ -79,6 +79,12 @@
     }
     tr{
       border-bottom:1px #ccc solid;
+    }
+    input {
+      width: 190px;
+      height: 30px;
+      border: 1px #ccc solid;
+      border-radius: 3px;
     }
   </style>
 </head>
@@ -152,13 +158,13 @@
     </div>
     <div>
       <span>生产日期</span>
-      <input type="text" placeholder="xxxx-xx-xx" name="FirstDate">
+      <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="FirstDate">
       <span>到</span>
-      <input type="text" placeholder="xxxx-xx-xx" name="FirstDate2">
+      <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="FirstDate2">
       <span>有效日期</span>
-      <input type="text" placeholder="xxxx-xx-xx" name="UsefullDate">
+      <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="UsefullDate">
       <span>到</span>
-      <input type="text" placeholder="xxxx-xx-xx" name="UsefullDate2">
+      <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="UsefullDate2">
     </div>
     <div>
       <input type="submit" value="查询" class="high_submit">

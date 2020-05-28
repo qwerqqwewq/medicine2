@@ -14,13 +14,16 @@
     <title></title>
   <style>
     body{
-      background: rgb(238,238,238);
+      background-image: url(${pageContext.request.contextPath}/images/m11.jpg);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
     .all {
       background: rgb(250,250,250);
       width: 500px;
       height: 390px;
-      margin: 100px auto;
+      margin: 180px auto;
       border: 1px #ccc solid;
       border-radius: 3px;
     }

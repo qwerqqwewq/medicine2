@@ -16,9 +16,7 @@
   <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
-    body{
-      background: rgb(238,238,238);
-    }
+
     .box {
       background: rgb(250,250,250);
       width: 1550px;
@@ -29,7 +27,9 @@
       border-radius: 3px;
       padding: 30px;
     }
-
+    .box div {
+      margin-top: 20px;
+    }
     .search {
       height: 40px;
       width: 500px;
@@ -75,8 +75,9 @@
     .down {
 
       width: 100%;
-      height: 670px;
+      height: 645px;
       overflow: auto;
+      border: 1px #ccc solid;
     }
     .all-list {
       background: rgb(250,250,250);
@@ -97,7 +98,7 @@
       border-bottom:1px #ccc solid;
     }
     .up {
-      height: 100px;
+      height: 80px;
     }
   </style>
 </head>

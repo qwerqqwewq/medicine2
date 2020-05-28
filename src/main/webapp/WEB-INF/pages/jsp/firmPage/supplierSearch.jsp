@@ -9,9 +9,7 @@
     <script src="${pageContext.request.contextPath}/common/resource/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
     <style>
-        body {
-            background: rgb(238, 238, 238);
-        }
+
         
         .box {
             background: rgb(250, 250, 250);
@@ -24,10 +22,7 @@
             padding: 30px;
         }
         
-        .box input {
-            width: 190px;
-            height: 30px;
-        }
+
         
         .box div {
             margin-top: 20px;
@@ -65,6 +60,7 @@
             width: 100%;
             height: 650px;
             overflow: auto;
+            border: 1px #ccc solid;
         }
         .all-list {
             background: rgb(250,250,250);
@@ -83,6 +79,12 @@
         } 
         tr{
             border-bottom:1px #ccc solid;
+        }
+        input {
+            width: 190px;
+            height: 30px;
+            border: 1px #ccc solid;
+            border-radius: 3px;
         }
     </style>
 </head>

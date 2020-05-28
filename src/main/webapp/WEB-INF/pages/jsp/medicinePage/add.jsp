@@ -17,9 +17,7 @@
 <%--    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/common/resource/My97DatePicker/calendar.js"></script>--%>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
   <style>
-        body{
-            background: rgb(238,238,238);
-        }
+
         .box {
             background: rgb(250,250,250);
             width: 1000px;
@@ -149,8 +147,8 @@
     <input type="text" placeholder="库存" name="Stock">
   </div>
   <div>
-      <input class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="生产日期" name="FirstDate">
-      <input type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="有效日期" name="UsefullDate">
+      <input class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" placeholder="生产日期" name="FirstDate">
+      <input type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" placeholder="有效日期" name="UsefullDate">
 <%--    <input type="text" placeholder="有效日期" name="UsefullDate">--%>
   </div>
   <div class="down">

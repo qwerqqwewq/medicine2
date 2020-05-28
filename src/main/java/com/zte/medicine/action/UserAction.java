@@ -258,7 +258,6 @@ public class UserAction extends ActionSupport {
         return "success";
     }
 
-
     /**
      * 管理员界面
      * @return
@@ -294,9 +293,10 @@ public class UserAction extends ActionSupport {
         User user = new User();
         user = userService.findById(Integer.parseInt(id));
         //user.setId(-1);
+        user.setUsername("-1");
 
         try {
-            userService.removeUser(Integer.parseInt(id));
+            userService.modifyUser(user);
             out.print("<script>alert('删除成功！')</script>");
             out.print("<script>window.location.href='${pageContext.request.contextPath}/user_adminPage.action'</script>");
             out.flush();

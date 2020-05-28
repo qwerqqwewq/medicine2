@@ -37,7 +37,8 @@ public class SaleCommentDaoImpl implements SaleCommentDao {
 
     @Override
     public List<SaleComment> selectSaleCommentAll() {
-        return (List<SaleComment>) sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment");
+        Query query = sessionFactory.getCurrentSession().createQuery("from SaleComment where 1=1 ");
+        return query.list();
     }
 
     @Override
@@ -49,6 +50,8 @@ public class SaleCommentDaoImpl implements SaleCommentDao {
 
     @Override
     public List<SaleComment> selectSaleCommentByCode(String code) {
-        return (List<SaleComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment where MedicineCode="+code+";");
+        Query query = sessionFactory.getCurrentSession().createQuery("from SaleComment where MedicineCode = :MedicineCode");
+        query.setParameter("MedicineCode", code);
+        return query.list();
     }
 }

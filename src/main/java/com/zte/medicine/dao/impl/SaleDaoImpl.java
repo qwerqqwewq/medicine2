@@ -93,27 +93,37 @@ public class SaleDaoImpl implements SaleDao {
 
     @Override
     public List<Sale> selectSaleByNum(Integer num) {
-        return (List<Sale>)sessionFactory.getCurrentSession().get(Sale.class,num);
+        Query query = sessionFactory.getCurrentSession().createQuery("from Sale where SaleNum = :SaleNum");
+        query.setParameter("SaleNum", num);
+        return query.list();
     }
 
     @Override
     public List<Sale> selectSaleById(Integer id) {
-        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where UserId="+id+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Sale where UserId = :Id");
+        query.setParameter("Id", id);
+        return query.list();
     }
 
     @Override
     public List<Sale> selectSaleByCode(String code) {
-        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where CustomerCode="+code+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Sale where CustomerCode = :CustomerCode");
+        query.setParameter("CustomerCode", code);
+        return query.list();
     }
 
     @Override
     public List<Sale> selectSaleByDate(Timestamp date) {
-        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where SaleDate="+date+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Sale where SaleDate = :SaleDate");
+        query.setParameter("SaleDate", date);
+        return query.list();
     }
 
     @Override
     public List<Sale> selectSaleByAmount(double amount) {
-        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale where Amount="+amount+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Sale where Amount = :Amount");
+        query.setParameter("Amount", amount);
+        return query.list();
     }
 
     @Override
@@ -123,6 +133,7 @@ public class SaleDaoImpl implements SaleDao {
 
     @Override
     public List<Sale> selectAll() {
-        return (List<Sale>)sessionFactory.getCurrentSession().createQuery("from Sale").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Sale where 1=1");
+        return query.list();
     }
 }

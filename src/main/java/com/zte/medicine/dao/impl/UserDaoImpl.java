@@ -81,7 +81,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> selectAll(){
-        Query query = sessionFactory.getCurrentSession().createQuery("from User where id!=-1");
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where username!=-1");
         return (List<User>)query.list();
     }
 

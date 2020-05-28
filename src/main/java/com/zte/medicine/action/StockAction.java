@@ -154,6 +154,8 @@ public class StockAction extends ActionSupport {
      * @return
      */
     public String stockSearchPage(){
+        HttpServletRequest request = ServletActionContext.getRequest();
+        request.setAttribute("stockComments",stockCommentService.findStockCommentAll());
         return "search";
     }
 

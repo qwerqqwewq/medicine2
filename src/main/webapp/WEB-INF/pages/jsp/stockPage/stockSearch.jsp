@@ -166,14 +166,14 @@
           <th>剩余数量</th>
           <th>操作</th>
         </tr>
-        <c:forEach items="${stocks}" var="stock">
+        <c:forEach items="${stockComments}" var="stockComment">
           <tr>
-            <td>${stock.medicineName}</td>
-            <td>${stock.stockNum}</td>
-            <td>${stock.userId}</td>
-            <td>${stock_comment.number}</td>
+            <td>${stockComment.medicineByMedicineCode.medicineName}</td>
+            <td>${stockComment.stockNum}</td>
+            <td>${stockComment.stockByStockNum.userId}</td>
+            <td>${stockComment.number}</td>
             <td>
-              <a href="${pageContext.request.contextPath}/stock_detailInf.action?StockNum=${stock.stockNum}">查询详情</a>
+              <a href="${pageContext.request.contextPath}/stock_detailInf.action?StockNum=${stockComment.stockNum}">查询详情</a>
             </td>
           </tr>
         </c:forEach>

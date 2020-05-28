@@ -39,7 +39,8 @@ public class FirmDaoImpl implements FirmDao {
 
     @Override
     public List<Firm> selectAll(){
-        return (List<Firm>) sessionFactory.getCurrentSession().createQuery("from Firm where 1=1").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Firm where 1=1");
+        return query.list();
     }
 
     @Override

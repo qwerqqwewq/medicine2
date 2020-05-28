@@ -2,6 +2,7 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.StockDao;
 import com.zte.medicine.entity.Stock;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,26 +38,35 @@ public class StockDaoImpl implements StockDao {
 
     @Override
     public List<Stock> selectAll() {
-        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock;").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Stock where 1=1");
+        return query.list();
     }
 
     @Override
     public List<Stock> selectStockByNum(Integer num) {
-        return (List<Stock>)sessionFactory.getCurrentSession().get(Stock.class,num);
+        Query query = sessionFactory.getCurrentSession().createQuery("from Stock where StockNum = :StockNum");
+        query.setParameter("StockNum", num);
+        return query.list();
     }
 
     @Override
     public List<Stock> selectStockById(Integer id) {
-        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where UserId="+ id +";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Stock where UserId = :UserId");
+        query.setParameter("UserId", id);
+        return query.list();
     }
 
     @Override
     public List<Stock> selectStockByType(String type) {
-        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where WorkType="+ type +";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Stock where WorkType = :WorkType");
+        query.setParameter("WorkType", type);
+        return query.list();
     }
 
     @Override
     public List<Stock> selectStockByDate(Timestamp date) {
-        return (List<Stock>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock where WorkDate="+date+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Stock where WorkDate = :WorkDate");
+        query.setParameter("WorkDate", date);
+        return query.list();
     }
 }

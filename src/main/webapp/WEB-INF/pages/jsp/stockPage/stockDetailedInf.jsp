@@ -79,35 +79,36 @@
             </div>
 
             <div class="left">
+                <c:forEach items="${stockComments}" var="stockComment">
                 <div>
                     <span>药品编码</span>
-                    <span>${}</span>
+                    <span>${stockComment.medicineCode}</span>
                 </div>
                 <div>
                     <span>操作编码</span>
-                    <span>${}</span>
+                    <span>${stockComment.stockNum}</span>
                 </div>
                 <div>
                     <span>操作类型</span>
-                    <span>${}</span>
+                    <span>${stockComment.stockByStockNum.workType}</span>
                 </div>
                 <div>
                     <span>操作时间</span>
-                    <span>${}</span>
+                    <span>${stockComment.stockByStockNum.workDate}</span>
                 </div>
                 <div>
                     <span>操作数量</span>
-                    <span>${}</span>
+                    <span>${stockComment.workNum}</span>
                 </div>
                 <div>
                     <span>剩余数量</span>
-                    <span>${}</span>
+                    <span>${stockComment.number}</span>
                 </div>
                 <div>
                     <span>金额</span>
-                    <span>${}</span>
+                    <span>${stockComment.amount}</span>
                 </div>
-                
+                </c:forEach>
             </div>
         </form>
     </div>

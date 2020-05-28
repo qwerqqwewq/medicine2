@@ -37,17 +37,22 @@ public class StockCommentDaoImpl implements StockCommentDao {
 
     @Override
     public List<StockComment> selectStockCommentAll() {
-        return (List<StockComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock_comment;").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from StockComment where 1=1");
+
+        return query.list();
     }
 
     @Override
     public List<StockComment> selectStockCommentByNum(Integer num) {
         Query query = sessionFactory.getCurrentSession().createQuery("from StockComment where StockNum = :stockNum");
-        return (List<StockComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock_comment where StockNum="+num+";").list();
+        query.setParameter("stockNum", num);
+        return query.list();
     }
 
     @Override
     public List<StockComment> selectStockCommentByCode(String code) {
-        return (List<StockComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock_comment where MedicineCode="+code+";").list();
+        Query query = sessionFactory.getCurrentSession().createQuery("from StockComment where MedicineCode = :MedicineCode");
+        query.setParameter("MedicineCode", code);
+        return query.list();
     }
 }

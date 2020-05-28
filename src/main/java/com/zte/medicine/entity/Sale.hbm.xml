@@ -8,9 +8,6 @@
         <id name="saleNum">
             <column name="SaleNum" sql-type="int(11)"/>
         </id>
-        <property name="userId">
-            <column name="UserId" sql-type="int(11)"/>
-        </property>
         <property name="customerCode">
             <column name="CustomerCode" sql-type="varchar(64)" length="64"/>
         </property>
@@ -20,5 +17,23 @@
         <property name="amount">
             <column name="Amount" sql-type="double(64)" precision="64"/>
         </property>
+        <many-to-one name="userByUserId" class="com.zte.medicine.entity.User">
+            <column name="UserId"/>
+        </many-to-one>
+        <many-to-one name="customerByCustomerCode" class="com.zte.medicine.entity.Customer">
+            <column name="CustomerCode"/>
+        </many-to-one>
+        <set name="saleCommentsBySaleNum" inverse="true">
+            <key>
+                <column name="SaleNum"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.SaleComment"/>
+        </set>
+        <set name="saleCommentsBySaleNum_0" inverse="true">
+            <key>
+                <column name="SaleNum"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.SaleComment"/>
+        </set>
     </class>
 </hibernate-mapping>

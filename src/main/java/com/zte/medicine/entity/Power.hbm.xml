@@ -11,5 +11,17 @@
         <property name="power">
             <column name="power" sql-type="varchar(20)" length="20"/>
         </property>
+        <set name="usersById" inverse="true">
+            <key>
+                <column name="powerId"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.User"/>
+        </set>
+        <set name="usersById_0" inverse="true">
+            <key>
+                <column name="powerId"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.User"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -123,6 +123,6 @@ public class SaleDaoImpl implements SaleDao {
 
     @Override
     public List<Sale> selectAll() {
-        return (List<Sale>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale;").list();
+        return (List<Sale>)sessionFactory.getCurrentSession().createQuery("from Sale").list();
     }
 }

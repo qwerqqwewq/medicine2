@@ -15,7 +15,13 @@
             <column name="CustomerTel" sql-type="int(20)" not-null="true"/>
         </property>
         <property name="city">
-            <column name="City" sql-type="varchar(64)" length="64"/>
+            <column name="City" sql-type="varchar(64)" length="64" not-null="true"/>
         </property>
+        <set name="salesByCustomerCode" inverse="true">
+            <key>
+                <column name="CustomerCode"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Sale"/>
+        </set>
     </class>
 </hibernate-mapping>

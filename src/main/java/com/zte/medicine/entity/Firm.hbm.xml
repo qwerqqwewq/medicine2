@@ -18,7 +18,19 @@
             <column name="LinkTel" sql-type="int(20)" not-null="true"/>
         </property>
         <property name="city">
-            <column name="City" sql-type="varchar(20)" length="20"/>
+            <column name="City" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
+        <set name="medicinesByFirmCode" inverse="true">
+            <key>
+                <column name="FirmCode" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Medicine"/>
+        </set>
+        <set name="medicinesByFirmCode_0" inverse="true">
+            <key>
+                <column name="FirmCode" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Medicine"/>
+        </set>
     </class>
 </hibernate-mapping>

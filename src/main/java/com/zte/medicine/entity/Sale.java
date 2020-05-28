@@ -2,40 +2,34 @@ package com.zte.medicine.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
  * Author:helloboy
- * Date:2020-05-19 22:24
+ * Date:2020-05-28 19:36
  * Description:<描述>
  */
 @Entity
 @Table(name = "t_sale", schema = "medicine", catalog = "")
 public class Sale {
-    private Integer saleNum;
-    private Integer userId;
+    private int saleNum;
     private String customerCode;
     private Timestamp saleDate;
     private double amount;
+    private User userByUserId;
+    private Customer customerByCustomerCode;
+    private Collection<SaleComment> saleCommentsBySaleNum;
+    private Collection<SaleComment> saleCommentsBySaleNum_0;
 
     @Id
     @Column(name = "SaleNum", nullable = false)
-    public Integer getSaleNum() {
+    public int getSaleNum() {
         return saleNum;
     }
 
-    public void setSaleNum(Integer saleNum) {
+    public void setSaleNum(int saleNum) {
         this.saleNum = saleNum;
-    }
-
-    @Basic
-    @Column(name = "UserId", nullable = false)
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     @Basic
@@ -74,7 +68,6 @@ public class Sale {
         if (o == null || getClass() != o.getClass()) return false;
         Sale sale = (Sale) o;
         return saleNum == sale.saleNum &&
-                userId == sale.userId &&
                 Double.compare(sale.amount, amount) == 0 &&
                 Objects.equals(customerCode, sale.customerCode) &&
                 Objects.equals(saleDate, sale.saleDate);
@@ -82,6 +75,44 @@ public class Sale {
 
     @Override
     public int hashCode() {
-        return Objects.hash(saleNum, userId, customerCode, saleDate, amount);
+        return Objects.hash(saleNum, customerCode, saleDate, amount);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "UserId", referencedColumnName = "id", nullable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CustomerCode", referencedColumnName = "CustomerCode", nullable = false)
+    public Customer getCustomerByCustomerCode() {
+        return customerByCustomerCode;
+    }
+
+    public void setCustomerByCustomerCode(Customer customerByCustomerCode) {
+        this.customerByCustomerCode = customerByCustomerCode;
+    }
+
+    @OneToMany(mappedBy = "tSaleBySaleNum")
+    public Collection<SaleComment> getSaleCommentsBySaleNum() {
+        return saleCommentsBySaleNum;
+    }
+
+    public void setSaleCommentsBySaleNum(Collection<SaleComment> saleCommentsBySaleNum) {
+        this.saleCommentsBySaleNum = saleCommentsBySaleNum;
+    }
+
+    @OneToMany(mappedBy = "tSaleBySaleNum_0")
+    public Collection<SaleComment> getSaleCommentsBySaleNum_0() {
+        return saleCommentsBySaleNum_0;
+    }
+
+    public void setSaleCommentsBySaleNum_0(Collection<SaleComment> saleCommentsBySaleNum_0) {
+        this.saleCommentsBySaleNum_0 = saleCommentsBySaleNum_0;
     }
 }

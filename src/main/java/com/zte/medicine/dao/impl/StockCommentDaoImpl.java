@@ -2,6 +2,7 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.StockCommentDao;
 import com.zte.medicine.entity.StockComment;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +42,7 @@ public class StockCommentDaoImpl implements StockCommentDao {
 
     @Override
     public List<StockComment> selectStockCommentByNum(Integer num) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from StockComment where StockNum = :stockNum");
         return (List<StockComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_stock_comment where StockNum="+num+";").list();
     }
 

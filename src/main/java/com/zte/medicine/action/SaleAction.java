@@ -96,7 +96,7 @@ public class SaleAction extends ActionSupport {
         sale.setSaleNum(Integer.parseInt(request.getParameter("SaleNum")));
 
         User user = (User) request.getSession().getAttribute("user");
-        sale.setUserId(user.getId());
+        sale.setUserByUserId(user);
         //saleComment.setAmount(Double.parseDouble(request.getParameter("Amount2")));
         sale.setAmount(Double.valueOf(integer));
         saleComment.setAmount(Double.valueOf(integer));
@@ -114,9 +114,17 @@ public class SaleAction extends ActionSupport {
         try {
             saleService.addSale(sale);
             saleCommentService.addSaleComment(saleComment);
+            out.print("<script>alert('添加成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/sale_saleAddPage.action'</script>");
+            out.flush();
+            out.close();
             return "add";
         } catch (Exception e) {
             e.printStackTrace();
+            out.print("<script>alert('添加成功！')</script>");
+            out.print("<script>window.location.href='${pageContext.request.contextPath}/sale_saleAddPage.action'</script>");
+            out.flush();
+            out.close();
             return "fail";
         }
     }
@@ -138,7 +146,6 @@ public class SaleAction extends ActionSupport {
         request.setAttribute("saleComments",saleComments);
         return "detail";
     }
-
 
     /**
      * 条件查询
@@ -214,6 +221,8 @@ public class SaleAction extends ActionSupport {
      * @return
      */
     public String saleSearchPage(){
+        HttpServletRequest request = ServletActionContext.getRequest();
+        request.setAttribute("sales",saleService.findAll());
         return "search";
     }
 

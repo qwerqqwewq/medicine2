@@ -1,11 +1,12 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
  * Author:helloboy
- * Date:2020-05-19 22:24
+ * Date:2020-05-28 19:36
  * Description:<描述>
  */
 @Entity
@@ -15,6 +16,7 @@ public class Customer {
     private String customerName;
     private Integer customerTel;
     private String city;
+    private Collection<Sale> salesByCustomerCode;
 
     @Id
     @Column(name = "CustomerCode", nullable = false, length = 64)
@@ -70,5 +72,14 @@ public class Customer {
     @Override
     public int hashCode() {
         return Objects.hash(customerCode, customerName, customerTel, city);
+    }
+
+    @OneToMany(mappedBy = "tCustomerByCustomerCode")
+    public Collection<Sale> getSalesByCustomerCode() {
+        return salesByCustomerCode;
+    }
+
+    public void setSalesByCustomerCode(Collection<Sale> salesByCustomerCode) {
+        this.salesByCustomerCode = salesByCustomerCode;
     }
 }

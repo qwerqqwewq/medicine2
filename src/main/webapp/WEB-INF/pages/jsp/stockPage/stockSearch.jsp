@@ -166,9 +166,9 @@
           <th>剩余数量</th>
           <th>操作</th>
         </tr>
-        <c:forEach items="${medicines}" var="medicine">
+        <c:forEach items="${stocks}" var="stock">
           <tr>
-            <td>${medicine.medicineName}</td>
+            <td>${stock.medicineName}</td>
             <td>${stock.stockNum}</td>
             <td>${stock.userId}</td>
             <td>${stock_comment.number}</td>

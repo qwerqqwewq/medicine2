@@ -1,30 +1,35 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
  * Author:helloboy
- * Date:2020-05-19 22:24
+ * Date:2020-05-28 19:36
  * Description:<描述>
  */
 @Entity
 @Table(name = "t_user", schema = "medicine", catalog = "")
 public class User {
-    private Integer id;
+    private int id;
     private String name;
     private String username;
     private String password;
+    private int powerId;
     private String position;
+    private Collection<Sale> salesById;
+    private Collection<Stock> stocksById;
     private Power powerByPowerId;
+    private Power powerByPowerId_0;
 
     @Id
     @Column(name = "id", nullable = false)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,6 +64,16 @@ public class User {
     }
 
     @Basic
+    @Column(name = "powerId", nullable = false)
+    public int getPowerId() {
+        return powerId;
+    }
+
+    public void setPowerId(int powerId) {
+        this.powerId = powerId;
+    }
+
+    @Basic
     @Column(name = "position", nullable = true, length = 64)
     public String getPosition() {
         return position;
@@ -74,6 +89,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
+                powerId == user.powerId &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
@@ -82,7 +98,25 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, username, password, position);
+        return Objects.hash(id, name, username, password, powerId, position);
+    }
+
+    @OneToMany(mappedBy = "tUserByUserId")
+    public Collection<Sale> getSalesById() {
+        return salesById;
+    }
+
+    public void setSalesById(Collection<Sale> salesById) {
+        this.salesById = salesById;
+    }
+
+    @OneToMany(mappedBy = "tUserByUserId")
+    public Collection<Stock> getStocksById() {
+        return stocksById;
+    }
+
+    public void setStocksById(Collection<Stock> stocksById) {
+        this.stocksById = stocksById;
     }
 
     @ManyToOne
@@ -93,5 +127,15 @@ public class User {
 
     public void setPowerByPowerId(Power powerByPowerId) {
         this.powerByPowerId = powerByPowerId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "powerId", referencedColumnName = "id", nullable = false)
+    public Power getPowerByPowerId_0() {
+        return powerByPowerId_0;
+    }
+
+    public void setPowerByPowerId_0(Power powerByPowerId_0) {
+        this.powerByPowerId_0 = powerByPowerId_0;
     }
 }

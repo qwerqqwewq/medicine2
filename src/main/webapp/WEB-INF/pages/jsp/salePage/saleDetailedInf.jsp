@@ -79,39 +79,41 @@
             </div>
 
             <div class="left">
+                <c:forEach items="${saleComments}" var="saleComment">
                 <div>
                     <span>药品编码</span>
-                    <span>${}</span>
+                    <span>${saleComment.medicineCode}</span>
                 </div>
                 <div>
                     <span>销售编码</span>
-                    <span>${}</span>
+                    <span>${saleComment.saleBySaleNum.saleNum}</span>
                 </div>
                 <div>
                     <span>销售员编码</span>
-                    <span>${}</span>
+                    <span>${saleComment.saleBySaleNum.userId}</span>
                 </div>
                 <div>
                     <span>客户编码</span>
-                    <span>${}</span>
+                    <span>${saleComment.saleBySaleNum.customerCode}</span>
                 </div>
                 <div>
                     <span>销售日期</span>
-                    <span>${}</span>
+                    <span>${saleComment.saleBySaleNum.saleDate}</span>
                 </div>
                 <div>
                     <span>售价</span>
-                    <span>${}</span>
+                    <span>${saleComment.price}</span>
                 </div>
                 <div>
                     <span>数量</span>
-                    <span>${}</span>
+                    <span>${saleComment.number}</span>
                 </div>
                 <div>
                     <span>总金额</span>
-                    <span>${}</span>
+                    <span>${saleComment.amount}</span>
                 </div>
-                
+
+                </c:forEach>
             </div>
         </form>
     </div>

@@ -2,6 +2,7 @@ package com.zte.medicine.dao.impl;
 
 import com.zte.medicine.dao.SaleCommentDao;
 import com.zte.medicine.entity.SaleComment;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,9 @@ public class SaleCommentDaoImpl implements SaleCommentDao {
 
     @Override
     public List<SaleComment> selectSaleCommentByNum(String num) {
-        return (List<SaleComment>)sessionFactory.getCurrentSession().createSQLQuery("select * from t_sale_comment where SaleNum="+num+";");
+        Query query = sessionFactory.getCurrentSession().createQuery("from SaleComment where SaleNum = :SaleNum");
+        query.setParameter("SaleNum", num);
+        return query.list();
     }
 
     @Override

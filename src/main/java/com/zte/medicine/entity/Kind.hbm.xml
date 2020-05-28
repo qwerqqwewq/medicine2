@@ -11,5 +11,17 @@
         <property name="kindRemark">
             <column name="KindRemark" sql-type="varchar(20)" length="20"/>
         </property>
+        <set name="medicinesByKindCode" inverse="true">
+            <key>
+                <column name="KindCode" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Medicine"/>
+        </set>
+        <set name="medicinesByKindCode_0" inverse="true">
+            <key>
+                <column name="KindCode" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Medicine"/>
+        </set>
     </class>
 </hibernate-mapping>

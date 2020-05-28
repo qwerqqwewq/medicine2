@@ -17,5 +17,14 @@
         <property name="workDate">
             <column name="WorkDate" sql-type="datetime"/>
         </property>
+        <many-to-one name="userByUserId" class="com.zte.medicine.entity.User">
+            <column name="UserId"/>
+        </many-to-one>
+        <set name="stockCommentsByStockNum" inverse="true">
+            <key>
+                <column name="StockNum"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.StockComment"/>
+        </set>
     </class>
 </hibernate-mapping>

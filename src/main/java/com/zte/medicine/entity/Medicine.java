@@ -2,11 +2,12 @@ package com.zte.medicine.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
  * Author:helloboy
- * Date:2020-05-19 22:24
+ * Date:2020-05-28 19:36
  * Description:<描述>
  */
 @Entity
@@ -14,13 +15,19 @@ import java.util.Objects;
 public class Medicine {
     private String medicineCode;
     private String medicineName;
+    private String kindCode;
     private String listPrice;
     private String price;
     private Integer stock;
+    private String firmCode;
     private Timestamp firstDate;
     private Timestamp usefullDate;
     private Kind kindByKindCode;
+    private Kind kindByKindCode_0;
     private Firm firmByFirmCode;
+    private Firm firmByFirmCode_0;
+    private Collection<SaleComment> saleCommentsByMedicineCode;
+    private Collection<StockComment> stockCommentsByMedicineCode;
 
     @Id
     @Column(name = "MedicineCode", nullable = false, length = 6)
@@ -40,6 +47,16 @@ public class Medicine {
 
     public void setMedicineName(String medicineName) {
         this.medicineName = medicineName;
+    }
+
+    @Basic
+    @Column(name = "KindCode", nullable = true, length = 20)
+    public String getKindCode() {
+        return kindCode;
+    }
+
+    public void setKindCode(String kindCode) {
+        this.kindCode = kindCode;
     }
 
     @Basic
@@ -73,6 +90,16 @@ public class Medicine {
     }
 
     @Basic
+    @Column(name = "FirmCode", nullable = true, length = 10)
+    public String getFirmCode() {
+        return firmCode;
+    }
+
+    public void setFirmCode(String firmCode) {
+        this.firmCode = firmCode;
+    }
+
+    @Basic
     @Column(name = "FirstDate", nullable = true)
     public Timestamp getFirstDate() {
         return firstDate;
@@ -99,16 +126,18 @@ public class Medicine {
         Medicine medicine = (Medicine) o;
         return Objects.equals(medicineCode, medicine.medicineCode) &&
                 Objects.equals(medicineName, medicine.medicineName) &&
+                Objects.equals(kindCode, medicine.kindCode) &&
                 Objects.equals(listPrice, medicine.listPrice) &&
                 Objects.equals(price, medicine.price) &&
                 Objects.equals(stock, medicine.stock) &&
+                Objects.equals(firmCode, medicine.firmCode) &&
                 Objects.equals(firstDate, medicine.firstDate) &&
                 Objects.equals(usefullDate, medicine.usefullDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(medicineCode, medicineName, listPrice, price, stock, firstDate, usefullDate);
+        return Objects.hash(medicineCode, medicineName, kindCode, listPrice, price, stock, firmCode, firstDate, usefullDate);
     }
 
     @ManyToOne
@@ -122,6 +151,16 @@ public class Medicine {
     }
 
     @ManyToOne
+    @JoinColumn(name = "KindCode", referencedColumnName = "KindCode")
+    public Kind getKindByKindCode_0() {
+        return kindByKindCode_0;
+    }
+
+    public void setKindByKindCode_0(Kind kindByKindCode_0) {
+        this.kindByKindCode_0 = kindByKindCode_0;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "FirmCode", referencedColumnName = "FirmCode")
     public Firm getFirmByFirmCode() {
         return firmByFirmCode;
@@ -129,5 +168,33 @@ public class Medicine {
 
     public void setFirmByFirmCode(Firm firmByFirmCode) {
         this.firmByFirmCode = firmByFirmCode;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "FirmCode", referencedColumnName = "FirmCode")
+    public Firm getFirmByFirmCode_0() {
+        return firmByFirmCode_0;
+    }
+
+    public void setFirmByFirmCode_0(Firm firmByFirmCode_0) {
+        this.firmByFirmCode_0 = firmByFirmCode_0;
+    }
+
+    @OneToMany(mappedBy = "tMedicineByMedicineCode")
+    public Collection<SaleComment> getSaleCommentsByMedicineCode() {
+        return saleCommentsByMedicineCode;
+    }
+
+    public void setSaleCommentsByMedicineCode(Collection<SaleComment> saleCommentsByMedicineCode) {
+        this.saleCommentsByMedicineCode = saleCommentsByMedicineCode;
+    }
+
+    @OneToMany(mappedBy = "tMedicineByMedicineCode")
+    public Collection<StockComment> getStockCommentsByMedicineCode() {
+        return stockCommentsByMedicineCode;
+    }
+
+    public void setStockCommentsByMedicineCode(Collection<StockComment> stockCommentsByMedicineCode) {
+        this.stockCommentsByMedicineCode = stockCommentsByMedicineCode;
     }
 }

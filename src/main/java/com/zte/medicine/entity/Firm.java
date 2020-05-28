@@ -1,11 +1,12 @@
 package com.zte.medicine.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
  * Author:helloboy
- * Date:2020-05-19 22:24
+ * Date:2020-05-28 19:36
  * Description:<描述>
  */
 @Entity
@@ -16,6 +17,8 @@ public class Firm {
     private String link;
     private Integer linkTel;
     private String city;
+    private Collection<Medicine> medicinesByFirmCode;
+    private Collection<Medicine> medicinesByFirmCode_0;
 
     @Id
     @Column(name = "FirmCode", nullable = false, length = 64)
@@ -82,5 +85,23 @@ public class Firm {
     @Override
     public int hashCode() {
         return Objects.hash(firmCode, firmName, link, linkTel, city);
+    }
+
+    @OneToMany(mappedBy = "tFirmByFirmCode")
+    public Collection<Medicine> getMedicinesByFirmCode() {
+        return medicinesByFirmCode;
+    }
+
+    public void setMedicinesByFirmCode(Collection<Medicine> medicinesByFirmCode) {
+        this.medicinesByFirmCode = medicinesByFirmCode;
+    }
+
+    @OneToMany(mappedBy = "tFirmByFirmCode_0")
+    public Collection<Medicine> getMedicinesByFirmCode_0() {
+        return medicinesByFirmCode_0;
+    }
+
+    public void setMedicinesByFirmCode_0(Collection<Medicine> medicinesByFirmCode_0) {
+        this.medicinesByFirmCode_0 = medicinesByFirmCode_0;
     }
 }

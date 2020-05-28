@@ -7,10 +7,9 @@
     <class name="com.zte.medicine.entity.User" table="t_user" schema="medicine">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
-            <generator class="native"></generator>
         </id>
         <property name="name">
-            <column name="name" sql-type="varchar(20)" length="20"/>
+            <column name="name" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
         <property name="username">
             <column name="username" sql-type="varchar(20)" length="20"/>
@@ -18,11 +17,29 @@
         <property name="password">
             <column name="password" sql-type="varchar(64)" length="64"/>
         </property>
+        <property name="powerId">
+            <column name="powerId" sql-type="int(4)"/>
+        </property>
         <property name="position">
-            <column name="position" sql-type="varchar(64)" length="64"/>
+            <column name="position" sql-type="varchar(64)" length="64" not-null="true"/>
         </property>
         <many-to-one name="powerByPowerId" class="com.zte.medicine.entity.Power">
             <column name="powerId"/>
         </many-to-one>
+        <many-to-one name="powerByPowerId_0" class="com.zte.medicine.entity.Power">
+            <column name="powerId"/>
+        </many-to-one>
+        <set name="salesById" inverse="true">
+            <key>
+                <column name="UserId"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Sale"/>
+        </set>
+        <set name="stocksById" inverse="true">
+            <key>
+                <column name="UserId"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.zte.medicine.entity.Stock"/>
+        </set>
     </class>
 </hibernate-mapping>

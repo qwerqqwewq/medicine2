@@ -5,36 +5,38 @@ import java.util.Objects;
 
 /**
  * Author:helloboy
- * Date:2020-05-19 22:24
+ * Date:2020-05-28 19:36
  * Description:<描述>
  */
 @Entity
 @Table(name = "t_stock_comment", schema = "medicine", catalog = "")
 public class StockComment {
-    private Integer id;
-    private Integer stockNum;
+    private int id;
+    private int stockNum;
     private String medicineCode;
     private Integer workNum;
     private Integer number;
     private Double amount;
+    private Stock stockByStockNum;
+    private Medicine medicineByMedicineCode;
 
     @Id
     @Column(name = "id", nullable = false)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "StockNum", nullable = false)
-    public Integer getStockNum() {
+    public int getStockNum() {
         return stockNum;
     }
 
-    public void setStockNum(Integer stockNum) {
+    public void setStockNum(int stockNum) {
         this.stockNum = stockNum;
     }
 
@@ -94,5 +96,25 @@ public class StockComment {
     @Override
     public int hashCode() {
         return Objects.hash(id, stockNum, medicineCode, workNum, number, amount);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "StockNum", referencedColumnName = "StockNum", nullable = false)
+    public Stock getStockByStockNum() {
+        return stockByStockNum;
+    }
+
+    public void setStockByStockNum(Stock stockByStockNum) {
+        this.stockByStockNum = stockByStockNum;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "MedicineCode", referencedColumnName = "MedicineCode", nullable = false)
+    public Medicine getMedicineByMedicineCode() {
+        return medicineByMedicineCode;
+    }
+
+    public void setMedicineByMedicineCode(Medicine medicineByMedicineCode) {
+        this.medicineByMedicineCode = medicineByMedicineCode;
     }
 }

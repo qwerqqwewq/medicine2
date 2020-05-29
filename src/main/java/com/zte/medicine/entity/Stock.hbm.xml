@@ -17,7 +17,7 @@
         <property name="workDate">
             <column name="WorkDate" sql-type="datetime"/>
         </property>
-        <many-to-one name="userByUserId" class="com.zte.medicine.entity.User">
+        <many-to-one name="userByUserId" class="com.zte.medicine.entity.User" insert="false" update="false">
             <column name="UserId"/>
         </many-to-one>
         <set name="stockCommentsByStockNum" inverse="true">

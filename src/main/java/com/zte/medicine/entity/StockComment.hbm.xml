@@ -23,10 +23,10 @@
         <property name="amount">
             <column name="Amount" sql-type="double(64)" precision="64" not-null="true"/>
         </property>
-        <many-to-one name="stockByStockNum" class="com.zte.medicine.entity.Stock">
+        <many-to-one name="stockByStockNum" class="com.zte.medicine.entity.Stock" insert="false" update="false">
             <column name="StockNum"/>
         </many-to-one>
-        <many-to-one name="medicineByMedicineCode" class="com.zte.medicine.entity.Medicine">
+        <many-to-one name="medicineByMedicineCode" class="com.zte.medicine.entity.Medicine" insert="false" update="false">
             <column name="MedicineCode"/>
         </many-to-one>
     </class>

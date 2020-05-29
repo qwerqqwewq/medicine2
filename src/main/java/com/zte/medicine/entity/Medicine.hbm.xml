@@ -32,16 +32,16 @@
         <property name="usefullDate">
             <column name="UsefullDate" sql-type="datetime" not-null="true"/>
         </property>
-        <many-to-one name="kindByKindCode" class="com.zte.medicine.entity.Kind">
+        <many-to-one name="kindByKindCode" class="com.zte.medicine.entity.Kind" insert="false" update="false">
             <column name="KindCode" not-null="true"/>
         </many-to-one>
-        <many-to-one name="kindByKindCode_0" class="com.zte.medicine.entity.Kind">
+        <many-to-one name="kindByKindCode_0" class="com.zte.medicine.entity.Kind" insert="false" update="false">
             <column name="KindCode" not-null="true"/>
         </many-to-one>
-        <many-to-one name="firmByFirmCode" class="com.zte.medicine.entity.Firm">
+        <many-to-one name="firmByFirmCode" class="com.zte.medicine.entity.Firm" insert="false" update="false">
             <column name="FirmCode" not-null="true"/>
         </many-to-one>
-        <many-to-one name="firmByFirmCode_0" class="com.zte.medicine.entity.Firm">
+        <many-to-one name="firmByFirmCode_0" class="com.zte.medicine.entity.Firm" insert="false" update="false">
             <column name="FirmCode" not-null="true"/>
         </many-to-one>
         <set name="saleCommentsByMedicineCode" inverse="true">

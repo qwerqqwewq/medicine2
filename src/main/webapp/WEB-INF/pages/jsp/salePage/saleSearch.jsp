@@ -182,7 +182,7 @@
                     <c:forEach items="${sales}" var="sale">
                         <tr>
                             <td>${sale.saleNum}</td>
-                            <td>${sale.userId}</td>
+                            <td>${sale.userByUserId.id}</td>
                             <td>${sale.customerCode}</td>
                             <td>${sale.saleDate}</td>
                             <td>${sale.amount}</td>

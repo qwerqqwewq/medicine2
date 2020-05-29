@@ -20,7 +20,7 @@
         <many-to-one name="userByUserId" class="com.zte.medicine.entity.User">
             <column name="UserId"/>
         </many-to-one>
-        <many-to-one name="customerByCustomerCode" class="com.zte.medicine.entity.Customer">
+        <many-to-one name="customerByCustomerCode" class="com.zte.medicine.entity.Customer" insert="false" update="false">
             <column name="CustomerCode"/>
         </many-to-one>
         <set name="saleCommentsBySaleNum" inverse="true">

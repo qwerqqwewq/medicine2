@@ -7,6 +7,7 @@
     <class name="com.zte.medicine.entity.User" table="t_user" schema="medicine">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="name">
             <column name="name" sql-type="varchar(20)" length="20" not-null="true"/>
@@ -23,10 +24,10 @@
         <property name="position">
             <column name="position" sql-type="varchar(64)" length="64" not-null="true"/>
         </property>
-        <many-to-one name="powerByPowerId" class="com.zte.medicine.entity.Power">
+        <many-to-one name="powerByPowerId" class="com.zte.medicine.entity.Power" insert="false" update="false">
             <column name="powerId"/>
         </many-to-one>
-        <many-to-one name="powerByPowerId_0" class="com.zte.medicine.entity.Power">
+        <many-to-one name="powerByPowerId_0" class="com.zte.medicine.entity.Power" insert="false" update="false">
             <column name="powerId"/>
         </many-to-one>
         <set name="salesById" inverse="true">

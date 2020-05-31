@@ -7,6 +7,7 @@
     <class name="com.zte.medicine.entity.StockComment" table="t_stock_comment" schema="medicine">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="stockNum">
             <column name="StockNum" sql-type="int(11)"/>

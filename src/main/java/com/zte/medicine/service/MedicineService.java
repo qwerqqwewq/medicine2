@@ -88,4 +88,6 @@ public interface MedicineService {
      */
     public void removeMedicine(Medicine medicine);
 
+    public List<Medicine> findAll();
+
 }

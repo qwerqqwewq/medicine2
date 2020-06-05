@@ -151,4 +151,10 @@ public class MedicineDaoImpl implements MedicineDao {
     public void deleteMedicine(Medicine medicine) {
         sessionFactory.getCurrentSession().delete(medicine);
     }
+
+    @Override
+    public List<Medicine> selectAll(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Medicine");
+        return query.list();
+    }
 }

@@ -83,6 +83,8 @@ public interface MedicineDao {
     // */
     //public Medicine selectMedicineByUsefulDate(Timestamp date);
 
+    public List<Medicine> selectAll();
+
     /**
      * 删除药品
      * @param medicine

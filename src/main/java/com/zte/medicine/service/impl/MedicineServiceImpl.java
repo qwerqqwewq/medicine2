@@ -79,4 +79,9 @@ public class MedicineServiceImpl implements MedicineService {
     public void removeMedicine(Medicine medicine) {
         medicineDao.deleteMedicine(medicine);
     }
+
+    @Override
+    public List<Medicine> findAll(){
+        return medicineDao.selectAll();
+    }
 }

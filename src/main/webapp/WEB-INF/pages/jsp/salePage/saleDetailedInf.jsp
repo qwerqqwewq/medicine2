@@ -90,7 +90,7 @@
                 </div>
                 <div>
                     <span>销售员编码</span>
-                    <span>${saleComment.saleBySaleNum.userId}</span>
+                    <span>${saleComment.saleBySaleNum.userByUserId.id}</span>
                 </div>
                 <div>
                     <span>客户编码</span>

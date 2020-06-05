@@ -162,6 +162,12 @@ public class MedicineAction extends ActionSupport {
      * @return
      */
     public String medicinePage(){
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletResponse response = ServletActionContext.getResponse();
+
+        List<Medicine> medicines = medicineService.findAll();
+        request.setAttribute("medicines",medicines);
+
         return "search";
     }
 

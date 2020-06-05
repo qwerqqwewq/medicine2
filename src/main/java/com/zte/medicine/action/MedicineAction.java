@@ -67,10 +67,14 @@ public class MedicineAction extends ActionSupport {
         medicine.setStock(Integer.parseInt(request.getParameter("Stock")));
         medicine.setFirstDate(Timestamp.valueOf(request.getParameter("FirstDate")));
         medicine.setUsefullDate(Timestamp.valueOf(request.getParameter("UsefullDate")));
-        List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
+        String firmCode = request.getParameter("FirmCode");
+        List<Firm> list= firmService.findFirmByCode(firmCode);
         Firm firm = list.get(0);
+        medicine.setFirmCode(firmCode);
         medicine.setFirmByFirmCode(firm);
-        Kind kind = kindService.findKindByCode(request.getParameter("KindCode")).get(0);
+        String kindCode = request.getParameter("KindCode");
+        Kind kind = kindService.findKindByCode(kindCode).get(0);
+        medicine.setKindCode(kindCode);
         medicine.setKindByKindCode(kind);
         try {
             medicineService.addMedicine(medicine);

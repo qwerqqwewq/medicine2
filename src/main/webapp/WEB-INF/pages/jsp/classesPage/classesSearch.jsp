@@ -161,7 +161,7 @@
                         <td>${kind.kindRemark}</td>
                         <td>${kind.kindCode}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/kind_updateKind.action?KindCode=${kind.kindCode}">编辑</a>
+                            <a href="${pageContext.request.contextPath}/kind_updateKindPage.action?KindCode=${kind.kindCode}">编辑</a>
                         </td>
                     </tr>
                 </c:forEach>

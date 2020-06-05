@@ -199,7 +199,7 @@ public class UserAction extends ActionSupport {
                 user.setPassword(MD5Util.MD5Encode(npwd));
                 userService.modifyUser(user);
                 out.print("<script>alert('修改成功，请重新登录！')</script>");
-                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_loginPage.action'</script>");
+                out.print("<script>window.location.href='${pageContext.request.contextPath}/user_loginpage.action'</script>");
                 out.flush();
                 out.close();
                 return "login";

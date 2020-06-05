@@ -128,21 +128,25 @@ public class UserAction extends ActionSupport {
         //Gson gson = new Gson();
         String pwd = request.getParameter("pwd");
         String tpwd = request.getParameter("tpwd");
+        String username = request.getParameter("name");
+        Integer id = Integer.parseInt("2");
         if (pwd != null) {
             if (pwd.equals(tpwd)) {
                 User user = new User();
-                BeanUtils.populate(user, request.getParameterMap());
                 Power power = new Power();
-                String name = request.getParameter("name");
-                user.setUsername(name);
-                power.setId(2);
-                power.setPower("用户");
-                user.setPowerByPowerId(power);
+                user.setUsername(username);
+                power = powerService.findById(id);
+                user.setPowerId(2);
+                //user.setPowerByPowerId(power);
                 String mpwd = MD5Util.MD5Encode(pwd);
                 user.setPassword(mpwd);
-                if (name != null) {
-                    if (userService.findByName(name).size() == 0) {
+                if (username != null) {
+                    if (userService.findByName(username).size() == 0) {
                         userService.addUser(user);
+                        out.print("<script>alert('注册成功！')</script>");
+                        out.print("<script>window.location.href='${pageContext.request.contextPath}/user_loginpage.action'</script>");
+                        out.flush();
+                        out.close();
                         return "login";
                     } else {
                         out.print("<script>alert('该用户名已存在！')</script>");

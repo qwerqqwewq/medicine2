@@ -10,7 +10,7 @@
             <generator class="native"></generator>
         </id>
         <property name="name">
-            <column name="name" sql-type="varchar(20)" length="20" not-null="true"/>
+            <column name="name" sql-type="varchar(20)" length="20"/>
         </property>
         <property name="username">
             <column name="username" sql-type="varchar(20)" length="20"/>
@@ -22,7 +22,7 @@
             <column name="powerId" sql-type="int(4)"/>
         </property>
         <property name="position">
-            <column name="position" sql-type="varchar(64)" length="64" not-null="true"/>
+            <column name="position" sql-type="varchar(64)" length="64"/>
         </property>
         <many-to-one name="powerByPowerId" class="com.zte.medicine.entity.Power" insert="false" update="false">
             <column name="powerId"/>

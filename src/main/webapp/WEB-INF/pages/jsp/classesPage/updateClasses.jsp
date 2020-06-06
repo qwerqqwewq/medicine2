@@ -125,14 +125,16 @@
 
         </div>
         <div class="right">
+            <c:forEach items="${kinds}" var="kind">
             <div>
                 <span>类别编码</span>
-                <input type="text" name="KindCode" placeholder="类别代码">
+                <input type="text" name="KindCode" value="${kind.kindCode}">
             </div>
             <div>
                 <span>药品类别</span>
-                <input type="text" name="KindRemark" placeholder="类别名称">
+                <input type="text" name="KindRemark" value="${kind.kindRemark}">
             </div>
+            </c:forEach>
         </div>
         <div class="down">
             <input type="submit" value="提交">

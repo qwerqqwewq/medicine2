@@ -131,28 +131,28 @@
                 </c:forEach>
             </div>
             <div class="right">
+                <c:forEach items="${firms}" var="firm">
                 <div>
                     <span>供应商编码</span>
-                    <input type="text" name="FirmCode" placeholder="供应商编码">
+                    <input type="text" name="FirmCode" value="${firm.firmCode}">
                 </div>
                 <div>
                     <span>供应商名称</span>
-                    <input type="text" name="FirmName" placeholder="供应商名称">
+                    <input type="text" name="FirmName" value="${firm.firmName}">
                 </div>
                 <div>
                     <span>联系人</span>
-                    <input type="text" name="Link" placeholder="联系人">
+                    <input type="text" name="Link" value="${firm.link}">
                 </div>
                 <div>
                     <span>联系人电话</span>
-                    <input type="text" name="LinkTel" placeholder="联系人电话">
+                    <input type="text" name="LinkTel" value="${firm.linkTel}">
                 </div>
                 <div>
                     <span>所在城市</span>
-                    <input type="text" name="City" placeholder="所在城市">
+                    <input type="text" name="City" value="${firm.city}">
                 </div>
-                
-                
+                </c:forEach>
             </div>
             <div class="down">
                 <input type="submit" value="提交">

@@ -141,8 +141,10 @@ public class MedicineAction extends ActionSupport {
         List<Firm> list= firmService.findFirmByCode(request.getParameter("FirmCode"));
         Firm firm = list.get(0);
         medicine.setFirmByFirmCode(firm);
+        medicine.setFirmCode(request.getParameter("FirmCode"));
         Kind kind = kindService.findKindByCode(request.getParameter("KindCode")).get(0);
         medicine.setKindByKindCode(kind);
+        medicine.setKindCode(request.getParameter("KindCode"));
         try {
             medicineService.modifyMedicine(medicine);
             out.print("<script>alert('修改成功！')</script>");

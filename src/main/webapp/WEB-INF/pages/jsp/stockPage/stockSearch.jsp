@@ -163,7 +163,7 @@
           <th>药品名称</th>
           <th>操作编码</th>
           <th>操作员编码</th>
-          <th>剩余数量</th>
+          <th>操作数量</th>
           <th>操作</th>
         </tr>
         <c:forEach items="${stockComments}" var="stockComment">
